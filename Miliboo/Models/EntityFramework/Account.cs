@@ -15,7 +15,7 @@ namespace Miliboo.Models.EntityFramework {
         private bool act_oath;
 
         public Account() {
-            Addresses = new HashSet<Address>();
+            Addresses = new HashSet<Owning>();
         }
 
         [Key]
@@ -71,9 +71,6 @@ namespace Miliboo.Models.EntityFramework {
             set { act_oath = value; }
         }
 
-        [ForeignKey("T_E_COUNTRY_CNT")]
-        [InverseProperty("cnt_id")]
         public virtual ICollection<Owning> Addresses { get; set; }
     }
-}
 }
