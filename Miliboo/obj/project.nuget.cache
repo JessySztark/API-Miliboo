@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "ghSZtLxG1VRyjxYxLgG/HSOMHIQj4G+zvlET3W/NALwM9J9fzMTcqa1ycLa7uhqHb50SSaYWyVUGcajV+6Tf4g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\Miliboo\\Miliboo.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sztarkj\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\sztarkj\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\sztarkj\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\sztarkj\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\sztarkj\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\sztarkj\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
