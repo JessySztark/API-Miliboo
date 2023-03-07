@@ -54,5 +54,8 @@ public partial class Product        //  /!\ Faire contraintes /!\   \\
 
     [InverseProperty("ProductsNavigation")]
     public virtual ICollection<Regroup> ProductsRegroup { get; set; } = new List<Regroup>();
+
+    [InverseProperty("ProductsNavigation")]
+    public virtual ICollection<IsFiltered> ProductsIsFiltered { get; set; } = new List<IsFiltered>();
 }
 

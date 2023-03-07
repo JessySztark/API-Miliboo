@@ -19,4 +19,7 @@ public partial class ProductCategory
 
     [InverseProperty("ProductCategoriesNavigation")]
     public virtual ICollection<Product> ProductCategoriesProduct { get; set; } = new List<Product>();
+
+    [InverseProperty("ProductCategoriesNavigation")]
+    public virtual ICollection<AsFilter> AsFiltersProductCategory { get; set; } = new List<AsFilter>();
 }
