@@ -73,9 +73,8 @@ namespace Miliboo.Models.EntityFramework {
 
         public virtual ICollection<Owning> Addresses { get; set; }
 
-
-
-        public virtual ICollection<Order> OrderAccount { get; set; }
+        [InverseProperty("AccountCreditCard")]
+        public virtual ICollection<CreditCard> CreditCardAccount { get; set; } = new List<CreditCard>();
 
     }
 }
