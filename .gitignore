@@ -1,1 +1,4 @@
-git rm --cached Miliboo/obj/Miliboo.csproj.nuget.props
+Miliboo/obj/Miliboo.csproj.nuget.props
+Miliboo/obj/Debug
+Miliboo/obj/project.assets.json
+Miliboo/obj/Miliboo.csproj.nuget.cache
