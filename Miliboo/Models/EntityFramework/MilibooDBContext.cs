@@ -10,11 +10,12 @@ namespace Miliboo.Models.EntityFramework {
         : base(options) {
         }
 
-        public virtual DbSet<Account> ACT { get; set; }
-        public virtual DbSet<Address> ADR { get; set; }
-        public virtual DbSet<Country> CNT { get; set; }
-
-        protected void OnModelCreating(ModelBuilder modelBuilder) {
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CreditCard>(entity =>
+            {
+                entity.HasCheckConstraint("Ck_creditcard_date", "crc_expirationdate > now()");
+            });
             modelBuilder.Entity<Account>(entity => {
 
                 entity.HasIndex(a => a.Mail)
@@ -22,5 +23,6 @@ namespace Miliboo.Models.EntityFramework {
             });
         }
 
-    }
+
+        }
 }
