@@ -66,28 +66,12 @@ namespace Miliboo.Models.EntityFramework
         }
         [Key]
         [Column("sto_stateorderid")]
-        public int StateOrderID
+        public int DiscountID
         {
-            get { return stateOrderID; }
-            set { stateOrderID = value; }
+            get { return discountID; }
+            set { discountID = value; }
         }
-
-        [Key]
-        [Column("act_id")]
-        public int AccountID
-        {
-            get { return accountID; }
-            set { accountID = value; }
-        }
-
-        [Key]
-        [Column("pay_paymentmethodid")]
-        public int Paymentmethodid
-        {
-            get { return paymentmethodid; }
-            set { paymentmethodid = value; }
-        }
-
+        
 
         [Column("ord_name", TypeName ="varchar(50)")]
         public string? OrderName
