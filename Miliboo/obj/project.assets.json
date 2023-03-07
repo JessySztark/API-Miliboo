@@ -5608,23 +5608,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sztarkj\\.nuget\\packages\\": {},
+    "C:\\Users\\Ledeveda\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\Miliboo\\Miliboo.csproj",
+      "projectUniqueName": "C:\\Users\\Ledeveda\\Desktop\\SAE\\Miliboo\\Miliboo.csproj",
       "projectName": "Miliboo",
-      "projectPath": "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\Miliboo\\Miliboo.csproj",
-      "packagesPath": "C:\\Users\\sztarkj\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\Miliboo\\obj\\",
+      "projectPath": "C:\\Users\\Ledeveda\\Desktop\\SAE\\Miliboo\\Miliboo.csproj",
+      "packagesPath": "C:\\Users\\Ledeveda\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ledeveda\\Desktop\\SAE\\Miliboo\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\sztarkj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ledeveda\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

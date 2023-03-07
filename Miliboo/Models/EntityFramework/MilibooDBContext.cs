@@ -1,26 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Miliboo.Models.EntityFramework {
-    public class MilibooDBContext : DbContext {
-        public static readonly ILoggerFactory Mylogs = LoggerFactory.Create(builder => builder.AddConsole());
+namespace Miliboo.Models.EntityFramework
+{
+    public class MilibooDBContext : DbContext
+    {
+        public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
 
-        public MilibooDBContext() { }
-
-        public MilibooDBContext(DbContextOptions<MilibooDBContext> options)
-        : base(options) {
+        public MilibooDBContext()
+        {
         }
 
-        public virtual DbSet<Account> ACT { get; set; }
-        public virtual DbSet<Address> ADR { get; set; }
-        public virtual DbSet<Country> CNT { get; set; }
-
-        protected void OnModelCreating(ModelBuilder modelBuilder) {
-            modelBuilder.Entity<Account>(entity => {
-
-                entity.HasIndex(a => a.Mail)
-                .IsUnique();
-            });
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CreditCard>(entity =>
+            {
+                entity.HasCheckConstraint("Ck_creditcard_date", "crc_expirationdate > now()");
+            }); 
         }
 
-    }
+
+        }
 }
