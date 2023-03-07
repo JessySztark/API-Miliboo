@@ -149,27 +149,6 @@ namespace Miliboo.Models.EntityFramework
         [InverseProperty("OrderStateOrder")]
         public virtual StateOrder StateOrderOrder { get; set; } = null!;
 
-        [ForeignKey("CardID")]
-        [InverseProperty("OrderCreditCard")]
-        public virtual CreditCard CreditCardOrder { get; set; } = null!;
-
-
-        [ForeignKey("IdDeliveryAdress")]
-        [InverseProperty("OrderDeliveryAdress")]
-        public virtual DeliveryAdress DeliveryAdressOrder { get; set; } = null!;
-
-        [ForeignKey("IdDeliveryMethod")]
-        [InverseProperty("OrderDeliveryMethod")]
-        public virtual DeliveryMethod DeliveryMethodOrder { get; set; } = null!;
-
-        [ForeignKey("DiscountID")]
-        [InverseProperty("OrderDiscount")]
-        public virtual Discount DiscountOrder { get; set; } = null!;
-
-        [ForeignKey("stateOrderID")]
-        [InverseProperty("OrderStateOrder")]
-        public virtual StateOrder StateOrderOrder { get; set; } = null!;
-
 
         [ForeignKey("Paymentmethodid")]
         [InverseProperty("OrderPaymentMethod")]
@@ -178,7 +157,5 @@ namespace Miliboo.Models.EntityFramework
         [ForeignKey("AccountID")]
         [InverseProperty("OrderAccount")]
         public virtual Account AccountOrder { get; set; } = null!;
-
->>>>>>> jessy
     }
 }
