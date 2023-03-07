@@ -72,5 +72,10 @@ namespace Miliboo.Models.EntityFramework {
         }
 
         public virtual ICollection<Owning> Addresses { get; set; }
+
+
+
+        public virtual ICollection<Order> OrderAccount { get; set; }
+
     }
 }

@@ -15,9 +15,13 @@ namespace Miliboo.Models.EntityFramework
             modelBuilder.Entity<CreditCard>(entity =>
             {
                 entity.HasCheckConstraint("Ck_creditcard_date", "crc_expirationdate > now()");
-            }); 
+            });
+
+            modelBuilder.Entity<Order>(entity =>
+            {
+                entity.HasCheckConstraint("Ck_order_date", "ord_date > now()");
+            });
+
         }
-
-
         }
 }
