@@ -27,5 +27,9 @@ namespace Miliboo.Models.EntityFramework
         }
 
 
+
+        [InverseProperty("DeliveryMethodOrder")]
+        public virtual ICollection<Order> OrderDeliveryMethod { get; set; } = new List<Order>();
+
     }
 }

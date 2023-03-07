@@ -26,7 +26,7 @@ namespace Miliboo.Models.EntityFramework
         [Column("dsc_isactive")]
         public double DiscountValue { get; set; }
 
-
+        [InverseProperty("DiscountOrder")]
         public virtual ICollection<Order> OrderDiscount { get; set; } = new List<Order>();
     }
 }

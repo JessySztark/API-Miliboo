@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Miliboo.Models.EntityFramework
@@ -16,6 +17,9 @@ namespace Miliboo.Models.EntityFramework
 
         [Column("sto_stateordername")]
         public string? StateOrderName { get; set; }
+
+        [InverseProperty("StateOrderOrder")]
+        public virtual ICollection<Order> OrderStateOrder { get; set; } = new List<Order>();
 
 
     }

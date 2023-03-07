@@ -66,7 +66,11 @@ namespace Miliboo.Models.EntityFramework
 			set { cryptogram = value; }
 		}
 
+        [InverseProperty("CreditCardOrder")]
         public virtual ICollection<Order> OrderCreditCard{ get; set; } = new List<Order>();
+
+
+
 
     }
 }
