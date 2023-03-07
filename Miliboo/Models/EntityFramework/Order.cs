@@ -60,6 +60,14 @@ namespace Miliboo.Models.EntityFramework
             get { return discountID; }
             set { discountID = value; }
         }
+        [Key]
+        [Column("sto_stateorderid")]
+        public int DiscountID
+        {
+            get { return discountID; }
+            set { discountID = value; }
+        }
+        
 
         [Column("ord_name", TypeName ="varchar(50)")]
         public string? OrderName
