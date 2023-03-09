@@ -44,5 +44,9 @@ namespace Miliboo.Models.EntityFramework {
         [ForeignKey("T_E_ACCOUNT_ACT")]
         [InverseProperty("AccountComments")]
         public virtual Account CommentsAccount { get; set; }
+
+        [ForeignKey("T_E_PRODUCTTYPE_PRT")]
+        [InverseProperty("CommentsType")]
+        public virtual Account TypeComments { get; set; }
     }
 }
