@@ -22,10 +22,6 @@ namespace Miliboo.Models.EntityFramework
 			set { compositeID = value; }
 		}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> e9c52f309d21d4133a8b85d2a9bb336d04b1095f
         [Key]
         [Column("prd_id")]
         public int ProductId
@@ -34,15 +30,12 @@ namespace Miliboo.Models.EntityFramework
 			set { productId = value; }
 		}
 
-
         [Column("cpr_compositeproductid")]
         public int CompositeproductID
         {
             get { return compositeproduct; }
             set { compositeproduct = value; }
         }
-
-
 
         [Column("cpr_compositedescription")]
         public string? CompositeDescription
