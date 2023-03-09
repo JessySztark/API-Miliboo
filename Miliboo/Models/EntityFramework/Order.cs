@@ -64,6 +64,30 @@ namespace Miliboo.Models.EntityFramework
             get { return discountID; }
             set { discountID = value; }
         }
+        [Key]
+        [Column("sto_stateorderid")]
+        public int StateOrderID
+        {
+            get { return stateOrderID; }
+            set { stateOrderID = value; }
+        }
+
+        [Key]
+        [Column("act_id")]
+        public int AccountID
+        {
+            get { return accountID; }
+            set { accountID = value; }
+        }
+
+        [Key]
+        [Column("pay_paymentmethodid")]
+        public int Paymentmethodid
+        {
+            get { return paymentmethodid; }
+            set { paymentmethodid = value; }
+        }
+
 
         [Column("ord_name", TypeName ="varchar(50)")]
         public string? OrderName
@@ -165,6 +189,9 @@ namespace Miliboo.Models.EntityFramework
         [ForeignKey("AccountID")]
         [InverseProperty("OrderAccount")]
         public virtual Account AccountOrder { get; set; } = null!;
+
+        [InverseProperty("OrdersNavigation")]
+        public virtual ICollection<Concerned> OrdersConcerned { get; set; } = new List<Concerned>();
 
     }
 }

@@ -23,10 +23,10 @@ namespace Miliboo.Models.EntityFramework {
 
         [ForeignKey("T_E_ACCOUNT_ACT")]
         [InverseProperty("Addresses")]
-        public virtual Account OwnerAccount { get; set; }
+        public virtual Account OwnerAccount { get; set; } = null!;
 
         [ForeignKey("T_E_ADDRESS_ADR")]
         [InverseProperty("Owners")]
-        public virtual Address AddressOwned { get; set; }
+        public virtual Address AddressOwned { get; set; } = null!;
     }
 }
