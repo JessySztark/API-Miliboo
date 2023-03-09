@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection.Emit;
 
-namespace Miliboo.Models.EntityFramework {
+namespace Miliboo.Models.EntityFramework
+{
     public class MilibooDBContext : DbContext {
-        public static readonly ILoggerFactory Mylogs = LoggerFactory.Create(builder => builder.AddConsole());
+        public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
 
+        public MilibooDBContext() { }
 
         public MilibooDBContext(DbContextOptions<MilibooDBContext> options)
         : base(options) {
