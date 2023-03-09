@@ -10,6 +10,10 @@ public partial class ProductType
     private string? productTypeName;
     private string? pTmaintenanceComment;
 
+    public ProductType() {
+        CommentsType = new HashSet<Comment>();
+    }
+
     [Key]
     [Column("prt_id")]
     public int ProducTypetId { get; set; }
@@ -26,4 +30,7 @@ public partial class ProductType
 
     [InverseProperty("ProductTypesNavigation")]
     public virtual ICollection<AsAspect> AsAspectsProductType { get; set; } = new List<AsAspect>();
+
+    [InverseProperty("TypeComments")]
+    public virtual ICollection<Comment> CommentsType { get; set; } = new List<Comment>();
 }
