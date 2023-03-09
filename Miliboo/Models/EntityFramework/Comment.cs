@@ -1,7 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Miliboo.Models.EntityFramework {
+	[Table("T_E_COMMENT_CMT")]
     public class Comment {
 		private int cmt_id;
         private String? cmt_title;
@@ -22,6 +24,7 @@ namespace Miliboo.Models.EntityFramework {
 			set { cmt_title = value; }
 		}
         [Column("cmt_mark")]
+		[Range(1,4)]
         public int? Mark {
 			get { return cmt_mark; }
 			set { cmt_mark = value; }
@@ -32,9 +35,14 @@ namespace Miliboo.Models.EntityFramework {
 			set { cmt_description = value; }
 		}
         [Column("cmt_date", TypeName = "date")]
+		[DefaultValue("now()")]
         public DateTime Date {
 			get { return cmt_date; }
 			set { cmt_date = value; }
 		}
-	}
+
+        [ForeignKey("T_E_ACCOUNT_ACT")]
+        [InverseProperty("AccountComments")]
+        public virtual Account CommentsAccount { get; set; }
+    }
 }
