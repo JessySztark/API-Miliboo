@@ -6,7 +6,10 @@ namespace Miliboo.Models.EntityFramework
     public class MilibooDBContext : DbContext {
         public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
 
-        public MilibooDBContext() {
+        public MilibooDBContext() { }
+
+        public MilibooDBContext(DbContextOptions<MilibooDBContext> options)
+        : base(options) {
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {

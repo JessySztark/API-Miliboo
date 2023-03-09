@@ -15,6 +15,7 @@ namespace Miliboo.Models.EntityFramework {
 
         public Account() {
             Addresses = new HashSet<Owning>();
+            AccountComments = new HashSet<Comment>();
         }
 
         [Key]
@@ -25,7 +26,7 @@ namespace Miliboo.Models.EntityFramework {
             set { act_id = value; }
         }
 
-        [Column("act_password", TypeName="varchar")]
+        [Column("act_password", TypeName = "varchar")]
         [MinLength(7)]
         [MaxLength(30)]
         [Required]
@@ -71,5 +72,11 @@ namespace Miliboo.Models.EntityFramework {
         }
 
         public virtual ICollection<Owning> Addresses { get; set; }
+
+        [InverseProperty("AccountCreditCard")]
+        public virtual ICollection<CreditCard> CreditCardAccount { get; set; } = new List<CreditCard>();
+
+        [InverseProperty("AccountComment")]
+        public virtual ICollection<Comment> AccountComments { get; set; } = new List<Comment>();
     }
 }
