@@ -15,17 +15,23 @@ namespace Miliboo.Models.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // -----------[Credit Card]----------- //
+
             modelBuilder.Entity<CreditCard>(entity =>
             {
                 entity.HasKey(e => e.CardID).HasName("pk_creditcard");
                 entity.HasCheckConstraint("Ck_creditcard_date", "crc_expirationdate > now()");
             });
 
+            // -----------[Order]----------- //
+
             modelBuilder.Entity<Order>(entity =>
             {
                 entity.HasCheckConstraint("Ck_order_date", "ord_date > now()");
             });
 
+            // -----------[Delivery Address]----------- //
+
             modelBuilder.Entity<DeliveryAdress>(entity =>
             {
                 entity.HasKey(e => e.IdDeliveryAdress).HasName("pk_deliveryadress");
@@ -35,29 +41,39 @@ namespace Miliboo.Models.EntityFramework
             {
                 entity.HasKey(e => e.IdDeliveryAdress).HasName("pk_deliveryadress");
             });
+
+            // -----------[Delivery Method]----------- //
 
             modelBuilder.Entity<DeliveryMethod>(entity =>
             {
                 entity.HasKey(e => e.IdDeliveryMethod).HasName("pk_deliverymethod");
             });
-           
+
+            // -----------[Discount]----------- //
+
             modelBuilder.Entity<Discount>(entity =>
             {
                 entity.HasKey(e => e.DiscountID).HasName("pk_discount");
             });
+
+            // -----------[Payement Method]----------- //
+
             modelBuilder.Entity<PaymentMethod>(entity =>
             {
                 entity.HasKey(e => e.Paymentmethodid).HasName("pk_paymentmethod");
             });
+
+            // -----------[State Order]----------- //
+
             modelBuilder.Entity<StateOrder>(entity =>
             {
                 entity.HasKey(e => e.StateOrderID).HasName("pk_stateorder");
             });
 
-            // -----------[Account]-----------
+            // -----------[Account]----------- //
 
             modelBuilder.Entity<Account>(entity => {
-                entity.HasKey(e => e.AccountID).HasName("pk_accountid");
+                entity.HasKey(a => a.AccountID).HasName("pk_accountid");
             });
 
             modelBuilder.Entity<Account>(entity => {
@@ -132,6 +148,37 @@ namespace Miliboo.Models.EntityFramework
                 entity.HasKey(e => e.ProductId).HasName("pk_product");
             });
 
+
+            // -----------[Address]----------- //
+
+            modelBuilder.Entity<Address>(entity => {
+                entity.HasKey(a => a.AddressID).HasName("pk_addressid");
+            });
+
+            // -----------[Comment]----------- //
+
+            modelBuilder.Entity<Comment>(entity => {
+                entity.HasKey(c => c.CommentID).HasName("pk_commentid");
+            });
+
+            // -----------[Country]----------- //
+
+            modelBuilder.Entity<Country>(entity => {
+                entity.HasKey(c => c.CountryID).HasName("pk_countryid");
+            });
+
+            // -----------[Owning]----------- //
+
+            modelBuilder.Entity<Owning>(entity => {
+                entity.HasKey(o => new { o.IDAddress, o.IDAccount}).HasName("pk_owning_addressid_accountid");
+            });
+
+            // -----------[Photo]----------- //
+
+            modelBuilder.Entity<Photo>(entity => {
+                entity.HasKey(p => p.PhotoID).HasName("pk_owning_addressid_accountid");
+            });
+
         }
-        }
+    }
 }

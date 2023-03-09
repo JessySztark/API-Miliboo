@@ -41,13 +41,13 @@ namespace Miliboo.Models.EntityFramework {
             set { adr_city = value; }
         }
 
-        [Column("adr_longitude", TypeName = "float")]
+        [Column("adr_longitude", TypeName = "numeric")]
         public float Longitude {
             get { return adr_longitude; }
             set { adr_longitude = value; }
         }
 
-        [Column("adr_latitude", TypeName="float")]
+        [Column("adr_latitude", TypeName="numeric")]
         public float Latitude {
 			get { return adr_latitude; }
 			set { adr_latitude = value; }
@@ -57,6 +57,8 @@ namespace Miliboo.Models.EntityFramework {
         [InverseProperty("cnt_id")]
         public virtual Country CountryID { get; set; }
 
+        [ForeignKey("T_J_OWNING_OWN")]
+        [InverseProperty("AddressOwned")]
         public virtual ICollection<Owning> Owners { get; set; }
     }
 }

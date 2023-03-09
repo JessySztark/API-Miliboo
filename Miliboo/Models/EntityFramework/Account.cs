@@ -71,6 +71,8 @@ namespace Miliboo.Models.EntityFramework {
             set { act_oath = value; }
         }
 
+        [ForeignKey("T_J_OWNING_OWN")]
+        [InverseProperty("OwnerAccount")]
         public virtual ICollection<Owning> Addresses { get; set; }
 
         [InverseProperty("AccountCreditCard")]
