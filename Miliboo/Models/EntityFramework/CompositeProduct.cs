@@ -22,6 +22,10 @@ namespace Miliboo.Models.EntityFramework
 			set { compositeID = value; }
 		}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e9c52f309d21d4133a8b85d2a9bb336d04b1095f
         [Key]
         [Column("prd_id")]
         public int ProductId

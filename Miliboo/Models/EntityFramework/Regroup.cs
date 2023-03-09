@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Miliboo.Models.EntityFramework;
 
-[Table("t_e_regroup_rgp")]
+[Table("t_j_regroup_rgp")]
 
 public class Regroup
 {
