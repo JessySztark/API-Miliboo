@@ -12,7 +12,6 @@ public class IsFiltered
     [Column("ift_id")]
     public int IsFilteredId { get; set; }
 
-
     [ForeignKey("ProductId")]
     [InverseProperty("ProductsIsFiltered")]
     public virtual Product ProductsNavigation { get; set; } = null!;

@@ -13,16 +13,16 @@ public class Concerned
     [Key]
     [Column("coc_id")]
     public int ConcernedId { get; set; }
-
+    
     [Column("coc_quantity")]
     public int Quantity { get; set; }
 
 
-    [ForeignKey("ProductId")]
+    [ForeignKey("T_E_PRODUCT_PRD")]
     [InverseProperty("ProductsConcerned")]
-    public virtual Grouping ProductsNavigation { get; set; } = null!;
+    public virtual Product ProductsNavigation { get; set; } = null!;
 
     [ForeignKey("OrderID")]
     [InverseProperty("OrdersConcerned")]
-    public virtual Product OrdersNavigation { get; set; } = null!;
+    public virtual Order OrdersNavigation { get; set; } = null!;
 }

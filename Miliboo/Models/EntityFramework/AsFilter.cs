@@ -16,7 +16,6 @@ public partial class AsFilter
     [Column("prc_id")]
     public int ProductCategoryId { get; set; }
 
-
     [ForeignKey("FilterCategoryId")]
     [InverseProperty("AsFiltersFilterCategory")]
     public virtual FilterCategory FiltersCategoryNavigation { get; set; } = null!;

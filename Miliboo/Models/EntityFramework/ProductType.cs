@@ -24,13 +24,13 @@ public partial class ProductType
     [Column("prt_maintenanceCommentPT", TypeName = "varchar(500)")]
     public string? PTMaintenanceComment { get; set; }
 
-
     [InverseProperty("ProductTypesNavigation")]
     public virtual ICollection<Product> ProductTypesProduct { get; set; } = new List<Product>();
 
     [InverseProperty("ProductTypesNavigation")]
     public virtual ICollection<AsAspect> AsAspectsProductType { get; set; } = new List<AsAspect>();
 
+    [ForeignKey("T_E_COMMENT_CMT")]
     [InverseProperty("TypeComments")]
     public virtual ICollection<Comment> CommentsType { get; set; } = new List<Comment>();
 }

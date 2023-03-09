@@ -16,6 +16,7 @@ namespace Miliboo.Models.EntityFramework {
         public Account() {
             Addresses = new HashSet<Owning>();
             AccountComments = new HashSet<Comment>();
+            OrderAccount = new HashSet<Order>();
         }
 
         [Key]
@@ -80,5 +81,8 @@ namespace Miliboo.Models.EntityFramework {
 
         [InverseProperty("AccountComment")]
         public virtual ICollection<Comment> AccountComments { get; set; } = new List<Comment>();
+
+        [InverseProperty("AccountComment")]
+        public virtual ICollection<Order> OrderAccount { get; set; } = new List<Order>();
     }
 }

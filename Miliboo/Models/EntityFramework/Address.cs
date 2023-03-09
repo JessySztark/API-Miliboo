@@ -54,7 +54,7 @@ namespace Miliboo.Models.EntityFramework {
 		}
 
         [ForeignKey("T_E_COUNTRY_CNT")]
-        [InverseProperty("cnt_id")]
+        [InverseProperty("AddressCountry")]
         public virtual Country CountryID { get; set; }
 
         [ForeignKey("T_J_OWNING_OWN")]

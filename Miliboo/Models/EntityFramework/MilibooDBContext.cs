@@ -15,6 +15,8 @@ namespace Miliboo.Models.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // ---------------------------------[PRIMARY KEY]--------------------------------- //
+
             // -----------[Credit Card]----------- //
 
             modelBuilder.Entity<CreditCard>(entity =>
@@ -31,11 +33,6 @@ namespace Miliboo.Models.EntityFramework
             });
 
             // -----------[Delivery Address]----------- //
-
-            modelBuilder.Entity<DeliveryAdress>(entity =>
-            {
-                entity.HasKey(e => e.IdDeliveryAdress).HasName("pk_deliveryadress");
-            });
 
             modelBuilder.Entity<DeliveryAdress>(entity =>
             {
@@ -74,12 +71,6 @@ namespace Miliboo.Models.EntityFramework
 
             modelBuilder.Entity<Account>(entity => {
                 entity.HasKey(a => a.AccountID).HasName("pk_accountid");
-            });
-
-            modelBuilder.Entity<Account>(entity => {
-
-                entity.HasIndex(a => a.Mail)
-                .IsUnique();
             });
 
             // -----------[Color]----------- //
@@ -204,6 +195,225 @@ namespace Miliboo.Models.EntityFramework
                 entity.HasKey(p => p.PhotoID).HasName("pk_owning_addressid_accountid");
             });
 
+            // ---------------------------------[FOREIGN KEY]--------------------------------- //
+
+            // -----------[Address]----------- //
+
+            modelBuilder.Entity<Address>(entity => {
+                entity.HasOne(n => n.CountryID)
+                .WithMany(f => f.AddressCountry)
+                .HasConstraintName("fk_adr_cnt");
+            });
+
+            // -----------[As Aspect]----------- //
+
+            modelBuilder.Entity<AsAspect>(entity => {
+                entity.HasOne(n => n.TechnicalAspectsNavigation)
+                .WithMany(f => f.AsAspectsTechnicalAspect)
+                .HasConstraintName("fk_techaspect_asaspect");
+            });
+
+            modelBuilder.Entity<AsAspect>(entity => {
+                entity.HasOne(n => n.ProductTypesNavigation)
+                .WithMany(f => f.AsAspectsProductType)
+                .HasConstraintName("fk_producttype_asaspect");
+            });
+
+            // -----------[As Filter]----------- //
+
+            modelBuilder.Entity<AsFilter>(entity => {
+                entity.HasOne(n => n.FiltersCategoryNavigation)
+                .WithMany(f => f.AsFiltersFilterCategory)
+                .HasConstraintName("fk_filtercat_asfilter");
+            });
+
+            modelBuilder.Entity<AsFilter>(entity => {
+                entity.HasOne(n => n.ProductCategoriesNavigation)
+                .WithMany(f => f.AsFiltersProductCategory)
+                .HasConstraintName("fk_productcat_asfilter");
+            });
+
+            // -----------[Comment]----------- //
+
+            modelBuilder.Entity<Comment>(entity => {
+                entity.HasOne(n => n.CommentsAccount)
+                .WithMany(f => f.AccountComments)
+                .HasConstraintName("fk_comments_account");
+            });
+
+            modelBuilder.Entity<Comment>(entity => {
+                entity.HasOne(n => n.TypeComments)
+                .WithMany(f => f.CommentsType)
+                .HasConstraintName("fk_productcat_asfilter");
+            });
+
+            // -----------[Concerned]----------- //
+
+            modelBuilder.Entity<Concerned>(entity => {
+                entity.HasOne(n => n.ProductsNavigation)
+                .WithMany(f => f.ProductsConcerned)
+                .HasConstraintName("fk_product_concerned");
+            });
+
+            modelBuilder.Entity<Concerned>(entity => {
+                entity.HasOne(n => n.OrdersNavigation)
+                .WithMany(f => f.OrdersConcerned)
+                .HasConstraintName("fk_order_concerned");
+            });
+
+            // -----------[Composite Product]----------- //
+
+            modelBuilder.Entity<CompositeProduct>(entity => {
+                entity.HasOne(n => n.ProductCompositeProduct)
+                .WithMany(f => f.ProductsCompositeProduct)
+                .HasConstraintName("fk_product_productcomposite");
+            });
+
+            // -----------[Filter]----------- //
+
+            modelBuilder.Entity<Filter>(entity => {
+                entity.HasOne(n => n.FiltersCategoryNavigation)
+                .WithMany(f => f.FilterFiltersCategory)
+                .HasConstraintName("fk_filter_filtercategory");
+            });
+
+            // -----------[Is Filter]----------- //
+
+            modelBuilder.Entity<IsFiltered>(entity => {
+                entity.HasOne(n => n.FiltersNavigation)
+                .WithMany(f => f.FiltersIsFiltered)
+                .HasConstraintName("fk_filter_isfiltered");
+            });
+
+            modelBuilder.Entity<IsFiltered>(entity => {
+                entity.HasOne(n => n.ProductsNavigation)
+                .WithMany(f => f.ProductsIsFiltered)
+                .HasConstraintName("fk_product_isfiltered");
+            });
+
+            // -----------[Order]----------- //
+
+            modelBuilder.Entity<Order>(entity => {
+                entity.HasOne(n => n.CreditCardOrder)
+                .WithMany(f => f.OrderCreditCard)
+                .HasConstraintName("fk_order_creditcard");
+            });
+
+            modelBuilder.Entity<Order>(entity => {
+                entity.HasOne(n => n.DeliveryAdressOrder)
+                .WithMany(f => f.OrderDeliveryAdress)
+                .HasConstraintName("fk_order_deliveryaddress");
+            });
+
+            modelBuilder.Entity<Order>(entity => {
+                entity.HasOne(n => n.DeliveryMethodOrder)
+                .WithMany(f => f.OrderDeliveryMethod)
+                .HasConstraintName("fk_order_deliverymethod");
+            });
+
+            modelBuilder.Entity<Order>(entity => {
+                entity.HasOne(n => n.DiscountOrder)
+                .WithMany(f => f.OrderDiscount)
+                .HasConstraintName("fk_order_discount");
+            });
+
+            modelBuilder.Entity<Order>(entity => {
+                entity.HasOne(n => n.StateOrderOrder)
+                .WithMany(f => f.OrderStateOrder)
+                .HasConstraintName("fk_order_stateorder");
+            });
+
+            modelBuilder.Entity<Order>(entity => {
+                entity.HasOne(n => n.PaymentMethodOrder)
+                .WithMany(f => f.OrderPaymentMethod)
+                .HasConstraintName("fk_order_paymentmethod");
+            });
+
+            modelBuilder.Entity<Order>(entity => {
+                entity.HasOne(n => n.AccountOrder)
+                .WithMany(f => f.OrderAccount)
+                .HasConstraintName("fk_order_account");
+            });
+
+            // -----------[Photo]----------- //
+
+            modelBuilder.Entity<Photo>(entity => {
+                entity.HasOne(n => n.ProductPhoto)
+                .WithMany(f => f.PhotoProduct)
+                .HasConstraintName("fk_photo_product");
+            });
+
+            modelBuilder.Entity<Photo>(entity => {
+                entity.HasOne(n => n.CommentPhoto)
+                .WithMany(f => f.PhotoComment)
+                .HasConstraintName("fk_photo_comment");
+            });
+
+            // -----------[Product]----------- //
+
+            modelBuilder.Entity<Product>(entity => {
+                entity.HasOne(n => n.ColorsNavigation)
+                .WithMany(f => f.ColorsProduct)
+                .HasConstraintName("fk_product_color");
+            });
+
+            modelBuilder.Entity<Product>(entity => {
+                entity.HasOne(n => n.ProductTypesNavigation)
+                .WithMany(f => f.ProductTypesProduct)
+                .HasConstraintName("fk_product_typeproduct");
+            });
+
+            modelBuilder.Entity<Product>(entity => {
+                entity.HasOne(n => n.ProductCategoriesNavigation)
+                .WithMany(f => f.ProductCategoriesProduct)
+                .HasConstraintName("fk_product_catproduct");
+            });
+
+            // -----------[Product Category]----------- //
+
+            modelBuilder.Entity<ProductCategory>(entity => {
+                entity.HasOne(n => n.ParentCategory)
+                .WithMany(f => f.ChildCategories)
+                .HasConstraintName("fk_productcat_productcat");
+            });
+
+            // -----------[Regroup]----------- //
+
+            modelBuilder.Entity<Regroup>(entity => {
+                entity.HasOne(n => n.GroupingsNavigation)
+                .WithMany(f => f.GroupingsRegroup)
+                .HasConstraintName("fk_regroup_grouping");
+            });
+
+            modelBuilder.Entity<Regroup>(entity => {
+                entity.HasOne(n => n.ProductsNavigation)
+                .WithMany(f => f.ProductsRegroup)
+                .HasConstraintName("fk_regroup_product");
+            });
+
+            // -----------[Owning]----------- //
+
+            modelBuilder.Entity<Owning>(entity => {
+                entity.HasOne(n => n.OwnerAccount)
+                .WithMany(f => f.Addresses)
+                .HasConstraintName("fk_owning_account");
+            });
+
+            modelBuilder.Entity<Owning>(entity => {
+                entity.HasOne(n => n.AddressOwned)
+                .WithMany(f => f.Owners)
+                .HasConstraintName("fk_owning_address");
+            });
+
+            // ---------------------------------[UNIQUE & CHECK KEY]--------------------------------- //
+
+            // -----------[Account]----------- //
+
+            modelBuilder.Entity<Account>(entity => {
+
+                entity.HasIndex(a => a.Mail)
+                .IsUnique();
+            });
         }
     }
 }
