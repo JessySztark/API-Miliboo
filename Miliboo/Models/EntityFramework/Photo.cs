@@ -16,8 +16,13 @@ namespace Miliboo.Models.EntityFramework {
 			get { return pht_link; }
 			set { pht_link = value; }
 		}
-		public virtual Product ProductPhoto { get; set; }
 
-		public virtual Comment CommentPhoto { get; set; }
+        [ForeignKey("T_E_PRODUCT_PRD")]
+        [InverseProperty("PhotoProduct")]
+        public virtual Product ProductPhoto { get; set; }
+
+        [ForeignKey("T_E_COMMENT_CMT")]
+        [InverseProperty("PhotoComment")]
+        public virtual Comment CommentPhoto { get; set; }
 	}
 }
