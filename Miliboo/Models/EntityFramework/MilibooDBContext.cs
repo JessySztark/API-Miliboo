@@ -82,66 +82,91 @@ namespace Miliboo.Models.EntityFramework
                 .IsUnique();
             });
 
-            //
+            // -----------[Color]----------- //
+
             modelBuilder.Entity<Color>(entity =>
             {
                 entity.HasKey(e => e.ColorId).HasName("pk_color");
             });
+
+            // -----------[Filter Category]----------- //
 
             modelBuilder.Entity<FilterCategory>(entity =>
             {
                 entity.HasKey(e => e.FilterCategoryId).HasName("pk_filtercategory");
             });
 
+            // -----------[Filter]----------- //
+
             modelBuilder.Entity<Filter>(entity =>
             {
                 entity.HasKey(e => e.FilterId).HasName("pk_filter");
             });
+
+            // -----------[Is Filtered]----------- //
 
             modelBuilder.Entity<IsFiltered>(entity =>
             {
                 entity.HasKey(e => e.IsFilteredId).HasName("pk_isfiltered");
             });
 
+            // -----------[As Filter]----------- //
+
             modelBuilder.Entity<AsFilter>(entity =>
             {
                 entity.HasKey(e => new { e.FilterCategoryId, e.ProductCategoryId }).HasName("pk_asfilter");
             });
+
+            // -----------[Product Category]----------- //
 
             modelBuilder.Entity<ProductCategory>(entity =>
             {
                 entity.HasKey(e => e.ProductCategoryId).HasName("pk_productcategory");
             });
 
+            // -----------[Grouping]----------- //
+
             modelBuilder.Entity<Grouping>(entity =>
             {
                 entity.HasKey(e => e.GroupingId).HasName("pk_grouping");
             });
+
+            // -----------[Regroup]----------- //
 
             modelBuilder.Entity<Regroup>(entity =>
             {
                 entity.HasKey(e => e.RegroupId).HasName("pk_regroup");
             });
 
+            // -----------[Product Type]----------- //
+
             modelBuilder.Entity<ProductType>(entity =>
             {
                 entity.HasKey(e => e.ProductTypetId).HasName("pk_producttype");
             });
+
+            // -----------[Technical Aspect]----------- //
 
             modelBuilder.Entity<TechnicalAspect>(entity =>
             {
                 entity.HasKey(e => e.TechnicalAspectId).HasName("pk_technicalaspect");
             });
 
+            // -----------[As Aspect]----------- //
+
             modelBuilder.Entity<AsAspect>(entity =>
             {
                 entity.HasKey(e => new { e.ProductTypeId, e.TechnicalAspectId }).HasName("pk_asaspect");
             });
 
+            // -----------[Concerned]----------- //
+
             modelBuilder.Entity<Concerned>(entity =>
             {
                 entity.HasKey(e => e.ConcernedId).HasName("pk_concerned");
             });
+
+            // -----------[Product]----------- //
 
             modelBuilder.Entity<Product>(entity =>
             {
