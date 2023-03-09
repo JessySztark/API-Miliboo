@@ -52,6 +52,13 @@ namespace Miliboo.Models.EntityFramework
             {
                 entity.HasKey(e => e.StateOrderID).HasName("pk_stateorder");
             });
+
+            // -----------[Account]-----------
+
+            modelBuilder.Entity<Account>(entity => {
+                entity.HasKey(e => e.AccountID).HasName("pk_accountid");
+            });
+
             modelBuilder.Entity<Account>(entity => {
 
                 entity.HasIndex(a => a.Mail)

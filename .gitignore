@@ -7,3 +7,5 @@
 /Miliboo/obj/Debug/net6.0
 /Miliboo/obj/Release/net6.0
 /Miliboo/obj
+/Miliboo/.vs/Miliboo/DesignTimeBuild
+/.gitignore
