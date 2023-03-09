@@ -48,5 +48,9 @@ namespace Miliboo.Models.EntityFramework {
         [ForeignKey("T_E_PRODUCTTYPE_PRT")]
         [InverseProperty("CommentsType")]
         public virtual Account TypeComments { get; set; }
+
+        [ForeignKey("T_E_PHOTO_PHT")]
+        [InverseProperty("CommentPhoto")]
+        public virtual ICollection<Photo> PhotoComment { get; set; } = new List<Photo>();
     }
 }
