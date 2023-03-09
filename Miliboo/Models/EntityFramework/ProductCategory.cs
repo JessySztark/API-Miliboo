@@ -22,4 +22,12 @@ public partial class ProductCategory
 
     [InverseProperty("ProductCategoriesNavigation")]
     public virtual ICollection<AsFilter> AsFiltersProductCategory { get; set; } = new List<AsFilter>();
+
+
+    // Relation parent-enfant
+    public int? ParentCategoryId { get; set; }
+    [ForeignKey("ParentCategoryId")]
+    [InverseProperty("ChildCategories")]
+    public virtual ProductCategory ParentCategory { get; set; }
+    public virtual ICollection<ProductCategory> ChildCategories { get; set; } = new List<ProductCategory>();
 }
