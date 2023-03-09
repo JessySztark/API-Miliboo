@@ -190,5 +190,8 @@ namespace Miliboo.Models.EntityFramework
         [InverseProperty("OrderAccount")]
         public virtual Account AccountOrder { get; set; } = null!;
 
+        [InverseProperty("OrdersNavigation")]
+        public virtual ICollection<Concerned> OrdersConcerned { get; set; } = new List<Concerned>();
+
     }
 }
