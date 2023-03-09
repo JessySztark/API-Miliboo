@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Miliboo.Models.EntityFramework
 {
+    [Table("t_e_order_ord")]
     public class Order
     {
         private string? orderName;
@@ -11,6 +12,9 @@ namespace Miliboo.Models.EntityFramework
         private int idDeliveryAdress;
         private int idDeliveryMethod;
         private int discountID;
+        private int stateOrderID;
+        private int accountID;
+        private int paymentmethodid;
         private string? orderFirstName;
         private string? phoneOrder;
         private string? cellPhone;
@@ -60,14 +64,6 @@ namespace Miliboo.Models.EntityFramework
             get { return discountID; }
             set { discountID = value; }
         }
-        [Key]
-        [Column("sto_stateorderid")]
-        public int DiscountID
-        {
-            get { return discountID; }
-            set { discountID = value; }
-        }
-        
 
         [Column("ord_name", TypeName ="varchar(50)")]
         public string? OrderName
@@ -139,20 +135,36 @@ namespace Miliboo.Models.EntityFramework
             set { sms = value; }
         }
 
+
+        [ForeignKey("CardID")]
         [InverseProperty("OrderCreditCard")]
         public virtual CreditCard CreditCardOrder { get; set; } = null!;
 
+
+        [ForeignKey("IdDeliveryAdress")]
         [InverseProperty("OrderDeliveryAdress")]
         public virtual DeliveryAdress DeliveryAdressOrder { get; set; } = null!;
 
+        [ForeignKey("IdDeliveryMethod")]
         [InverseProperty("OrderDeliveryMethod")]
         public virtual DeliveryMethod DeliveryMethodOrder { get; set; } = null!;
 
+        [ForeignKey("DiscountID")]
         [InverseProperty("OrderDiscount")]
         public virtual Discount DiscountOrder { get; set; } = null!;
 
+        [ForeignKey("stateOrderID")]
         [InverseProperty("OrderStateOrder")]
         public virtual StateOrder StateOrderOrder { get; set; } = null!;
-       
+
+
+        [ForeignKey("Paymentmethodid")]
+        [InverseProperty("OrderPaymentMethod")]
+        public virtual StateOrder PaymentMethodOrder { get; set; } = null!;
+
+        [ForeignKey("AccountID")]
+        [InverseProperty("OrderAccount")]
+        public virtual Account AccountOrder { get; set; } = null!;
+
     }
 }

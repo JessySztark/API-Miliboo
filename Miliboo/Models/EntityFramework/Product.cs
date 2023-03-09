@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
 namespace Miliboo.Models.EntityFramework;
@@ -67,5 +65,8 @@ public partial class Product
 
     [InverseProperty("ProductsNavigation")]
     public virtual ICollection<Concerned> ProductsConcerned { get; set; } = new List<Concerned>();
+    
+    [InverseProperty("ProductPhoto")]
+    public virtual ICollection<Photo> PhotoProduct { get; set; } = new List<Photo>();
 }
 

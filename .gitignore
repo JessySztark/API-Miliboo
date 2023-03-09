@@ -1,19 +1,8 @@
-<<<<<<< HEAD
 ﻿################################################################################
 # Ce fichier .gitignore a été automatiquement créé par Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/API-Miliboo/FileContentIndex
 /.vs
-/Miliboo/.vs
-=======
-Miliboo/obj/Miliboo.csproj.nuget.props
-Miliboo/obj/project.assets.json
-Miliboo/obj/Miliboo.csproj.nuget.cache
-Miliboo/.vs/
-Miliboo/.vs/FileContentIndex
-/.vs/API-Miliboo/FileContentIndex
-/.vs
->>>>>>> main
+/Miliboo/.vs/Miliboo/FileContentIndex
+/Miliboo/obj/Debug/net6.0
 /Miliboo/obj/Release/net6.0
-/Miliboo/obj
