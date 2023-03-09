@@ -19,7 +19,7 @@ public partial class FilterCategory
 
 
     [InverseProperty("FiltersCategoryNavigation")]
-    public virtual ICollection<FilterCategory> FilterFiltersCategory { get; set; } = new List<FilterCategory>();
+    public virtual ICollection<Filter> FilterFiltersCategory { get; set; } = new List<Filter>();
 
     [InverseProperty("FiltersCategoryNavigation")]
     public virtual ICollection<AsFilter> AsFiltersFilterCategory { get; set; } = new List<AsFilter>();

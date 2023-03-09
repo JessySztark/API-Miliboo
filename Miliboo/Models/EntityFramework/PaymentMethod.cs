@@ -10,9 +10,6 @@ namespace Miliboo.Models.EntityFramework
         private int paymentmethodid;
         private string? methodName;
 
-
-
-
         [Key]
         [Column("pay_paymentmethodid")]
         public int Paymentmethodid

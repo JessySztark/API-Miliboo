@@ -7,12 +7,15 @@ namespace Miliboo.Models.EntityFramework {
 		private int pht_id;
         private String? pht_link;
 
+        [Key]
+        [Column("pht_id")]
         public int PhotoID {
 			get { return pht_id; }
 			set { pht_id = value; }
 		}
 
-		public String Link {
+        [Column("pht_id", TypeName = "varchar(200)")]
+        public String? Link {
 			get { return pht_link; }
 			set { pht_link = value; }
 		}

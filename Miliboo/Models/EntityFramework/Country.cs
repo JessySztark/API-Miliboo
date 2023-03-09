@@ -13,7 +13,7 @@ namespace Miliboo.Models.EntityFramework
         private String? cnt_phonecode;
 
         public Country() {
-
+            AddressCountry = new HashSet<Address>();
         }
 
         [Key]
@@ -39,5 +39,9 @@ namespace Miliboo.Models.EntityFramework
             get { return cnt_phonecode; }
             set { cnt_phonecode = value; }
         }
+
+        [ForeignKey("T_E_ADDRESS_ADR")]
+        [InverseProperty("CountryID")]
+        public virtual ICollection<Address> AddressCountry { get; set; }
     }
 }
