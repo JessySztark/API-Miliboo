@@ -16,7 +16,7 @@ public partial class ProductType
 
     [Key]
     [Column("prt_id")]
-    public int ProducTypetId { get; set; }
+    public int ProductTypetId { get; set; }
 
     [Column("prt_productTypeName", TypeName = "varchar(100)")]
     public string? ProductTypeName { get; set; }
