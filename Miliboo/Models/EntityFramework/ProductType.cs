@@ -30,7 +30,6 @@ public partial class ProductType
     [InverseProperty("ProductTypesNavigation")]
     public virtual ICollection<AsAspect> AsAspectsProductType { get; set; } = new List<AsAspect>();
 
-    [ForeignKey("T_E_COMMENT_CMT")]
     [InverseProperty("TypeComments")]
     public virtual ICollection<Comment> CommentsType { get; set; } = new List<Comment>();
 }

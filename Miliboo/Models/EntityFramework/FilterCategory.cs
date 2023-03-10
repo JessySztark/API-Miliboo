@@ -17,7 +17,6 @@ public partial class FilterCategory
     [Column("fca_filterCategoryName", TypeName = "varchar(50)")]
     public string? FilterCategoryName { get; set; }
 
-
     [InverseProperty("FiltersCategoryNavigation")]
     public virtual ICollection<Filter> FilterFiltersCategory { get; set; } = new List<Filter>();
 

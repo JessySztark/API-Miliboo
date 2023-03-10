@@ -17,7 +17,6 @@ public partial class Filter
     [Column("flt_filterName", TypeName = "varchar(50)")]
     public string? FilterName { get; set; }
 
-
     [ForeignKey("FilterCategoryId")]
     [InverseProperty("FilterFiltersCategory")]
     public virtual FilterCategory FiltersCategoryNavigation { get; set; } = null!;

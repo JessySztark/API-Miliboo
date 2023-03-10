@@ -18,7 +18,7 @@ public class Concerned
     public int Quantity { get; set; }
 
 
-    [ForeignKey("T_E_PRODUCT_PRD")]
+    [ForeignKey("ProductId")]
     [InverseProperty("ProductsConcerned")]
     public virtual Product ProductsNavigation { get; set; } = null!;
 

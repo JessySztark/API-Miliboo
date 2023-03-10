@@ -22,7 +22,6 @@ public partial class Color
     [RegularExpression("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$")]
     public string? ColorHexaCode { get; set; }
 
-
     [InverseProperty("ColorsNavigation")]
     public virtual ICollection<Product> ColorsProduct { get; set; } = new List<Product>();
 }

@@ -41,15 +41,14 @@ namespace Miliboo.Models.EntityFramework {
 			set { cmt_date = value; }
 		}
 
-        [ForeignKey("T_E_ACCOUNT_ACT")]
+        [ForeignKey("AccountID")]
         [InverseProperty("AccountComments")]
         public virtual Account CommentsAccount { get; set; }
 
-        [ForeignKey("T_E_PRODUCTTYPE_PRT")]
+        [ForeignKey("ProductTypetId")]
         [InverseProperty("CommentsType")]
         public virtual ProductType TypeComments { get; set; }
 
-        [ForeignKey("T_E_PHOTO_PHT")]
         [InverseProperty("CommentPhoto")]
         public virtual ICollection<Photo> PhotoComment { get; set; } = new List<Photo>();
     }

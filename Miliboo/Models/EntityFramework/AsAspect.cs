@@ -6,7 +6,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Miliboo.Models.EntityFramework;
 
 [Table("t_j_asAspect_asa")]
-[PrimaryKey("TechnicalAspectId", "ProductTypeId")]
 public partial class AsAspect
 {
     private string? aspectDescription;
@@ -19,10 +18,8 @@ public partial class AsAspect
     [Column("prt_id")]
     public int ProductTypeId { get; set; }
 
-
     [Column("tas_technicalAspectName", TypeName = "varchar(50)")]
     public string? AspectDescription { get; set; }
-
 
     [ForeignKey("TechnicalAspectId")]
     [InverseProperty("AsAspectsTechnicalAspect")]

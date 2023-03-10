@@ -21,11 +21,11 @@ namespace Miliboo.Models.EntityFramework {
             set { adr_id = value; }
         }
 
-        [ForeignKey("T_E_ACCOUNT_ACT")]
+        [ForeignKey("AccountID")]
         [InverseProperty("Addresses")]
         public virtual Account OwnerAccount { get; set; } = null!;
 
-        [ForeignKey("T_E_ADDRESS_ADR")]
+        [ForeignKey("AddressID")]
         [InverseProperty("Owners")]
         public virtual Address AddressOwned { get; set; } = null!;
     }

@@ -40,7 +40,6 @@ namespace Miliboo.Models.EntityFramework
             set { cnt_phonecode = value; }
         }
 
-        [ForeignKey("T_E_ADDRESS_ADR")]
         [InverseProperty("CountryID")]
         public virtual ICollection<Address> AddressCountry { get; set; }
     }

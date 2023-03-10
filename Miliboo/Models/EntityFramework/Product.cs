@@ -41,7 +41,6 @@ public partial class Product
     [Range(0, int.MaxValue)]
     public int NbReservedProduct { get; set; }
 
-
     [ForeignKey("ColorId")]
     [InverseProperty("ColorsProduct")]
     public virtual Color ColorsNavigation { get; set; } = null!;

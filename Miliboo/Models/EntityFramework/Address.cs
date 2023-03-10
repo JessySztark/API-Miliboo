@@ -53,11 +53,10 @@ namespace Miliboo.Models.EntityFramework {
 			set { adr_latitude = value; }
 		}
 
-        [ForeignKey("T_E_COUNTRY_CNT")]
+        [ForeignKey("CountryID")]
         [InverseProperty("AddressCountry")]
         public virtual Country CountryID { get; set; }
 
-        [ForeignKey("T_J_OWNING_OWN")]
         [InverseProperty("AddressOwned")]
         public virtual ICollection<Owning> Owners { get; set; }
     }
