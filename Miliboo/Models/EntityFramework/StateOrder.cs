@@ -20,7 +20,5 @@ namespace Miliboo.Models.EntityFramework
 
         [InverseProperty("StateOrderOrder")]
         public virtual ICollection<Order> OrderStateOrder { get; set; } = new List<Order>();
-
-
     }
 }

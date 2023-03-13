@@ -181,10 +181,9 @@ namespace Miliboo.Models.EntityFramework
         [InverseProperty("OrderStateOrder")]
         public virtual StateOrder StateOrderOrder { get; set; } = null!;
 
-
         [ForeignKey("Paymentmethodid")]
         [InverseProperty("OrderPaymentMethod")]
-        public virtual StateOrder PaymentMethodOrder { get; set; } = null!;
+        public virtual PaymentMethod PaymentMethodOrder { get; set; } = null!;
 
         [ForeignKey("AccountID")]
         [InverseProperty("OrderAccount")]

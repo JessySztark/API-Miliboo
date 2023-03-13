@@ -16,7 +16,6 @@ namespace Miliboo.Models.EntityFramework
         private string? cardNumber;
         private string? cryptogram;
 
-
         [Key]
         [Column("crc_cardid")]
         public int CardID
@@ -70,9 +69,5 @@ namespace Miliboo.Models.EntityFramework
 
         [InverseProperty("CreditCardOrder")]
         public virtual ICollection<Order> OrderCreditCard{ get; set; } = new List<Order>();
-
-
-
-
     }
 }

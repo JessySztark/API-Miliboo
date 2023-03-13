@@ -18,8 +18,6 @@ namespace Miliboo.Models.EntityFramework
 			set { idDeliveryAdress = value; }
 		}
 
-      
-
         [Column("dla_favadressname", TypeName = "varchar(50)")]
         public string? FavAdressName
         {
@@ -29,8 +27,5 @@ namespace Miliboo.Models.EntityFramework
 
         [InverseProperty("DeliveryAdressOrder")]
         public virtual ICollection<Order> OrderDeliveryAdress { get; set; } = new List<Order>();
-
-
-
     }
 }

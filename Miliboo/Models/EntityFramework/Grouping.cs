@@ -17,7 +17,6 @@ public partial class Grouping
     [Column("grp_groupingName", TypeName = "varchar(50)")]
     public string? GroupingName { get; set; }
 
-
     [InverseProperty("GroupingsNavigation")]
-    public virtual ICollection<Grouping> GroupingsRegroup { get; set; } = new List<Grouping>();
+    public virtual ICollection<Regroup> GroupingsRegroup { get; set; } = new List<Regroup>();
 }

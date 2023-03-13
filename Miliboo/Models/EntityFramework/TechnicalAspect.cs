@@ -16,7 +16,6 @@ public partial class TechnicalAspect
     [Column("tas_technicalAspectName", TypeName = "varchar(500)")]
     public string? TechnicalAspectName { get; set; }
 
-
     [InverseProperty("TechnicalAspectsNavigation")]
     public virtual ICollection<AsAspect> AsAspectsTechnicalAspect { get; set; } = new List<AsAspect>();
 }

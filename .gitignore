@@ -6,5 +6,7 @@
 /Miliboo/.vs/Miliboo/FileContentIndex
 /Miliboo/obj/Debug/net6.0
 /Miliboo/obj/Release/net6.0
-/Miliboo/.vs/Miliboo/DesignTimeBuild
 /Miliboo/obj
+/Miliboo/.vs/Miliboo/DesignTimeBuild
+/.gitignore
+/Miliboo/.vs
