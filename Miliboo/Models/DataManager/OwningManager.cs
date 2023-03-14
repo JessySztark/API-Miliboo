@@ -25,8 +25,8 @@ namespace Miliboo.Models.DataManager {
         }
         public async Task UpdateAsync(Owning owning, Owning entity) {
             milibooDBContext.Entry(owning).State = EntityState.Modified;
-            owning.IDAddress = entity.IDAddress;
-            owning.IDAccount = entity.IDAccount;
+            owning.AddressID = entity.AddressID;
+            owning.AccountID = entity.AccountID;
             await milibooDBContext.SaveChangesAsync();
         }
         public async Task DeleteAsync(Owning Owning) {

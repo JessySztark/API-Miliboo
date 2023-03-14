@@ -37,7 +37,7 @@ namespace Miliboo.Controllers {
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOwning(int id, Owning objt) {
-            if (id != objt.IDAddress || id != objt.IDAccount) {
+            if (id != objt.AddressID || id != objt.AccountID) {
                 return BadRequest();
             }
 
@@ -59,7 +59,7 @@ namespace Miliboo.Controllers {
             }
             await _repository.AddAsync(obj);
 
-            return CreatedAtAction("GetOwningById", new { id = obj.IDAddress }, obj);
+            return CreatedAtAction("GetOwningById", new { id = obj.AddressID }, obj);
         }
 
         [HttpDelete("{id}")]

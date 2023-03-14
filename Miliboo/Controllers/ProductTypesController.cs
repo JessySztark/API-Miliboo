@@ -47,7 +47,7 @@ namespace Miliboo.Controllers {
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProductType(int id, ProductType objt) {
-            if (id != objt.ProductTypetId) {
+            if (id != objt.ProductTypeId) {
                 return BadRequest();
             }
 
@@ -69,7 +69,7 @@ namespace Miliboo.Controllers {
             }
             await _repository.AddAsync(obj);
 
-            return CreatedAtAction("GetProductTypeById", new { id = obj.ProductTypetId }, obj);
+            return CreatedAtAction("GetProductTypeById", new { id = obj.ProductTypeId }, obj);
         }
 
         [HttpDelete("{id}")]

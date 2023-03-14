@@ -23,7 +23,7 @@ namespace Miliboo.Controllers
 
         // GET: api/Orders
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrder()
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
             return await _repository.GetAllAsync();
         }

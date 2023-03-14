@@ -25,7 +25,7 @@ namespace Miliboo.Models.DataManager {
         }
         public async Task UpdateAsync(ProductType productType, ProductType entity) {
             milibooDBContext.Entry(productType).State = EntityState.Modified;
-            productType.ProductTypetId = entity.ProductTypetId;
+            productType.ProductTypeId = entity.ProductTypeId;
             productType.ProductTypeName = entity.ProductTypeName;
             productType.PTMaintenanceComment = entity.PTMaintenanceComment;
             await milibooDBContext.SaveChangesAsync();

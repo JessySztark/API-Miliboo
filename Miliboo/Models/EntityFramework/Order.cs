@@ -49,7 +49,7 @@ namespace Miliboo.Models.EntityFramework
         [InverseProperty("OrderPaymentMethod")]
         public virtual PaymentMethod PaymentMethodOrder { get; set; } = null!;
 
-        [ForeignKey("StateOrderOrder")]
+        [ForeignKey("StateOrderID")]
         [InverseProperty("OrderStateOrder")]
         public virtual StateOrder StateOrderOrder { get; set; } = null!;
 
@@ -59,8 +59,7 @@ namespace Miliboo.Models.EntityFramework
 
         [ForeignKey("DiscountID")]
         [InverseProperty("OrderDiscount")]
-        public virtual Discount DiscountOrder { get; set; } = null!;
-
+        public virtual Discount DiscountOrder { get; set; }
 
         [Column("dlv_iddeliverymethod")]
         public int IdDeliveryMethod
@@ -110,7 +109,6 @@ namespace Miliboo.Models.EntityFramework
             get { return discountID; }
             set { discountID = value; }
         }
-
 
         [Column("ord_name", TypeName = "varchar(50)")]
         public string? OrderName
