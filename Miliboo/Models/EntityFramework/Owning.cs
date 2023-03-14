@@ -12,16 +12,14 @@ namespace Miliboo.Models.EntityFramework
 
         [Key]
         [InverseProperty("act_id")]
-        public int IDAccount
-        {
+        public int AccountID {
             get { return act_id; }
             set { act_id = value; }
         }
 
         [Key]
         [InverseProperty("adr_id")]
-        public int IDAddress
-        {
+        public int AddressID {
             get { return adr_id; }
             set { adr_id = value; }
         }

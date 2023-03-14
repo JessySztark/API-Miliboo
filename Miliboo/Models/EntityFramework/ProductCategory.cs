@@ -8,6 +8,7 @@ public partial class ProductCategory
 {
     private int productCategoryId;
     private string? productCategoryName;
+    private int? parentCategoryID = null!;
 
     [Key]
     [Column("prc_id")]
@@ -19,12 +20,6 @@ public partial class ProductCategory
 
     [Column("prc_parentCategoryID", TypeName = "integer")]
     public int? ParentCategoryId { get; set; }
-
-
-
-
-
-
 
     [InverseProperty("ProductCategoriesNavigation")]
     public virtual ICollection<Product> ProductCategoriesProduct { get; set; } = new List<Product>();

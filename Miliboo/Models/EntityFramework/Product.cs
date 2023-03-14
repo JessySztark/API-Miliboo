@@ -27,7 +27,7 @@ public partial class Product
     [InverseProperty("ColorsProduct")]
     public virtual Color ColorsNavigation { get; set; } = null!;
 
-    [ForeignKey("ProducTypetId")]
+    [ForeignKey("ProducTypeId")]
     [InverseProperty("ProductTypesProduct")]
     public virtual ProductType ProductTypesNavigation { get; set; } = null!;
 

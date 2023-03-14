@@ -25,7 +25,6 @@ namespace Miliboo.Models.EntityFramework
         private float deliveryPrice;
         private bool sms;
 
-
         [Key]
         [Column("ord_id")]
         public int OrderID
@@ -50,7 +49,7 @@ namespace Miliboo.Models.EntityFramework
         [InverseProperty("OrderPaymentMethod")]
         public virtual PaymentMethod PaymentMethodOrder { get; set; } = null!;
 
-        [ForeignKey("stateOrderID")]
+        [ForeignKey("StateOrderOrder")]
         [InverseProperty("OrderStateOrder")]
         public virtual StateOrder StateOrderOrder { get; set; } = null!;
 

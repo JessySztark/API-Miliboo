@@ -76,7 +76,7 @@ namespace Miliboo.Models.EntityFramework
         [InverseProperty("AccountComments")]
         public virtual Account CommentsAccount { get; set; } = null!;
 
-        [ForeignKey("ProductTypetId")]
+        [ForeignKey("ProductTypeId")]
         [InverseProperty("CommentsType")]
         public virtual ProductType TypeComments { get; set; } = null!;
 

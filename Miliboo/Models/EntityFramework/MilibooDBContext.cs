@@ -405,5 +405,44 @@ namespace Miliboo.Models.EntityFramework
 
         public DbSet<Miliboo.Models.EntityFramework.Product> Product { get; set; }
 
+        public DbSet<Miliboo.Models.EntityFramework.Order> Order { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.Address> Address { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.ProductCategory> ProductCategory { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.AsAspect> AsAspect { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.AsFilter> AsFilter { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.CompositeProduct> CompositeProduct { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.Concerned> Concerned { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.DeliveryAdress> DeliveryAdress { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.Discount> Discount { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.Filter> Filter { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.FilterCategory> FilterCategory { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.Owning> Owning { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.ProductType> ProductType { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.TechnicalAspect> TechnicalAspect { get; set; }
+        public DbSet<Miliboo.Models.EntityFramework.Account> Account { get; set; }
+        public DbSet<Miliboo.Models.EntityFramework.Photo> Photos { get; set; }
+        public DbSet<Miliboo.Models.EntityFramework.Comment> Comments { get; set; }
+        public DbSet<Miliboo.Models.EntityFramework.Country> Countries { get; set; }
+        public DbSet<Miliboo.Models.EntityFramework.Color> Colors { get; set; }
+        public DbSet<Miliboo.Models.EntityFramework.DeliveryMethod> DeliveryMethods { get; set; }
+        public DbSet<Miliboo.Models.EntityFramework.CreditCard> CreditCards { get; set; }
+        public DbSet<Miliboo.Models.EntityFramework.StateOrder> StateOrders { get; set; }
+        public DbSet<Miliboo.Models.EntityFramework.Grouping> Groupings { get; set; }
+        public DbSet<Miliboo.Models.EntityFramework.IsFiltered> IsFiltereds { get; set; }
+        public DbSet<Miliboo.Models.EntityFramework.PaymentMethod> PaymentMethods { get; set; }
+        public DbSet<Miliboo.Models.EntityFramework.Regroup> Regroups { get; set; }
     }
 }
