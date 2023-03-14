@@ -9,8 +9,8 @@ namespace Miliboo.Models.EntityFramework
         private string? orderName;
         private int orderID;
         private int cardID;
-        private int idDeliveryAdress;
         private int idDeliveryMethod;
+        private int idDeliveryAdress;
         private int discountID;
         private int stateOrderID;
         private int accountID;
@@ -34,22 +34,35 @@ namespace Miliboo.Models.EntityFramework
             set { orderID = value; }
         }
 
-        [Key]
-        [Column("crc_cardid")]
-        public int CardID
-        {
-            get { return cardID; }
-            set { cardID = value; }
-        }
+        [ForeignKey("IdDeliveryMethod")]
+        [InverseProperty("OrderDeliveryMethod")]
+        public virtual DeliveryMethod DeliveryMethodOrder { get; set; } = null!;
 
-        [Key]
-        [Column("dla_iddeliveryadress")]
-        public int IdDeliveryAdress
-        {
-            get { return idDeliveryAdress; }
-            set { idDeliveryAdress = value; }
-        }
-        [Key]
+        [ForeignKey("CardID")]
+        [InverseProperty("OrderCreditCard")]
+        public virtual CreditCard CreditCardOrder { get; set; } = null!;
+
+        [ForeignKey("AccountID")]
+        [InverseProperty("OrderAccount")]
+        public virtual Account AccountOrder { get; set; } = null!;
+
+        [ForeignKey("Paymentmethodid")]
+        [InverseProperty("OrderPaymentMethod")]
+        public virtual PaymentMethod PaymentMethodOrder { get; set; } = null!;
+
+        [ForeignKey("stateOrderID")]
+        [InverseProperty("OrderStateOrder")]
+        public virtual StateOrder StateOrderOrder { get; set; } = null!;
+
+        [ForeignKey("IdDeliveryAdress")]
+        [InverseProperty("OrderDeliveryAdress")]
+        public virtual DeliveryAdress DeliveryAdressOrder { get; set; } = null!;
+
+        [ForeignKey("DiscountID")]
+        [InverseProperty("OrderDiscount")]
+        public virtual Discount DiscountOrder { get; set; } = null!;
+
+
         [Column("dlv_iddeliverymethod")]
         public int IdDeliveryMethod
         {
@@ -57,22 +70,13 @@ namespace Miliboo.Models.EntityFramework
             set { idDeliveryMethod = value; }
         }
 
-        [Key]
-        [Column("dsc_discountid")]
-        public int DiscountID
+        [Column("crc_cardid")]
+        public int CardID
         {
-            get { return discountID; }
-            set { discountID = value; }
-        }
-        [Key]
-        [Column("sto_stateorderid")]
-        public int StateOrderID
-        {
-            get { return stateOrderID; }
-            set { stateOrderID = value; }
+            get { return cardID; }
+            set { cardID = value; }
         }
 
-        [Key]
         [Column("act_id")]
         public int AccountID
         {
@@ -80,7 +84,6 @@ namespace Miliboo.Models.EntityFramework
             set { accountID = value; }
         }
 
-        [Key]
         [Column("pay_paymentmethodid")]
         public int Paymentmethodid
         {
@@ -88,8 +91,29 @@ namespace Miliboo.Models.EntityFramework
             set { paymentmethodid = value; }
         }
 
+        [Column("sto_stateorderid", Order = 1)]
+        public int StateOrderID
+        {
+            get { return stateOrderID; }
+            set { stateOrderID = value; }
+        }
 
-        [Column("ord_name", TypeName ="varchar(50)")]
+        [Column("dla_iddeliveryadress")]
+        public int IdDeliveryAdress
+        {
+            get { return idDeliveryAdress; }
+            set { idDeliveryAdress = value; }
+        }
+
+        [Column("dsc_discountid")]
+        public int DiscountID
+        {
+            get { return discountID; }
+            set { discountID = value; }
+        }
+
+
+        [Column("ord_name", TypeName = "varchar(50)")]
         public string? OrderName
         {
             get { return orderName; }
@@ -138,7 +162,7 @@ namespace Miliboo.Models.EntityFramework
             set { orderInstructions = value; }
         }
 
-        [Column("ord_date", TypeName = "varchar(200)")]
+        [Column("ord_date", TypeName = "date")]
         public DateTime OrderDate
         {
             get { return orderDate; }
@@ -159,35 +183,6 @@ namespace Miliboo.Models.EntityFramework
             set { sms = value; }
         }
 
-
-        [ForeignKey("CardID")]
-        [InverseProperty("OrderCreditCard")]
-        public virtual CreditCard CreditCardOrder { get; set; } = null!;
-
-
-        [ForeignKey("IdDeliveryAdress")]
-        [InverseProperty("OrderDeliveryAdress")]
-        public virtual DeliveryAdress DeliveryAdressOrder { get; set; } = null!;
-
-        [ForeignKey("IdDeliveryMethod")]
-        [InverseProperty("OrderDeliveryMethod")]
-        public virtual DeliveryMethod DeliveryMethodOrder { get; set; } = null!;
-
-        [ForeignKey("DiscountID")]
-        [InverseProperty("OrderDiscount")]
-        public virtual Discount DiscountOrder { get; set; } = null!;
-
-        [ForeignKey("stateOrderID")]
-        [InverseProperty("OrderStateOrder")]
-        public virtual StateOrder StateOrderOrder { get; set; } = null!;
-
-        [ForeignKey("Paymentmethodid")]
-        [InverseProperty("OrderPaymentMethod")]
-        public virtual PaymentMethod PaymentMethodOrder { get; set; } = null!;
-
-        [ForeignKey("AccountID")]
-        [InverseProperty("OrderAccount")]
-        public virtual Account AccountOrder { get; set; } = null!;
 
         [InverseProperty("OrdersNavigation")]
         public virtual ICollection<Concerned> OrdersConcerned { get; set; } = new List<Concerned>();

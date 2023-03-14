@@ -1,22 +1,27 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Miliboo.Models.EntityFramework {
-    [Table("T_J_OWNING_OWN")]
-    public class Owning {
+namespace Miliboo.Models.EntityFramework
+{
+    [Table("t_j_owning_own")]
+
+    public class Owning
+    {
         private int act_id;
         private int adr_id;
 
         [Key]
         [InverseProperty("act_id")]
-        public int IDAccount {
+        public int IDAccount
+        {
             get { return act_id; }
             set { act_id = value; }
         }
 
         [Key]
         [InverseProperty("adr_id")]
-        public int IDAddress {
+        public int IDAddress
+        {
             get { return adr_id; }
             set { adr_id = value; }
         }

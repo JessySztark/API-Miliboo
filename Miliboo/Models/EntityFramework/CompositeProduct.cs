@@ -9,7 +9,7 @@ namespace Miliboo.Models.EntityFramework
 
     public class CompositeProduct
     {
-		private int compositeID;
+        private int compositeID;
         private int productId;
         private int compositeproduct;
         private string? compositeDescription;
@@ -18,17 +18,16 @@ namespace Miliboo.Models.EntityFramework
         [Column("cpr_id")]
         public int CompositeID
         {
-			get { return compositeID; }
-			set { compositeID = value; }
-		}
+            get { return compositeID; }
+            set { compositeID = value; }
+        }
 
-        [Key]
         [Column("prd_id")]
         public int ProductId
         {
-			get { return productId; }
-			set { productId = value; }
-		}
+            get { return productId; }
+            set { productId = value; }
+        }
 
         [Column("cpr_compositeproductid")]
         public int CompositeproductID
@@ -40,9 +39,9 @@ namespace Miliboo.Models.EntityFramework
         [Column("cpr_compositedescription")]
         public string? CompositeDescription
         {
-			get { return compositeDescription; }
-			set { compositeDescription = value; }
-		}
+            get { return compositeDescription; }
+            set { compositeDescription = value; }
+        }
 
         [ForeignKey("ProductId")]
         [InverseProperty("ProductsCompositeProduct")]

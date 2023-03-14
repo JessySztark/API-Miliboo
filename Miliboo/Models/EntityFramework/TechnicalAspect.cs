@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Miliboo.Models.EntityFramework;
 
-[Table("t_e_technicalAspect_tas")]
+[Table("t_e_technicalaspect_tas")]
 public partial class TechnicalAspect
 {
     private int technicalAspectId;
@@ -11,10 +11,18 @@ public partial class TechnicalAspect
 
     [Key]
     [Column("tas_id")]
-    public int TechnicalAspectId { get; set; }
+    public int TechnicalAspectId
+    {
+        get { return technicalAspectId; }
+        set { technicalAspectId = value; }
+    }
 
     [Column("tas_technicalAspectName", TypeName = "varchar(500)")]
-    public string? TechnicalAspectName { get; set; }
+    public string? TechnicalAspectName
+    {
+        get { return technicalAspectName; }
+        set { technicalAspectName = value; }
+    }
 
     [InverseProperty("TechnicalAspectsNavigation")]
     public virtual ICollection<AsAspect> AsAspectsTechnicalAspect { get; set; } = new List<AsAspect>();

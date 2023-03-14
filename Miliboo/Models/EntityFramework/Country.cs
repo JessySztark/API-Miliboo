@@ -5,14 +5,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Miliboo.Models.EntityFramework
 {
-    [Table("T_E_COUNTRY_CNT")]
+    [Table("t_e_country_cnt")]
     public class Country
     {
         private int cnt_id;
         private String? cnt_wording;
         private String? cnt_phonecode;
 
-        public Country() {
+        public Country()
+        {
             AddressCountry = new HashSet<Address>();
         }
 
@@ -24,7 +25,7 @@ namespace Miliboo.Models.EntityFramework
             set { cnt_id = value; }
         }
 
-        [Column("cnt_wording", TypeName="varchar")]
+        [Column("cnt_wording", TypeName = "varchar")]
         [MaxLength(100)]
         public String? Wording
         {
@@ -40,7 +41,7 @@ namespace Miliboo.Models.EntityFramework
             set { cnt_phonecode = value; }
         }
 
-        [InverseProperty("CountryID")]
+        [InverseProperty("CountryAdress")]
         public virtual ICollection<Address> AddressCountry { get; set; }
     }
 }

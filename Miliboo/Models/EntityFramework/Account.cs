@@ -2,9 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 
-namespace Miliboo.Models.EntityFramework {
-    [Table("T_E_ACCOUNT_ACT")]
-    public class Account {
+namespace Miliboo.Models.EntityFramework
+{
+    [Table("t_e_account_act")]
+    public class Account
+    {
         private int act_id;
         private String? act_password;
         private String? act_firstname;
@@ -13,7 +15,8 @@ namespace Miliboo.Models.EntityFramework {
         private String? act_phonenumber;
         private bool act_oath;
 
-        public Account() {
+        public Account()
+        {
             Addresses = new HashSet<Owning>();
             AccountComments = new HashSet<Comment>();
             OrderAccount = new HashSet<Order>();
@@ -22,7 +25,8 @@ namespace Miliboo.Models.EntityFramework {
         [Key]
         [Column("act_id")]
         [Required]
-        public int AccountID {
+        public int AccountID
+        {
             get { return act_id; }
             set { act_id = value; }
         }
@@ -31,7 +35,8 @@ namespace Miliboo.Models.EntityFramework {
         [MinLength(7)]
         [MaxLength(30)]
         [Required]
-        public String? Password {
+        public String? Password
+        {
             get { return act_password; }
             set { act_password = value; }
         }
@@ -39,7 +44,8 @@ namespace Miliboo.Models.EntityFramework {
         [Column("act_firstname", TypeName = "varchar")]
         [MaxLength(20)]
         [Required]
-        public String? FirstName {
+        public String? FirstName
+        {
             get { return act_firstname; }
             set { act_firstname = value; }
         }
@@ -47,7 +53,8 @@ namespace Miliboo.Models.EntityFramework {
         [Column("act_lastname", TypeName = "varchar")]
         [MaxLength(20)]
         [Required]
-        public String? LastName {
+        public String? LastName
+        {
             get { return act_lastname; }
             set { act_lastname = value; }
         }
@@ -55,19 +62,22 @@ namespace Miliboo.Models.EntityFramework {
         [Column("act_mail", TypeName = "varchar")]
         [MaxLength(50)]
         [Required]
-        public String? Mail {
+        public String? Mail
+        {
             get { return act_mail; }
             set { act_mail = value; }
         }
 
         [Column("act_phonenumber", TypeName = "char(10)")]
-        public String? PhoneNumber {
+        public String? PhoneNumber
+        {
             get { return act_phonenumber; }
             set { act_phonenumber = value; }
         }
 
         [Column("act_oath", TypeName = "bool")]
-        public bool Oath {
+        public bool Oath
+        {
             get { return act_oath; }
             set { act_oath = value; }
         }
@@ -78,10 +88,10 @@ namespace Miliboo.Models.EntityFramework {
         [InverseProperty("AccountCreditCard")]
         public virtual ICollection<CreditCard> CreditCardAccount { get; set; } = new List<CreditCard>();
 
-        [InverseProperty("AccountComment")]
+        [InverseProperty("CommentsAccount")]
         public virtual ICollection<Comment> AccountComments { get; set; } = new List<Comment>();
 
-        [InverseProperty("AccountComment")]
+        [InverseProperty("AccountOrder")]
         public virtual ICollection<Order> OrderAccount { get; set; } = new List<Order>();
     }
 }

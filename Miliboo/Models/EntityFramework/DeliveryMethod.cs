@@ -9,11 +9,11 @@ namespace Miliboo.Models.EntityFramework
     {
         private int idDeliveryMethod;
         private String? descriptionDeliveryMethod;
-        private String? dlm_companyname;
+        /*private String? dlm_companyname;
         private bool dlm_shipmentathome;
         private String? dlm_title;
         private float? dlm_shippingprice;
-        private String? dlm_image;
+        private String? dlm_image;*/
 
         [Key]
         [Column("dlm_id")]
@@ -23,14 +23,14 @@ namespace Miliboo.Models.EntityFramework
             set { idDeliveryMethod = value; }
         }
 
-        [Column("dlm_description",TypeName ="text")]
+        [Column("dlm_description", TypeName = "text")]
         public String? Description
         {
             get { return descriptionDeliveryMethod; }
             set { descriptionDeliveryMethod = value; }
         }
 
-        [Column("dlm_companyname", TypeName = "Varchar(50)")]
+        /*[Column("dlm_companyname", TypeName = "Varchar(50)")]
         public String? CompanyName {
             get { return dlm_companyname; }
             set { dlm_companyname = value; }
@@ -58,7 +58,7 @@ namespace Miliboo.Models.EntityFramework
         public String? Image {
             get { return dlm_image; }
             set { dlm_image = value; }
-        }
+        }*/
 
         [InverseProperty("DeliveryMethodOrder")]
         public virtual ICollection<Order> OrderDeliveryMethod { get; set; } = new List<Order>();

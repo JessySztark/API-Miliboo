@@ -18,13 +18,13 @@ namespace Miliboo.Models.EntityFramework
             set { paymentmethodid = value; }
         }
 
-        [Column("pay_methodname",TypeName ="varchar(100)")]
+        [Column("pay_methodname", TypeName = "varchar(100)")]
         public string? MethodName
         {
             get { return methodName; }
             set { methodName = value; }
         }
-        
+
         [InverseProperty("PaymentMethodOrder")]
         public virtual ICollection<Order> OrderPaymentMethod { get; set; } = new List<Order>();
 

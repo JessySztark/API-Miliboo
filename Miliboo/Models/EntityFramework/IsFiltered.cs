@@ -3,14 +3,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Miliboo.Models.EntityFramework;
 
-[Table("t_j_isFiltered_ift")]
+[Table("t_j_isfiltered_ift")]
 public class IsFiltered
 {
     private int isFilteredId;
 
     [Key]
     [Column("ift_id")]
-    public int IsFilteredId { get; set; }
+    public int IsFilteredId
+    {
+        get { return isFilteredId; }
+        set { isFilteredId = value; }
+    }
 
     [ForeignKey("ProductId")]
     [InverseProperty("ProductsIsFiltered")]
