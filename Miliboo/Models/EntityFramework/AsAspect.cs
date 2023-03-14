@@ -6,7 +6,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Miliboo.Models.EntityFramework;
 
 [Table("t_j_asAspect_asa")]
-[PrimaryKey("TechnicalAspectId", "ProductTypeId")]
 public partial class AsAspect
 {
     private string? aspectDescription;
