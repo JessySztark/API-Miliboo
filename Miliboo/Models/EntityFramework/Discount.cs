@@ -15,16 +15,32 @@ namespace Miliboo.Models.EntityFramework
 
         [Key]
         [Column("dsc_discountid")]
-        public int DiscountID { get; set; }
+        public int DiscountID
+        {
+            get { return discountID; }
+            set { discountID = value; }
+        }
 
         [Column("dsc_discountname")]
-        public string? DiscountName { get; set; }
+        public string? DiscountName
+        {
+            get { return discountName; }
+            set { discountName = value; }
+        }
 
         [Column("dsc_isactive")]
-        public bool IsActive { get; set; }
+        public bool IsActive
+        {
+            get { return isActive; }
+            set { isActive = value; }
+        }
 
-        [Column("dsc_isactive")]
-        public double DiscountValue { get; set; }
+        [Column("dsc_value")]
+        public double DiscountValue
+        {
+            get { return discountValue; }
+            set { discountValue = value; }
+        }
 
         [InverseProperty("DiscountOrder")]
         public virtual ICollection<Order> OrderDiscount { get; set; } = new List<Order>();

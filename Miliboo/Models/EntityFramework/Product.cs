@@ -17,30 +17,11 @@ public partial class Product
 
     [Key]
     [Column("prd_id")]
-    public int ProductId { get; set; }
-
-    [Column("prd_productName", TypeName = "varchar(100)")]
-    public string? ProductName { get; set; }
-
-    [Column("prd_productDescription", TypeName = "varchar(500)")]
-    public string? ProductDescription { get; set; }
-
-    [Column("prd_productPrice")]
-    [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than 0")]
-    public double ProductPrice { get; set; }
-
-    [Column("prd_productDiscount")]
-    [Range(0, 100)]
-    public double ProductDiscount { get; set; }
-
-    [Column("prd_nbStockProduct")]
-    [Range(0, int.MaxValue)]
-    public int NbStockProduct { get; set; }
-
-    [Column("prd_nbReservedProduct")]
-    [Range(0, int.MaxValue)]
-    public int NbReservedProduct { get; set; }
-
+    public int ProductId
+    {
+        get { return productId; }
+        set { productId = value; }
+    }
 
     [ForeignKey("ColorId")]
     [InverseProperty("ColorsProduct")]
@@ -54,6 +35,53 @@ public partial class Product
     [InverseProperty("ProductCategoriesProduct")]
     public virtual ProductCategory ProductCategoriesNavigation { get; set; } = null!;
 
+    [Column("prd_productName", TypeName = "varchar(100)")]
+    public string? ProductName
+    {
+        get { return productName; }
+        set { productName = value; }
+    }
+
+    [Column("prd_productDescription", TypeName = "varchar(500)")]
+    public string? ProductDescription
+    {
+        get { return productDescription; }
+        set { productDescription = value; }
+    }
+
+    [Column("prd_productPrice")]
+    [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than 0")]
+    public double ProductPrice
+    {
+        get { return productPrice; }
+        set { productPrice = value; }
+    }
+
+    [Column("prd_productDiscount")]
+    [Range(0, 100)]
+    public double ProductDiscount
+    {
+        get { return productDiscount; }
+        set { productDiscount = value; }
+    }
+
+    [Column("prd_nbStockProduct")]
+    [Range(0, int.MaxValue)]
+    public int NbStockProduct
+    {
+        get { return nbStockProduct; }
+        set { nbStockProduct = value; }
+    }
+
+    [Column("prd_nbReservedProduct")]
+    [Range(0, int.MaxValue)]
+    public int NbReservedProduct
+    {
+        get { return nbReservedProduct; }
+        set { nbReservedProduct = value; }
+    }
+
+
     [InverseProperty("ProductsNavigation")]
     public virtual ICollection<Regroup> ProductsRegroup { get; set; } = new List<Regroup>();
 
@@ -65,7 +93,7 @@ public partial class Product
 
     [InverseProperty("ProductsNavigation")]
     public virtual ICollection<Concerned> ProductsConcerned { get; set; } = new List<Concerned>();
-    
+
     [InverseProperty("ProductPhoto")]
     public virtual ICollection<Photo> PhotoProduct { get; set; } = new List<Photo>();
 }
