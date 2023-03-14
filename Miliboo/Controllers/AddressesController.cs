@@ -10,7 +10,7 @@ using Miliboo.Models.Repository;
 
 namespace Miliboo.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class AddressesController : ControllerBase
     {

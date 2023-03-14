@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Miliboo.Models.DataManager;
 using Miliboo.Models.EntityFramework;
 using Miliboo.Models.Repository;
+using MilibooAPI.Models.DataManager;
 
 namespace Miliboo
 {
@@ -33,6 +34,19 @@ namespace Miliboo
             builder.Services.AddScoped<IDataRepository<ProductCategory>, ProductCategoryManager>();
             builder.Services.AddScoped<IDataRepository<ProductType>, ProductTypeManager>();
             builder.Services.AddScoped<IDataRepository<TechnicalAspect>, TechnicalAspectManager>();
+            builder.Services.AddScoped<IDataRepository<Product>, ProductManager>();
+            builder.Services.AddScoped<IDataRepository<Account>, AccountManager>();
+            builder.Services.AddScoped<IDataRepository<Photo>, PhotoManager>();
+            builder.Services.AddScoped<IDataRepository<Comment>, CommentManager>();
+            builder.Services.AddScoped<IDataRepository<Color>, ColorManager>();
+            builder.Services.AddScoped<IDataRepository<DeliveryMethod>, DeliveryMethodManager>();
+            builder.Services.AddScoped<IDataRepository<StateOrder>, StateOrderManager>();
+            builder.Services.AddScoped<IDataRepository<Grouping>, GroupingManager>();
+            builder.Services.AddScoped<IDataRepository<IsFiltered>, IsFilteredManager>();
+            builder.Services.AddScoped<IDataRepository<PaymentMethod>, PaymentMethodManager>();
+            builder.Services.AddScoped<IDataRepository<PaymentMethod>, PaymentMethodManager>();
+            builder.Services.AddScoped<IDataRepository<Regroup>, RegroupManager>();
+            // builder.Services.AddScoped<IDataRepository<Country>, CountryManager>();
 
             var app = builder.Build();
 

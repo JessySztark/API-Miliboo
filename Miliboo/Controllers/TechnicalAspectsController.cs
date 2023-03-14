@@ -34,7 +34,7 @@ namespace Miliboo.Controllers {
         }
 
         [HttpGet("{aspectname}")]
-        public async Task<ActionResult<TechnicalAspect>> GetTechnicalAspectFromPostalCode(string aspectname) {
+        public async Task<ActionResult<TechnicalAspect>> GetTechnicalAspectFromAspect(string aspectname) {
             var technicalAspect = await _repository.GetByStringAsync(aspectname);
 
             if (technicalAspect == null) {

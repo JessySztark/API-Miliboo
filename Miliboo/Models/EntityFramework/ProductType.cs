@@ -17,7 +17,7 @@ public partial class ProductType
 
     [Key]
     [Column("prt_id")]
-    public int ProductTypetId
+    public int ProductTypeId
     {
         get { return productTypeId; }
         set { productTypeId = value; }
