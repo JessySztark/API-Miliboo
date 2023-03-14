@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Miliboo.Models.EntityFramework;
 
-[Table("t_e_productCategory_prc")]
+[Table("t_e_productcategory_prc")]
 public partial class ProductCategory
 {
     private int productCategoryId;
@@ -11,10 +11,19 @@ public partial class ProductCategory
 
     [Key]
     [Column("prc_id")]
-    public int ProductCategoryId { get; set; }
+    public int ProductCategoryId
+    {
+        get { return productCategoryId; }
+        set { productCategoryId = value; }
+    }
 
-    [Column("prc_productCategoryName", TypeName = "varchar(100)")]
-    public string? ProductCategoryName { get; set; }
+    [Column("prc_parentCategoryID", TypeName = "integer")]
+    public int? ParentCategoryId { get; set; }
+
+
+
+
+
 
 
     [InverseProperty("ProductCategoriesNavigation")]
@@ -23,11 +32,15 @@ public partial class ProductCategory
     [InverseProperty("ProductCategoriesNavigation")]
     public virtual ICollection<AsFilter> AsFiltersProductCategory { get; set; } = new List<AsFilter>();
 
-
-    // Relation parent-enfant
-    public int? ParentCategoryId { get; set; }
     [ForeignKey("ParentCategoryId")]
     [InverseProperty("ChildCategories")]
-    public virtual ProductCategory ParentCategory { get; set; }
+    public virtual ProductCategory ParentCategory { get; set; } = null!;
     public virtual ICollection<ProductCategory> ChildCategories { get; set; } = new List<ProductCategory>();
+
+    [Column("prc_productCategoryName", TypeName = "varchar(100)")]
+    public String? ProductCategoryName
+    {
+        get { return productCategoryName; }
+        set { productCategoryName = value; }
+    }
 }

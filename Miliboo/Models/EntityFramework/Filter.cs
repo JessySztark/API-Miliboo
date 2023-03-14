@@ -12,15 +12,25 @@ public partial class Filter
 
     [Key]
     [Column("flt_id")]
-    public int FilterId { get; set; }
-
-    [Column("flt_filterName", TypeName = "varchar(50)")]
-    public string? FilterName { get; set; }
-
+    public int FilterId
+    {
+        get { return filterId; }
+        set { filterId = value; }
+    }
 
     [ForeignKey("FilterCategoryId")]
     [InverseProperty("FilterFiltersCategory")]
     public virtual FilterCategory FiltersCategoryNavigation { get; set; } = null!;
+
+
+    [Column("flt_filterName", TypeName = "varchar(50)")]
+    public string? FilterName
+    {
+        get { return filterName; }
+        set { filterName = value; }
+    }
+
+
 
     [InverseProperty("FiltersNavigation")]
     public virtual ICollection<IsFiltered> FiltersIsFiltered { get; set; } = new List<IsFiltered>();

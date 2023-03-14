@@ -7,21 +7,33 @@ namespace Miliboo.Models.EntityFramework;
 public partial class Color
 {
     private int colorId;
-    private string? colorName;
     private string? colorHexaCode;
+    private string? colorName;
 
 
     [Key]
-    [Column("clr_id")]
-    public int ColorId { get; set; }
+    [Column("cl_id")]
 
-    [Column("clr_colorName", TypeName ="varchar(50)")]
-    public string? ColorName { get; set; }
+    public int ColorId
+    {
+        get { return colorId; }
+        set { colorId = value; }
+    }
 
     [Column("clr_colorHexaCode", TypeName = "varchar(10)")]
     [RegularExpression("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$")]
-    public string? ColorHexaCode { get; set; }
+    public string? ColorHexaCode
+    {
+        get { return colorHexaCode; }
+        set { colorHexaCode = value; }
+    }
 
+    [Column("clr_colorName", TypeName = "varchar(50)")]
+    public string? ColorName
+    {
+        get { return colorName; }
+        set { colorName = value; }
+    }
 
     [InverseProperty("ColorsNavigation")]
     public virtual ICollection<Product> ColorsProduct { get; set; } = new List<Product>();

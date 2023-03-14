@@ -1,16 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection.Emit;
 using System.Text.RegularExpressions;
+using Miliboo.Models.EntityFramework;
 
 namespace Miliboo.Models.EntityFramework
 {
-    public class MilibooDBContext : DbContext {
+    public class MilibooDBContext : DbContext
+    {
         public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
 
         public MilibooDBContext() { }
 
         public MilibooDBContext(DbContextOptions<MilibooDBContext> options)
-        : base(options) {
+        : base(options)
+        {
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -19,51 +22,44 @@ namespace Miliboo.Models.EntityFramework
 
             // -----------[Credit Card]----------- //
 
-            modelBuilder.Entity<CreditCard>(entity =>
-            {
+            modelBuilder.Entity<CreditCard>(entity => {
                 entity.HasKey(e => e.CardID).HasName("pk_creditcard");
                 entity.HasCheckConstraint("Ck_creditcard_date", "crc_expirationdate > now()");
             });
 
             // -----------[Order]----------- //
 
-            modelBuilder.Entity<Order>(entity =>
-            {
+            modelBuilder.Entity<Order>(entity => {
                 entity.HasCheckConstraint("Ck_order_date", "ord_date > now()");
             });
 
             // -----------[Delivery Address]----------- //
 
-            modelBuilder.Entity<DeliveryAdress>(entity =>
-            {
+            modelBuilder.Entity<DeliveryAdress>(entity => {
                 entity.HasKey(e => e.IdDeliveryAdress).HasName("pk_deliveryadress");
             });
 
             // -----------[Delivery Method]----------- //
 
-            modelBuilder.Entity<DeliveryMethod>(entity =>
-            {
+            modelBuilder.Entity<DeliveryMethod>(entity => {
                 entity.HasKey(e => e.IdDeliveryMethod).HasName("pk_deliverymethod");
             });
 
             // -----------[Discount]----------- //
 
-            modelBuilder.Entity<Discount>(entity =>
-            {
+            modelBuilder.Entity<Discount>(entity => {
                 entity.HasKey(e => e.DiscountID).HasName("pk_discount");
             });
 
             // -----------[Payement Method]----------- //
 
-            modelBuilder.Entity<PaymentMethod>(entity =>
-            {
+            modelBuilder.Entity<PaymentMethod>(entity => {
                 entity.HasKey(e => e.Paymentmethodid).HasName("pk_paymentmethod");
             });
 
             // -----------[State Order]----------- //
 
-            modelBuilder.Entity<StateOrder>(entity =>
-            {
+            modelBuilder.Entity<StateOrder>(entity => {
                 entity.HasKey(e => e.StateOrderID).HasName("pk_stateorder");
             });
 
@@ -75,92 +71,79 @@ namespace Miliboo.Models.EntityFramework
 
             // -----------[Color]----------- //
 
-            modelBuilder.Entity<Color>(entity =>
-            {
+            modelBuilder.Entity<Color>(entity => {
                 entity.HasKey(e => e.ColorId).HasName("pk_color");
             });
 
             // -----------[Filter Category]----------- //
 
-            modelBuilder.Entity<FilterCategory>(entity =>
-            {
+            modelBuilder.Entity<FilterCategory>(entity => {
                 entity.HasKey(e => e.FilterCategoryId).HasName("pk_filtercategory");
             });
 
             // -----------[Filter]----------- //
 
-            modelBuilder.Entity<Filter>(entity =>
-            {
+            modelBuilder.Entity<Filter>(entity => {
                 entity.HasKey(e => e.FilterId).HasName("pk_filter");
             });
 
             // -----------[Is Filtered]----------- //
 
-            modelBuilder.Entity<IsFiltered>(entity =>
-            {
+            modelBuilder.Entity<IsFiltered>(entity => {
                 entity.HasKey(e => e.IsFilteredId).HasName("pk_isfiltered");
             });
 
             // -----------[As Filter]----------- //
 
-            modelBuilder.Entity<AsFilter>(entity =>
-            {
+            modelBuilder.Entity<AsFilter>(entity => {
                 entity.HasKey(e => new { e.FilterCategoryId, e.ProductCategoryId }).HasName("pk_asfilter");
             });
 
             // -----------[Product Category]----------- //
 
-            modelBuilder.Entity<ProductCategory>(entity =>
-            {
+            modelBuilder.Entity<ProductCategory>(entity => {
                 entity.HasKey(e => e.ProductCategoryId).HasName("pk_productcategory");
             });
 
             // -----------[Grouping]----------- //
 
-            modelBuilder.Entity<Grouping>(entity =>
-            {
+            modelBuilder.Entity<Grouping>(entity => {
                 entity.HasKey(e => e.GroupingId).HasName("pk_grouping");
             });
 
             // -----------[Regroup]----------- //
 
-            modelBuilder.Entity<Regroup>(entity =>
-            {
+            modelBuilder.Entity<Regroup>(entity => {
                 entity.HasKey(e => e.RegroupId).HasName("pk_regroup");
             });
 
             // -----------[Product Type]----------- //
 
-            modelBuilder.Entity<ProductType>(entity =>
-            {
+            modelBuilder.Entity<ProductType>(entity => {
                 entity.HasKey(e => e.ProductTypetId).HasName("pk_producttype");
             });
 
             // -----------[Technical Aspect]----------- //
 
-            modelBuilder.Entity<TechnicalAspect>(entity =>
-            {
+            modelBuilder.Entity<TechnicalAspect>(entity => {
                 entity.HasKey(e => e.TechnicalAspectId).HasName("pk_technicalaspect");
             });
 
             // -----------[As Aspect]----------- //
 
-            modelBuilder.Entity<AsAspect>(entity =>
-            {
+            modelBuilder.Entity<AsAspect>(entity => {
                 entity.HasKey(e => new { e.ProductTypeId, e.TechnicalAspectId }).HasName("pk_asaspect");
             });
 
             // -----------[Concerned]----------- //
 
-            modelBuilder.Entity<Concerned>(entity =>
-            {
+            modelBuilder.Entity<Concerned>(entity => {
                 entity.HasKey(e => e.ConcernedId).HasName("pk_concerned");
             });
 
             // -----------[Product]----------- //
 
-            modelBuilder.Entity<Product>(entity =>
-            {
+            modelBuilder.Entity<Product>(entity => {
                 entity.HasKey(e => e.ProductId).HasName("pk_product");
             });
 
@@ -186,13 +169,13 @@ namespace Miliboo.Models.EntityFramework
             // -----------[Owning]----------- //
 
             modelBuilder.Entity<Owning>(entity => {
-                entity.HasKey(o => new { o.IDAddress, o.IDAccount}).HasName("pk_owning_addressid_accountid");
+                entity.HasKey(o => new { o.IDAddress, o.IDAccount }).HasName("pk_owning_addressid_accountid");
             });
 
             // -----------[Photo]----------- //
 
             modelBuilder.Entity<Photo>(entity => {
-                entity.HasKey(p => p.PhotoID).HasName("pk_owning_addressid_accountid");
+                entity.HasKey(p => p.PhotoID).HasName("pk_photo_photoid");
             });
 
             // ---------------------------------[FOREIGN KEY]--------------------------------- //
@@ -200,7 +183,7 @@ namespace Miliboo.Models.EntityFramework
             // -----------[Address]----------- //
 
             modelBuilder.Entity<Address>(entity => {
-                entity.HasOne(n => n.CountryID)
+                entity.HasOne(n => n.CountryAdress)
                 .WithMany(f => f.AddressCountry)
                 .HasConstraintName("fk_adr_cnt");
             });
@@ -414,6 +397,13 @@ namespace Miliboo.Models.EntityFramework
                 entity.HasIndex(a => a.Mail)
                 .IsUnique();
             });
+
+            // -----------[Photo]----------- //
+
+
         }
+
+        public DbSet<Miliboo.Models.EntityFramework.Product> Product { get; set; }
+
     }
 }
