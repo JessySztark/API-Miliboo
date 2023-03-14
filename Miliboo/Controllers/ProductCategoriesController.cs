@@ -11,7 +11,7 @@ using NuGet.Protocol.Core.Types;
 
 namespace Miliboo.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ProductCategoriesController : ControllerBase
     {

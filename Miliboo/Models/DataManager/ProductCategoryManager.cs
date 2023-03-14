@@ -23,9 +23,9 @@ namespace Miliboo.Models.DataManager
         {
             return await milibooDBContext.ProductCategory.FindAsync(id);
         }
-        public async Task<ActionResult<ProductCategory>> GetByStringAsync(string category)
+        public async Task<ActionResult<ProductCategory>> GetByStringAsync(string str)
         {
-            return await milibooDBContext.ProductCategory.FirstOrDefaultAsync(p => p.ProductCategoryName.ToUpper() == category.ToUpper());
+            return await milibooDBContext.ProductCategory.FirstOrDefaultAsync(p => p.ProductCategoryName.ToUpper() == str.ToUpper());
         }
 
         public async Task AddAsync(ProductCategory entity)

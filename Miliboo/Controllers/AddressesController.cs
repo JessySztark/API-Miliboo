@@ -55,8 +55,6 @@ namespace Miliboo.Controllers
             return address;
         }
 
-        // PUT: api/Addresses/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAddress(int id, Address objt)
         {
@@ -78,8 +76,6 @@ namespace Miliboo.Controllers
             }
         }
 
-        // POST: api/Addresses
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Address>> PostAddress(Address obj)
         {
@@ -87,16 +83,11 @@ namespace Miliboo.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            /*_context.Utilisateurs.Add(utilisateur);
-            await _context.SaveChangesAsync();*/
-
             await _repository.AddAsync(obj);
 
             return CreatedAtAction("GetAddressById", new { id = obj.AddressID }, obj);
         }
 
-        // DELETE: api/Addresses/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAddress(int id)
         {

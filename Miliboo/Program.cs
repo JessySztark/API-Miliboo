@@ -25,6 +25,14 @@ namespace Miliboo
             builder.Services.AddScoped<IDataRepository<AsAspect>, AsAspectManager>();
             builder.Services.AddScoped<IDataRepository<AsFilter>, AsFilterManager>();
             builder.Services.AddScoped<IDataRepository<CompositeProduct>, CompositeProductManager>();
+            builder.Services.AddScoped<IDataRepository<DeliveryAdress>, DeliveryAdressManager>();
+            builder.Services.AddScoped<IDataRepository<Discount>, DiscountManager>();
+            builder.Services.AddScoped<IDataRepository<Filter>, FilterManager>();
+            builder.Services.AddScoped<IDataRepository<FilterCategory>, FilterCategoryManager>();
+            builder.Services.AddScoped<IDataRepository<Owning>, OwningManager>();
+            builder.Services.AddScoped<IDataRepository<ProductCategory>, ProductCategoryManager>();
+            builder.Services.AddScoped<IDataRepository<ProductType>, ProductTypeManager>();
+            builder.Services.AddScoped<IDataRepository<TechnicalAspect>, TechnicalAspectManager>();
 
             var app = builder.Build();
 

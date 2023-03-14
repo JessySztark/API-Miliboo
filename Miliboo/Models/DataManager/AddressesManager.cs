@@ -21,9 +21,9 @@ namespace Miliboo.Models.DataManager
         {
             return await milibooDBContext.Address.FindAsync(id);
         }
-        public async Task<ActionResult<Address>> GetByStringAsync(string postalcode)
+        public async Task<ActionResult<Address>> GetByStringAsync(string str)
         {
-            return await milibooDBContext.Address.FirstOrDefaultAsync(u => u.PostalCode.ToUpper() == postalcode.ToUpper());
+            return await milibooDBContext.Address.FirstOrDefaultAsync(u => u.PostalCode.ToUpper() == str.ToUpper());
         }
         public async Task AddAsync(Address entity)
         {

@@ -419,5 +419,19 @@ namespace Miliboo.Models.EntityFramework
 
         public DbSet<Miliboo.Models.EntityFramework.Concerned> Concerned { get; set; }
 
+        public DbSet<Miliboo.Models.EntityFramework.DeliveryAdress> DeliveryAdress { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.Discount> Discount { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.Filter> Filter { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.FilterCategory> FilterCategory { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.Owning> Owning { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.ProductType> ProductType { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.TechnicalAspect> TechnicalAspect { get; set; }
+
     }
 }

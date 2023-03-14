@@ -8,78 +8,64 @@ using Microsoft.EntityFrameworkCore;
 using Miliboo.Models.EntityFramework;
 using Miliboo.Models.Repository;
 
-namespace Miliboo.Controllers
-{
+namespace Miliboo.Controllers {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class AsAspectsController : ControllerBase
-    {
-        private readonly IDataRepository<AsAspect> _repository;
+    public class OwningsController : ControllerBase {
+        private readonly IDataRepository<Owning> _repository;
 
-        public AsAspectsController(IDataRepository<AsAspect> dataRepo)
-        {
+        public OwningsController(IDataRepository<Owning> dataRepo) {
             _repository = dataRepo;
         }
 
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AsAspect>>> GetAsAspect()
-        {
+        public async Task<ActionResult<IEnumerable<Owning>>> GetOwning() {
             return await _repository.GetAllAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<AsAspect>> GetAsAspect(int id)
-        {
-            var AsAspect = await _repository.GetByIdAsync(id);
+        public async Task<ActionResult<Owning>> GetOwning(int id) {
+            var Owning = await _repository.GetByIdAsync(id);
 
-            if (AsAspect == null)
-            {
+            if (Owning == null) {
                 return NotFound();
             }
 
-            return AsAspect;
+            return Owning;
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsAspect(int id, AsAspect objt)
-        {
-            if (id != objt.ProductTypeId)
-            {
+        public async Task<IActionResult> PutOwning(int id, Owning objt) {
+            if (id != objt.IDAddress || id != objt.IDAccount) {
                 return BadRequest();
             }
 
             var objToUpdate = await _repository.GetByIdAsync(id);
 
-            if (objToUpdate.Value == null)
-            {
+            if (objToUpdate.Value == null) {
                 return NotFound();
             }
-            else
-            {
+            else {
                 await _repository.UpdateAsync(objToUpdate.Value, objt);
                 return NoContent();
             }
         }
 
         [HttpPost]
-        public async Task<ActionResult<AsAspect>> PostAsAspect(AsAspect obj)
-        {
-            if (!ModelState.IsValid)
-            {
+        public async Task<ActionResult<Owning>> PostOwning(Owning obj) {
+            if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
             await _repository.AddAsync(obj);
 
-            return CreatedAtAction("GetAsAspectById", new { id = obj.ProductTypeId }, obj);
+            return CreatedAtAction("GetOwningById", new { id = obj.IDAddress }, obj);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsAspect(int id)
-        {
+        public async Task<IActionResult> DeleteOwning(int id) {
             var obj = await _repository.GetByIdAsync(id);
-            if (obj.Value == null)
-            {
+            if (obj.Value == null) {
                 return NotFound();
             }
             await _repository.DeleteAsync(obj.Value);
