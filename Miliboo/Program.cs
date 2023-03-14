@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Miliboo.Models.DataManager;
 using Miliboo.Models.EntityFramework;
+using Miliboo.Models.Repository;
 
 namespace Miliboo
 {
@@ -17,7 +19,12 @@ namespace Miliboo
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<MilibooDBContext>(options =>
           options.UseNpgsql(builder.Configuration.GetConnectionString("MilibooDbContextRemote")));
-
+            builder.Services.AddScoped<IDataRepository<Order>, OrderManager>();
+            builder.Services.AddScoped<IDataRepository<Address>, AddressesManager>();
+            builder.Services.AddScoped<IDataRepository<ProductCategory>, ProductCategoryManager>();
+            builder.Services.AddScoped<IDataRepository<AsAspect>, AsAspectManager>();
+            builder.Services.AddScoped<IDataRepository<AsFilter>, AsFilterManager>();
+            builder.Services.AddScoped<IDataRepository<CompositeProduct>, CompositeProductManager>();
 
             var app = builder.Build();
 

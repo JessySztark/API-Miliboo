@@ -70,10 +70,6 @@ namespace Miliboo.Models.EntityFramework
             set { adr_latitude = value; }
         }
 
-
-
-
-
         [ForeignKey("CountryID")]
         [InverseProperty("AddressCountry")]
         public virtual Country CountryAdress { get; set; }

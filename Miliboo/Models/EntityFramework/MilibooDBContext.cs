@@ -405,5 +405,19 @@ namespace Miliboo.Models.EntityFramework
 
         public DbSet<Miliboo.Models.EntityFramework.Product> Product { get; set; }
 
+        public DbSet<Miliboo.Models.EntityFramework.Order> Order { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.Address> Address { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.ProductCategory> ProductCategory { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.AsAspect> AsAspect { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.AsFilter> AsFilter { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.CompositeProduct> CompositeProduct { get; set; }
+
+        public DbSet<Miliboo.Models.EntityFramework.Concerned> Concerned { get; set; }
+
     }
 }

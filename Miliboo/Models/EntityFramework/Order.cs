@@ -25,7 +25,6 @@ namespace Miliboo.Models.EntityFramework
         private float deliveryPrice;
         private bool sms;
 
-
         [Key]
         [Column("ord_id")]
         public int OrderID

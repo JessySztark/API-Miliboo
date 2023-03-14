@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Miliboo.Models.EntityFramework;
 
-[PrimaryKey("FilterCategoryId", "ProductCategoryId")]
 [Table("t_j_asfilter_aft")]
 public partial class AsFilter
 {
