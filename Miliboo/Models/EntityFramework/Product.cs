@@ -42,7 +42,8 @@ public partial class Product
         set { productName = value; }
     }
 
-    [Column("prd_productDescription", TypeName = "varchar(500)")]
+    [Column("prd_productDescription", TypeName = "varchar")]
+    [MaxLength(2000)]
     public string? ProductDescription
     {
         get { return productDescription; }

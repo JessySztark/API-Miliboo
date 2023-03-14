@@ -58,7 +58,6 @@ namespace Miliboo.Models.EntityFramework
             set { cmt_description = value; }
         }
         [Column("cmt_date", TypeName = "date")]
-        [DefaultValue("now()")]
         public DateTime Date
         {
             get { return cmt_date; }

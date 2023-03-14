@@ -120,7 +120,7 @@ namespace Miliboo.Models.EntityFramework
             // -----------[Product Type]----------- //
 
             modelBuilder.Entity<ProductType>(entity => {
-                entity.HasKey(e => e.ProductTypetId).HasName("pk_producttype");
+                entity.HasKey(e => e.ProductTypeId).HasName("pk_producttype");
             });
 
             // -----------[Technical Aspect]----------- //
@@ -169,7 +169,7 @@ namespace Miliboo.Models.EntityFramework
             // -----------[Owning]----------- //
 
             modelBuilder.Entity<Owning>(entity => {
-                entity.HasKey(o => new { o.IDAddress, o.IDAccount }).HasName("pk_owning_addressid_accountid");
+                entity.HasKey(o => new { o.AddressID, o.AccountID }).HasName("pk_owning_addressid_accountid");
             });
 
             // -----------[Photo]----------- //
@@ -398,8 +398,9 @@ namespace Miliboo.Models.EntityFramework
                 .IsUnique();
             });
 
-            // -----------[Photo]----------- //
+            // ---------------------------------[ELSE]--------------------------------- //
 
+            // -----------[Comment]----------- //
 
         }
 
