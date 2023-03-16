@@ -8,7 +8,7 @@ namespace Miliboo.Models.EntityFramework
     {
         private int idDeliveryAdress;
         private int accountID;
-        private string? favAdressName;
+        private String favAdressName;
 
         [Key]
         [Column("dla_iddeliveryadress")]
@@ -26,9 +26,9 @@ namespace Miliboo.Models.EntityFramework
             set { accountID = value; }
         }
 
-
         [Column("dla_favadressname", TypeName = "varchar(50)")]
-        public string? FavAdressName
+        [Required]
+        public String FavAdressName
         {
             get { return favAdressName; }
             set { favAdressName = value; }

@@ -27,6 +27,7 @@ namespace Miliboo.Models.EntityFramework
 
         [Column("cnt_wording", TypeName = "varchar")]
         [MaxLength(100)]
+        [Required]
         public String? Wording
         {
             get { return cnt_wording; }
@@ -35,6 +36,7 @@ namespace Miliboo.Models.EntityFramework
 
         [Column("cnt_phonecode", TypeName = "varchar")]
         [MaxLength(4)]
+        [Required]
         public String? PhoneCode
         {
             get { return cnt_phonecode; }

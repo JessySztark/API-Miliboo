@@ -7,7 +7,7 @@ namespace Miliboo.Models.EntityFramework;
 public partial class ProductType
 {
     private int productTypeId;
-    private string? productTypeName;
+    private String productTypeName;
     private string? pTmaintenanceComment;
 
     public ProductType()
@@ -24,7 +24,8 @@ public partial class ProductType
     }
 
     [Column("prt_productTypeName", TypeName = "varchar(100)")]
-    public string? ProductTypeName
+    [Required]
+    public String ProductTypeName
     {
         get { return productTypeName; }
         set { productTypeName = value; }

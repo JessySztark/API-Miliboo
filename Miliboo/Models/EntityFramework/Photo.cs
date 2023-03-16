@@ -30,6 +30,7 @@ namespace Miliboo.Models.EntityFramework
         public virtual Comment CommentPhoto { get; set; }
 
         [Column("pht_link", TypeName = "varchar(200)")]
+        [Required]
         public String? Link
         {
             get { return pht_link; }
