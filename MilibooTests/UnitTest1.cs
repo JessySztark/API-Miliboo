@@ -3,8 +3,8 @@ namespace MilibooTests {
     public void Postutilisateur_ModelValidated_CreationOK_AvecMoq() {
         // Arrange
         var mockRepository = new Mock<IDataRepository<Utilisateur>>();
-        var userController = new UtilisateursController(mockRepository.Object);
-        Utilisateur user = new Utilisateur {
+        var AccountController = new UtilisateursController(mockRepository.Object);
+        Utilisateur Account = new Utilisateur {
             Nom = "POISSON",
             Prenom = "Pascal",
             Mobile = "1",
@@ -18,14 +18,14 @@ namespace MilibooTests {
             Longitude = null
         };
         // Act
-        var actionResult = userController.PostUtilisateur(user).Result;
+        var actionResult = AccountController.PostUtilisateur(Account).Result;
         // Assert
         Assert.IsInstanceOfType(actionResult, typeof(ActionResult<Utilisateur>), "Pas un ActionResult<Utilisateur>");
         Assert.IsInstanceOfType(actionResult.Result, typeof(CreatedAtActionResult), "Pas un CreatedAtActionResult");
         var result = actionResult.Result as CreatedAtActionResult;
         Assert.IsInstanceOfType(result.Value, typeof(Utilisateur), "Pas un Utilisateur");
-        user.UtilisateurId = ((Utilisateur)result.Value).UtilisateurId;
-        Assert.AreEqual(user, (Utilisateur)result.Value, "Utilisateurs pas identiques");
+        Account.UtilisateurId = ((Utilisateur)result.Value).UtilisateurId;
+        Assert.AreEqual(Account, (Utilisateur)result.Value, "Utilisateurs pas identiques");
     }
 
     [TestMethod]

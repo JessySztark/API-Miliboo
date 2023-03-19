@@ -1,8 +1,12 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Miliboo.Models;
 using Miliboo.Models.DataManager;
 using Miliboo.Models.EntityFramework;
 using Miliboo.Models.Repository;
 using MilibooAPI.Models.DataManager;
+using System.Text;
 
 namespace Miliboo
 {
@@ -46,10 +50,37 @@ namespace Miliboo
             builder.Services.AddScoped<IDataRepository<PaymentMethod>, PaymentMethodManager>();
             builder.Services.AddScoped<IDataRepository<PaymentMethod>, PaymentMethodManager>();
             builder.Services.AddScoped<IDataRepository<Regroup>, RegroupManager>();
-            // builder.Services.AddScoped<IDataRepository<Country>, CountryManager>();
+            //builder.Services.AddScoped<IDataRepository<Country>, CountryManager>();
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+             {
+                 options.RequireHttpsMetadata = false;
+                 options.SaveToken = true;
+                 options.TokenValidationParameters = new TokenValidationParameters
+                 {
+                     ValidateIssuer = true,
+                     ValidateAudience = true,
+                     ValidateLifetime = true,
+                     ValidateIssuerSigningKey = true,
+                     ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                     ValidAudience = builder.Configuration["Jwt:Audience"],
+                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"])),
+                     ClockSkew = TimeSpan.Zero
+                 };
+             });
+
+
+            builder.Services.AddAuthorization(config =>
+            {
+                config.AddPolicy(Policies.Admin, Policies.AdminPolicy());
+                config.AddPolicy(Policies.User, Policies.AccountPolicy());
+            });
 
             var app = builder.Build();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

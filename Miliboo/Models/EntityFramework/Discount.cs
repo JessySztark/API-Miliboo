@@ -10,10 +10,11 @@ namespace Miliboo.Models.EntityFramework
         private int discountID;
         private String discountName;
         private bool isActive;
-        private double discountValue;
+        private decimal discountValue;
 
 
         [Key]
+        [Required]
         [Column("dsc_discountid")]
         public int DiscountID
         {
@@ -37,7 +38,7 @@ namespace Miliboo.Models.EntityFramework
         }
 
         [Column("dsc_value", TypeName = "numeric")]
-        public double DiscountValue
+        public decimal DiscountValue
         {
             get { return discountValue; }
             set { discountValue = value; }

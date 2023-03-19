@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\MilibooTests\\MilibooTests.csproj": {}
+    "C:\\Users\\pc\\source\\repos\\JessySztark\\API-Miliboo\\MilibooTests\\MilibooTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\MilibooTests\\MilibooTests.csproj": {
+    "C:\\Users\\pc\\source\\repos\\JessySztark\\API-Miliboo\\MilibooTests\\MilibooTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\MilibooTests\\MilibooTests.csproj",
+        "projectUniqueName": "C:\\Users\\pc\\source\\repos\\JessySztark\\API-Miliboo\\MilibooTests\\MilibooTests.csproj",
         "projectName": "MilibooTests",
-        "projectPath": "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\MilibooTests\\MilibooTests.csproj",
-        "packagesPath": "C:\\Users\\sztarkj\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\MilibooTests\\obj\\",
+        "projectPath": "C:\\Users\\pc\\source\\repos\\JessySztark\\API-Miliboo\\MilibooTests\\MilibooTests.csproj",
+        "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pc\\source\\repos\\JessySztark\\API-Miliboo\\MilibooTests\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\sztarkj\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -77,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

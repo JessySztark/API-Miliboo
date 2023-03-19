@@ -22,14 +22,14 @@ namespace MilibooAPI.Controllers
 
         // GET: api/Countries
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Country>>> GetComments()
+        public async Task<ActionResult<IEnumerable<Country>>> GetCountries()
         {
             return await dataRepository.GetAllAsync();
         }
 
         // GET: api/Comments/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Country>> GetCommentById(int id)
+        public async Task<ActionResult<Country>> GetCountryById(int id)
         {
             var country = await dataRepository.GetByIdAsync(id);
             if (country == null || country.Value == null)  //marche pas sinon 

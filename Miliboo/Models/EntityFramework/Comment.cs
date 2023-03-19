@@ -7,7 +7,7 @@ namespace Miliboo.Models.EntityFramework
     [Table("t_e_comment_cmt")]
     public class Comment
     {
-        private int? cmt_id;
+        private int cmt_id;
         private String? cmt_title;
         private int? cmt_mark;
         private String? cmt_description;
@@ -18,7 +18,7 @@ namespace Miliboo.Models.EntityFramework
 
         [Key]
         [Column("cmt_id")]
-        public int? CommentID
+        public int CommentID
         {
             get { return cmt_id; }
             set { cmt_id = value; }
