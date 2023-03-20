@@ -82,14 +82,6 @@ namespace Miliboo.Models.EntityFramework
             set { act_oath = value; }
         }
 
-
-        public String? AccountRole
-        {
-            get { return AccountRole; }
-            set {AccountRole = value; }
-        }
-
-
         [InverseProperty("OwnerAccount")]
         public virtual ICollection<Owning> Addresses { get; set; }
 

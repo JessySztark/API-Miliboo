@@ -23,11 +23,11 @@ namespace Miliboo.Models.EntityFramework
 
         [ForeignKey("ProductId")]
         [InverseProperty("PhotoProduct")]
-        public virtual Product ProductPhoto { get; set; }
+        public virtual Product? ProductPhoto { get; set; }
 
         [ForeignKey("CommentID")]
         [InverseProperty("PhotoComment")]
-        public virtual Comment CommentPhoto { get; set; }
+        public virtual Comment? CommentPhoto { get; set; }
 
         [Column("pht_link", TypeName = "varchar(200)")]
         [Required]

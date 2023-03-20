@@ -37,7 +37,7 @@ namespace Miliboo.Models.EntityFramework
             set { isActive = value; }
         }
 
-        [Column("dsc_value", TypeName = "numeric")]
+        [Column("dsc_value", TypeName = "decimal")]
         public decimal DiscountValue
         {
             get { return discountValue; }

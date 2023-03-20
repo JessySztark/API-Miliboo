@@ -26,6 +26,7 @@ namespace Miliboo.Controllers
         {
             return await _repository.GetAllAsync();
         }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Concerned>> GetConcerned(int id)
         {
@@ -39,10 +40,10 @@ namespace Miliboo.Controllers
             return concerned;
         }
 
-        [HttpGet("{postalcode}")]
-        public async Task<ActionResult<Concerned>> GetConcernedFromPostalCode(string postalcode)
+        [HttpGet("{str}")]
+        public async Task<ActionResult<Concerned>> GetConcernedFromPostalCode(string str)
         {
-            var concerned = await _repository.GetByStringAsync(postalcode);
+            var concerned = await _repository.GetByStringAsync(str);
 
             if (concerned == null)
             {
@@ -85,6 +86,7 @@ namespace Miliboo.Controllers
 
             return CreatedAtAction("GetConcernedById", new { id = obj.ConcernedId }, obj);
         }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteConcerned(int id)
         {

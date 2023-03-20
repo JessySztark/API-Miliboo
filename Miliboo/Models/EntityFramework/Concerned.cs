@@ -4,11 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Miliboo.Models.EntityFramework;
 
 [Table("t_j_concerned_coc")]
-public class Concerned
+public partial class Concerned
 {
     private int concernedId;
     private int quantity;
-
 
     [Key]
     [Column("coc_id")]

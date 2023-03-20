@@ -29,7 +29,7 @@ public partial class ProductCategory
 
     [ForeignKey("ParentCategoryId")]
     [InverseProperty("ChildCategories")]
-    public virtual ProductCategory ParentCategory { get; set; } = null!;
+    public virtual ProductCategory? ParentCategory { get; set; } = null!;
     public virtual ICollection<ProductCategory> ChildCategories { get; set; } = new List<ProductCategory>();
 
     [Column("prc_productCategoryName", TypeName = "varchar(100)")]

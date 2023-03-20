@@ -5,7 +5,7 @@ using Miliboo.Models.Repository;
 
 namespace MilibooAPI.Models.DataManager
 {
-    public class CountryManager : IDataRepository<CreditCard>
+    public class CountryManager : IDataRepository<Country>
     {
         readonly MilibooDBContext? milibooDbContext;
         public CountryManager() { }
@@ -14,33 +14,29 @@ namespace MilibooAPI.Models.DataManager
             milibooDbContext = context;
         }
 
-        public Task AddAsync(CreditCard entity)
-        {
+        public Task AddAsync(Country entity) {
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(CreditCard entity)
-        {
+        public Task DeleteAsync(Country entity) {
             throw new NotImplementedException();
         }
 
-        public async Task<ActionResult<IEnumerable<CreditCard>>> GetAllAsync()
+        public async Task<ActionResult<IEnumerable<Country>>> GetAllAsync()
         {
-            return await milibooDbContext.CreditCards.ToListAsync();
+            return await milibooDbContext.Countries.ToListAsync();
         }
 
-        public async Task<ActionResult<CreditCard>> GetByIdAsync(int id)
+        public async Task<ActionResult<Country>> GetByIdAsync(int id)
         {
-            return await milibooDbContext.CreditCards.FindAsync(id);
+            return await milibooDbContext.Countries.FindAsync(id);
         }
 
-        public Task<ActionResult<CreditCard>> GetByStringAsync(string str)
-        {
+        public Task<ActionResult<Country>> GetByStringAsync(string str) {
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(CreditCard entityToUpdate, CreditCard entity)
-        {
+        public Task UpdateAsync(Country entityToUpdate, Country entity) {
             throw new NotImplementedException();
         }
     }

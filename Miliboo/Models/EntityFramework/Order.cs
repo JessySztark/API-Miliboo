@@ -59,7 +59,7 @@ namespace Miliboo.Models.EntityFramework
 
         [ForeignKey("DiscountID")]
         [InverseProperty("OrderDiscount")]
-        public virtual Discount DiscountOrder { get; set; }
+        public virtual Discount? DiscountOrder { get; set; }
 
         [Column("dlv_iddeliverymethod")]
         public int IdDeliveryMethod
