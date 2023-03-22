@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Miliboo.Models.EntityFramework;
 using Miliboo.Models.Repository;
+using NuGet.Protocol.Core.Types;
 
 namespace MilibooAPI.Controllers
 {
@@ -28,12 +29,22 @@ namespace MilibooAPI.Controllers
 
         // GET: api/Accounts/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Account>> GetAccount(int id)
+        public async Task<ActionResult<Account>> GetAccountById(int id)
         {
             var account = await dataRepository.GetByIdAsync(id);
 
-            if (account == null || account.Value == null)  //marche pas sinon 
+            if (account == null || account.Value == null) 
             {
+                return NotFound();
+            }
+            return account;
+        }
+
+        [HttpGet("{email}")]
+        public async Task<ActionResult<Account>> GetAccountByEmail(String email) {
+            var account = await dataRepository.GetByStringAsync(email);
+
+            if (account == null) {
                 return NotFound();
             }
             return account;
@@ -56,7 +67,7 @@ namespace MilibooAPI.Controllers
             else
             {
                 await dataRepository.UpdateAsync(accountToUpdate.Value, account);
-                return NoContent();
+                return Ok(account);
             }
         }
 
