@@ -43,7 +43,6 @@ namespace MilibooAPI.Controllers
         [HttpGet("{email}")]
         public async Task<ActionResult<Account>> GetAccountByEmail(String email) {
             var account = await dataRepository.GetByStringAsync(email);
-
             if (account == null) {
                 return NotFound();
             }
@@ -85,7 +84,9 @@ namespace MilibooAPI.Controllers
         }
 
         // DELETE: api/Accounts/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DeleteAccount(int id)
         {
             var account = await dataRepository.GetByIdAsync(id);
@@ -96,10 +97,5 @@ namespace MilibooAPI.Controllers
             await dataRepository.DeleteAsync(account.Value);
             return NoContent();
         }
-
-       /* private bool AccountExists(int id)
-        {
-            return _context.Account.Any(e => e.AccountID == id);
-        }*/
     }
 }
