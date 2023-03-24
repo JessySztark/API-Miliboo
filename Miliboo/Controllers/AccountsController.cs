@@ -94,7 +94,7 @@ namespace MilibooAPI.Controllers
                 return NotFound();
             }
             await dataRepository.DeleteAsync(account.Value);
-            return NoContent();
+            return Ok(account);
         }
     }
 }

@@ -51,14 +51,14 @@ namespace Miliboo.Controllers
 
             var objToUpdate = await _repository.GetByIdAsync(id);
 
-            if (objToUpdate.Value == null)
+            if (objToUpdate == null)
             {
                 return NotFound();
             }
             else
             {
                 await _repository.UpdateAsync(objToUpdate.Value, objt);
-                return NoContent();
+                return Ok(objt);
             }
         }
 
@@ -78,12 +78,12 @@ namespace Miliboo.Controllers
         public async Task<IActionResult> DeleteAsFilter(int id)
         {
             var obj = await _repository.GetByIdAsync(id);
-            if (obj.Value == null)
+            if (obj == null)
             {
                 return NotFound();
             }
             await _repository.DeleteAsync(obj.Value);
-            return NoContent();
+            return Ok(obj);
         }
     }
 }

@@ -113,7 +113,7 @@ namespace MilibooTests.Controller {
             // Act
             var actionResult = _controller.DeleteAccount(1).Result;
             // Assert
-            Assert.IsInstanceOfType(actionResult, typeof(NoContentResult), "No Content");
+            Assert.IsInstanceOfType(actionResult, typeof(OkObjectResult), "Ok Result");
         }
 
         [TestMethod]

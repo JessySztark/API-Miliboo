@@ -7,7 +7,6 @@ namespace MilibooAPI.Models.DataManager
 {
     public class AccountManager : IDataRepository<Account>
     {
-
         readonly MilibooDBContext? milibooDbContext;
         public AccountManager() { }
         public AccountManager(MilibooDBContext context)
