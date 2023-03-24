@@ -42,7 +42,7 @@ namespace MilibooAPI.Controllers
 
         // PUT: api/Colors/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        /*[HttpPut("{id}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> PutColor(int id, Color color)
         {
             if (id != color.ColorId)
@@ -101,6 +101,6 @@ namespace MilibooAPI.Controllers
         private bool ColorExists(int id)
         {
             return _context.Colors.Any(e => e.ColorId == id);
-        }*/
+        }
     }
 }

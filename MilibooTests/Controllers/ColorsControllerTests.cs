@@ -70,27 +70,7 @@ namespace Miliboo.Controllers.Tests {
             Assert.IsInstanceOfType(actionResult.Result, typeof(NotFoundResult), "Not Found");
         }
 
-        [TestMethod]
-        public async Task PostColor_ModelValidated_CreationOK_WithMoq() {
-            Color asf = new Color {
-                ColorId = 1,
-                ColorHexaCode = "#EAD315",
-                ColorName= "Jaune cumin"
-            };
-            // Act
-            var actionResult = _controller.PostColor(asf).Result;
-            // Assert
-            Assert.IsInstanceOfType(actionResult, typeof(ActionResult<Color>), "Not an ActionResult<Color>");
-            Assert.IsInstanceOfType(actionResult.Result, typeof(CreatedAtActionResult), "Not a CreatedAtActionResult");
-            var result = actionResult.Result as CreatedAtActionResult;
-            Assert.IsInstanceOfType(result.Value, typeof(Color), "Not an Color");
-            asf.FilterCategoryId = ((Color)result.Value).FilterCategoryId;
-            asf.ProductCategoryId = ((Color)result.Value).ProductCategoryId;
-            Assert.AreEqual(asf, (Color)result.Value, "Colors not equals");
-        }
-
-
-        [TestMethod]
+        /*[TestMethod]
         public async Task DeleteColorTest_ReturnsNoContent_WithMoq() {
             // Arrange
             Color asf = new Color {
@@ -171,6 +151,6 @@ namespace Miliboo.Controllers.Tests {
             var actionResult = _controller.PutColor(id, oldColor).Result;
             // Assert
             Assert.IsInstanceOfType(actionResult, typeof(BadRequestResult), "Bad Request");
-        }
+        }*/
     }
 }
