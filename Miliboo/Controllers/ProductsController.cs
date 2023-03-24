@@ -73,23 +73,31 @@ namespace MilibooAPI.Controllers
             _context.Photos,
             pc => pc.p.ProductId,
             pp => pp.ProductPhoto.ProductId,
-            (pc, pp) => new { pc.p, pc.ColorName, pp.Link, Hexacode = pc.HexaCode })
+            (pc, pp) => new {
+                pc.p,
+                Join = new {
+                    colorName = pc.ColorName,
+                    link = pp.Link,
+                    hexacode = pc.HexaCode
+                }
+            })
          .ToListAsync();
         }
 
 
         [HttpGet("{id}")]
         public async Task<object> GetProductPhotoColorByIdAsync(int id) {
-            var productWithColorsAndPhotos = await _context.Product.Join(
-         _context.Colors,
-         p => p.ColorsNavigation.ColorId,
-         c => c.ColorId,
-         (p, c) => new {
-             Product = p,
-             ColorName = c.ColorName,
-             HexaCode = c.ColorHexaCode
-         })
-         .Join(
+            var productWithColorsAndPhotos = await _context.Product
+        .Join(
+            _context.Colors,
+            p => p.ColorsNavigation.ColorId,
+            c => c.ColorId,
+            (p, c) => new {
+                Product = p,
+                ColorName = c.ColorName,
+                HexaCode = c.ColorHexaCode
+            })
+        .Join(
             _context.Photos,
             pc => pc.Product.ProductId,
             pp => pp.ProductPhoto.ProductId,
@@ -99,19 +107,22 @@ namespace MilibooAPI.Controllers
                 PhotoUrl = pp.Link,
                 Hexacode = pc.HexaCode
             })
-         .Where(pc => pc.Product.ProductId == id)
-         .Select(pc => new {
-             pc.Product,
-             pc.ColorName,
-             pc.PhotoUrl,
-             pc.Hexacode
-         })
-         .FirstOrDefaultAsync();
+        .Where(pc => pc.Product.ProductId == id)
+        .Select(pc => new {
+            pc.Product,
+            Join = new {
+                colorName = pc.ColorName,
+                link = pc.PhotoUrl,
+                hexacode = pc.Hexacode
+            }
+        })
+        .FirstOrDefaultAsync();
 
             if (productWithColorsAndPhotos == null) {
                 return NotFound();
             }
-            return productWithColorsAndPhotos;
+
+            return Ok(productWithColorsAndPhotos);
         }
 
         // PUT: api/Products/5
