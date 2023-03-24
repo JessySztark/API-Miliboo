@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QIIe61uA6jyFqDyEk9bONXGXqe7RbiKobOfJKmuStZAFesab+oTO6futLE6u79aQyYGxMw3DdMVM0Dr8GfZCBQ==",
+  "dgSpecHash": "HPswJHz6jNR2iWZs10PMRaLRV2uXnPqHZre7RMqRfXVoEiszcSxVSxW/k+D7/IkksIA+EsZdhStdB5u2UDXARw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sztarkj\\Desktop\\github\\Miliboo\\MilibooTests\\MilibooTests.csproj",
+  "projectFilePath": "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\MilibooTests\\MilibooTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sztarkj\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\sztarkj\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",

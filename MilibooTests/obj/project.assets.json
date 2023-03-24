@@ -8038,11 +8038,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sztarkj\\Desktop\\github\\Miliboo\\MilibooTests\\MilibooTests.csproj",
+      "projectUniqueName": "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\MilibooTests\\MilibooTests.csproj",
       "projectName": "MilibooTests",
-      "projectPath": "C:\\Users\\sztarkj\\Desktop\\github\\Miliboo\\MilibooTests\\MilibooTests.csproj",
+      "projectPath": "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\MilibooTests\\MilibooTests.csproj",
       "packagesPath": "C:\\Users\\sztarkj\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sztarkj\\Desktop\\github\\Miliboo\\MilibooTests\\obj\\",
+      "outputPath": "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\MilibooTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -8063,8 +8063,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\sztarkj\\Desktop\\github\\Miliboo\\Miliboo\\Miliboo.csproj": {
-              "projectPath": "C:\\Users\\sztarkj\\Desktop\\github\\Miliboo\\Miliboo\\Miliboo.csproj"
+            "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\Miliboo\\Miliboo.csproj": {
+              "projectPath": "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\Miliboo\\Miliboo.csproj"
             }
           }
         }
