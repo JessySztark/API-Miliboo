@@ -7,7 +7,7 @@ namespace Miliboo.Models.EntityFramework;
 [Table("t_e_product_prd")]
 public partial class Product
 {
-    private int productId;
+    private int? productId;
     private string? productName;
     private string? productDescription;
     private double productPrice;
@@ -17,7 +17,7 @@ public partial class Product
 
     [Key]
     [Column("prd_id")]
-    public int ProductId
+    public int? ProductId
     {
         get { return productId; }
         set { productId = value; }

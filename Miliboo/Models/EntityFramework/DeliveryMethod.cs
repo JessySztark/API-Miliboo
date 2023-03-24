@@ -8,7 +8,7 @@ namespace Miliboo.Models.EntityFramework
     public class DeliveryMethod
     {
         private int idDeliveryMethod;
-        private String? descriptionDeliveryMethod;
+        private String descriptionDeliveryMethod;
         /*private String? dlm_companyname;
         private bool dlm_shipmentathome;
         private String? dlm_title;
@@ -24,7 +24,8 @@ namespace Miliboo.Models.EntityFramework
         }
 
         [Column("dlm_description", TypeName = "text")]
-        public String? Description
+        [Required]
+        public String Description
         {
             get { return descriptionDeliveryMethod; }
             set { descriptionDeliveryMethod = value; }

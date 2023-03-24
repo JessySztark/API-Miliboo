@@ -10,11 +10,11 @@ namespace Miliboo.Models.EntityFramework
     {
         private int cardID;
         private int accountID;
-        private string? name;
-        private string? firstName;
+        private String? name;
+        private String? firstName;
         private DateTime expirationDate;
-        private string? cardNumber;
-        private string? cryptogram;
+        private String cardNumber;
+        private String? cryptogram;
 
         [Key]
         [Column("crc_cardid")]
@@ -32,7 +32,7 @@ namespace Miliboo.Models.EntityFramework
         }
 
         [Column("crc_name", TypeName = "varchar(50)")]
-        public string? Name
+        public String? Name
         {
             get { return name; }
             set { name = value; }
@@ -40,7 +40,7 @@ namespace Miliboo.Models.EntityFramework
 
         [Column("crc_firstname", TypeName = "varchar(50)")]
 
-        public string? FirstName
+        public String? FirstName
         {
             get { return firstName; }
             set { firstName = value; }
@@ -54,14 +54,15 @@ namespace Miliboo.Models.EntityFramework
         }
 
         [Column("crc_cardnumber", TypeName = "varchar(50)")]
-        public string? CardNumber
+        [Required]
+        public String CardNumber
         {
             get { return cardNumber; }
             set { cardNumber = value; }
         }
 
         [Column("crc_cryptogram", TypeName = "varchar(3)")]
-        public string? Cryptogram
+        public String? Cryptogram
         {
             get { return cryptogram; }
             set { cryptogram = value; }

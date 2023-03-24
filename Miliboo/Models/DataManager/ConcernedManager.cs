@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Miliboo.Models.EntityFramework;
 using Miliboo.Models.Repository;
+using EntityState = Microsoft.EntityFrameworkCore.EntityState;
 
 namespace Miliboo.Models.DataManager
 {

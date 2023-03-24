@@ -39,24 +39,30 @@ namespace Miliboo.Models.EntityFramework
         }
 
         [Column("cmt_title", TypeName = "varchar")]
+        [Required]
         public String? Title
         {
             get { return cmt_title; }
             set { cmt_title = value; }
         }
+
         [Column("cmt_mark")]
+        [Required]
         [Range(1, 4)]
         public int? Mark
         {
             get { return cmt_mark; }
             set { cmt_mark = value; }
         }
+
         [Column("cmt_description", TypeName = "varchar")]
+        [Required]
         public String? Description
         {
             get { return cmt_description; }
             set { cmt_description = value; }
         }
+
         [Column("cmt_date", TypeName = "date")]
         public DateTime Date
         {

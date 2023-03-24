@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Miliboo.Models.EntityFramework;
 using Miliboo.Models.Repository;
-
 namespace MilibooAPI.Models.DataManager
 {
-    public class CreditCardManager : IDataRepository<Account>
+    public class CreditCardManager : IDataRepository<CreditCard>
     {
 
         readonly MilibooDBContext? milibooDbContext;
@@ -14,33 +14,27 @@ namespace MilibooAPI.Models.DataManager
             milibooDbContext = context;
         }
 
-        public Task AddAsync(Account entity)
-        {
+        public Task AddAsync(CreditCard entity) {
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(Account entity)
-        {
+        public Task DeleteAsync(CreditCard entity) {
             throw new NotImplementedException();
         }
 
-        public Task<ActionResult<IEnumerable<Account>>> GetAllAsync()
-        {
+        public async Task<ActionResult<IEnumerable<CreditCard>>> GetAllAsync() {
+            return await milibooDbContext.CreditCards.ToListAsync();
+        }
+
+        public async Task<ActionResult<CreditCard>> GetByIdAsync(int id) {
+            return await milibooDbContext.CreditCards.FindAsync(id);
+        }
+
+        public Task<ActionResult<CreditCard>> GetByStringAsync(string str) {
             throw new NotImplementedException();
         }
 
-        public Task<ActionResult<Account>> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ActionResult<Account>> GetByStringAsync(string str)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(Account entityToUpdate, Account entity)
-        {
+        public Task UpdateAsync(CreditCard entityToUpdate, CreditCard entity) {
             throw new NotImplementedException();
         }
     }

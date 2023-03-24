@@ -18,6 +18,7 @@ namespace Miliboo.Models.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            #region primary
             // ---------------------------------[PRIMARY KEY]--------------------------------- //
 
             // -----------[Credit Card]----------- //
@@ -177,7 +178,8 @@ namespace Miliboo.Models.EntityFramework
             modelBuilder.Entity<Photo>(entity => {
                 entity.HasKey(p => p.PhotoID).HasName("pk_photo_photoid");
             });
-
+            #endregion
+            #region foreign
             // ---------------------------------[FOREIGN KEY]--------------------------------- //
 
             // -----------[Address]----------- //
@@ -387,51 +389,83 @@ namespace Miliboo.Models.EntityFramework
                 .WithMany(f => f.Owners)
                 .HasConstraintName("fk_owning_address");
             });
-
-            // ---------------------------------[UNIQUE & CHECK KEY]--------------------------------- //
+            #endregion
+            #region unique
+            // ---------------------------------[UNIQUE KEY]--------------------------------- //
 
             // -----------[Account]----------- //
 
             modelBuilder.Entity<Account>(entity => {
-
                 entity.HasIndex(a => a.Mail)
                 .IsUnique();
             });
+            #endregion
+            #region check
+            // ---------------------------------[CHECK KEY]--------------------------------- //
 
+            // -----------[Comment]----------- //
+
+            modelBuilder.Entity<Comment>(entity => {
+                entity.HasCheckConstraint("CK_COMMENT_MARK", "cmt_mark >= AND cmt_mark <=4");
+            });
+
+            // -----------[Photo]----------- //
+
+            modelBuilder.Entity<Photo>(entity => {
+                entity.HasCheckConstraint("CK_PHOTO_LINK", "pht_link::text ~ '^.*.(?:jpg|gif|png|webm|jpeg|ico|webp)$'::text");
+            });
+
+            // -----------[Address]----------- //
+
+            modelBuilder.Entity<Address>(entity => {
+                entity.HasCheckConstraint("CK_ADDR_POSTALCODE", "adr_postalcode::text ~ '^[0-9]{5}$'::text");
+            });
+
+            // -----------[CreditCard]----------- //
+
+            modelBuilder.Entity<CreditCard>(entity => {
+                entity.HasCheckConstraint("CK_CRC_CRYPTOGRAM", "crc_cryptogram::text ~ '^[0-9]{3}$'::text");
+            });
+
+            #endregion
+            #region other
             // ---------------------------------[ELSE]--------------------------------- //
 
             // -----------[Comment]----------- //
 
+            modelBuilder.Entity<Comment>(entity => {
+                entity.Property(c => c.Date)
+                .HasDefaultValue(DateTime.Now);
+            });
+
+            // -----------[Order]----------- //
+
+            modelBuilder.Entity<Order>(entity => {
+                entity.Property(o => o.Sms)
+                .HasDefaultValue(false);
+                entity.Property(d => d.DeliveryPrice)
+                .HasDefaultValue(0);
+                entity.Property(t => t.OrderDate)
+                .HasDefaultValue(DateTime.Now);
+            });
+
+            #endregion
         }
-
+        #region dbSet
         public DbSet<Miliboo.Models.EntityFramework.Product> Product { get; set; }
-
         public DbSet<Miliboo.Models.EntityFramework.Order> Order { get; set; }
-
         public DbSet<Miliboo.Models.EntityFramework.Address> Address { get; set; }
-
         public DbSet<Miliboo.Models.EntityFramework.ProductCategory> ProductCategory { get; set; }
-
         public DbSet<Miliboo.Models.EntityFramework.AsAspect> AsAspect { get; set; }
-
         public DbSet<Miliboo.Models.EntityFramework.AsFilter> AsFilter { get; set; }
-
         public DbSet<Miliboo.Models.EntityFramework.CompositeProduct> CompositeProduct { get; set; }
-
         public DbSet<Miliboo.Models.EntityFramework.Concerned> Concerned { get; set; }
-
         public DbSet<Miliboo.Models.EntityFramework.DeliveryAdress> DeliveryAdress { get; set; }
-
         public DbSet<Miliboo.Models.EntityFramework.Discount> Discount { get; set; }
-
         public DbSet<Miliboo.Models.EntityFramework.Filter> Filter { get; set; }
-
         public DbSet<Miliboo.Models.EntityFramework.FilterCategory> FilterCategory { get; set; }
-
         public DbSet<Miliboo.Models.EntityFramework.Owning> Owning { get; set; }
-
         public DbSet<Miliboo.Models.EntityFramework.ProductType> ProductType { get; set; }
-
         public DbSet<Miliboo.Models.EntityFramework.TechnicalAspect> TechnicalAspect { get; set; }
         public DbSet<Miliboo.Models.EntityFramework.Account> Account { get; set; }
         public DbSet<Miliboo.Models.EntityFramework.Photo> Photos { get; set; }
@@ -445,5 +479,6 @@ namespace Miliboo.Models.EntityFramework
         public DbSet<Miliboo.Models.EntityFramework.IsFiltered> IsFiltereds { get; set; }
         public DbSet<Miliboo.Models.EntityFramework.PaymentMethod> PaymentMethods { get; set; }
         public DbSet<Miliboo.Models.EntityFramework.Regroup> Regroups { get; set; }
+        #endregion
     }
 }

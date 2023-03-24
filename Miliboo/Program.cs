@@ -1,8 +1,12 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Miliboo.Models;
 using Miliboo.Models.DataManager;
 using Miliboo.Models.EntityFramework;
 using Miliboo.Models.Repository;
 using MilibooAPI.Models.DataManager;
+using System.Text;
 
 namespace Miliboo
 {
@@ -21,10 +25,12 @@ namespace Miliboo
             builder.Services.AddDbContext<MilibooDBContext>(options =>
           options.UseNpgsql(builder.Configuration.GetConnectionString("MilibooDbContextRemote")));
             builder.Services.AddScoped<IDataRepository<Order>, OrderManager>();
+            builder.Services.AddScoped<IDataRepository<Concerned>, ConcernedManager>();
             builder.Services.AddScoped<IDataRepository<Address>, AddressesManager>();
             builder.Services.AddScoped<IDataRepository<ProductCategory>, ProductCategoryManager>();
             builder.Services.AddScoped<IDataRepository<AsAspect>, AsAspectManager>();
             builder.Services.AddScoped<IDataRepository<AsFilter>, AsFilterManager>();
+            builder.Services.AddScoped<IDataRepository<CreditCard>, CreditCardManager>();
             builder.Services.AddScoped<IDataRepository<CompositeProduct>, CompositeProductManager>();
             builder.Services.AddScoped<IDataRepository<DeliveryAdress>, DeliveryAdressManager>();
             builder.Services.AddScoped<IDataRepository<Discount>, DiscountManager>();
@@ -46,10 +52,37 @@ namespace Miliboo
             builder.Services.AddScoped<IDataRepository<PaymentMethod>, PaymentMethodManager>();
             builder.Services.AddScoped<IDataRepository<PaymentMethod>, PaymentMethodManager>();
             builder.Services.AddScoped<IDataRepository<Regroup>, RegroupManager>();
-            // builder.Services.AddScoped<IDataRepository<Country>, CountryManager>();
+            builder.Services.AddScoped<IDataRepository<Country>, CountryManager>();
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+             {
+                 options.RequireHttpsMetadata = false;
+                 options.SaveToken = true;
+                 options.TokenValidationParameters = new TokenValidationParameters
+                 {
+                     ValidateIssuer = true,
+                     ValidateAudience = true,
+                     ValidateLifetime = true,
+                     ValidateIssuerSigningKey = true,
+                     ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                     ValidAudience = builder.Configuration["Jwt:Audience"],
+                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"])),
+                     ClockSkew = TimeSpan.Zero
+                 };
+             });
+
+
+            builder.Services.AddAuthorization(config =>
+            {
+                config.AddPolicy(Policies.Admin, Policies.AdminPolicy());
+                config.AddPolicy(Policies.User, Policies.AccountPolicy());
+            });
 
             var app = builder.Build();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

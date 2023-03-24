@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Miliboo", "Miliboo.csproj", "{C4A6D2CA-47DB-4B4A-B8B1-69589E7537F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MilibooTests", "..\MilibooTests\MilibooTests.csproj", "{3EE2A040-8F63-434E-922B-DDD1F435085A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilibooTests", "..\MilibooTests\MilibooTests.csproj", "{3EE2A040-8F63-434E-922B-DDD1F435085A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

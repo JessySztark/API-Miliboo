@@ -11,7 +11,7 @@ namespace Miliboo.Models.EntityFramework
         private int cardID;
         private int idDeliveryMethod;
         private int idDeliveryAdress;
-        private int discountID;
+        private int? discountID;
         private int stateOrderID;
         private int accountID;
         private int paymentmethodid;
@@ -59,7 +59,7 @@ namespace Miliboo.Models.EntityFramework
 
         [ForeignKey("DiscountID")]
         [InverseProperty("OrderDiscount")]
-        public virtual Discount DiscountOrder { get; set; }
+        public virtual Discount? DiscountOrder { get; set; }
 
         [Column("dlv_iddeliverymethod")]
         public int IdDeliveryMethod
@@ -104,7 +104,7 @@ namespace Miliboo.Models.EntityFramework
         }
 
         [Column("dsc_discountid")]
-        public int DiscountID
+        public int? DiscountID
         {
             get { return discountID; }
             set { discountID = value; }
@@ -167,6 +167,7 @@ namespace Miliboo.Models.EntityFramework
         }
 
         [Column("ord_deliveryprice")]
+        [Required]
         public float DeliveryPrice
         {
             get { return deliveryPrice; }
@@ -179,7 +180,6 @@ namespace Miliboo.Models.EntityFramework
             get { return sms; }
             set { sms = value; }
         }
-
 
         [InverseProperty("OrdersNavigation")]
         public virtual ICollection<Concerned> OrdersConcerned { get; set; } = new List<Concerned>();

@@ -8,12 +8,13 @@ namespace Miliboo.Models.EntityFramework
     public class Discount
     {
         private int discountID;
-        private string? discountName;
+        private String discountName;
         private bool isActive;
-        private double discountValue;
+        private decimal discountValue;
 
 
         [Key]
+        [Required]
         [Column("dsc_discountid")]
         public int DiscountID
         {
@@ -21,22 +22,23 @@ namespace Miliboo.Models.EntityFramework
             set { discountID = value; }
         }
 
-        [Column("dsc_discountname")]
-        public string? DiscountName
+        [Column("dsc_discountname", TypeName ="varchar")]
+        [Required]
+        public String DiscountName
         {
             get { return discountName; }
             set { discountName = value; }
         }
 
-        [Column("dsc_isactive")]
+        [Column("dsc_isactive", TypeName = "bool")]
         public bool IsActive
         {
             get { return isActive; }
             set { isActive = value; }
         }
 
-        [Column("dsc_value")]
-        public double DiscountValue
+        [Column("dsc_value", TypeName = "decimal")]
+        public decimal DiscountValue
         {
             get { return discountValue; }
             set { discountValue = value; }

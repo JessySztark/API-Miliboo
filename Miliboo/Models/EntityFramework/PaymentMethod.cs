@@ -8,7 +8,7 @@ namespace Miliboo.Models.EntityFramework
     {
 
         private int paymentmethodid;
-        private string? methodName;
+        private String methodName;
 
         [Key]
         [Column("pay_paymentmethodid")]
@@ -19,7 +19,8 @@ namespace Miliboo.Models.EntityFramework
         }
 
         [Column("pay_methodname", TypeName = "varchar(100)")]
-        public string? MethodName
+        [Required]
+        public String MethodName
         {
             get { return methodName; }
             set { methodName = value; }

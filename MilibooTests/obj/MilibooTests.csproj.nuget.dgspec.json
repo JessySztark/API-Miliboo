@@ -31,7 +31,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\Miliboo.csproj": {
+                "projectPath": "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\Miliboo.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -55,6 +59,10 @@
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.3.2, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.18.4, )"
             },
             "coverlet.collector": {
               "target": "Package",
