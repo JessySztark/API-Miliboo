@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Miliboo\Miliboo.csproj" />
+    <ProjectReference Include="..\Miliboo.csproj" />
   </ItemGroup>
 
 </Project>
