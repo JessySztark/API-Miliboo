@@ -23,7 +23,7 @@ namespace Miliboo
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<MilibooDBContext>(options =>
-          options.UseNpgsql(builder.Configuration.GetConnectionString("MilibooDbContextRemote")));
+          options.UseNpgsql(builder.Configuration.GetConnectionString("Miliboo")));
             builder.Services.AddScoped<IDataRepository<Order>, OrderManager>();
             builder.Services.AddScoped<IDataRepository<Concerned>, ConcernedManager>();
             builder.Services.AddScoped<IDataRepository<Address>, AddressesManager>();
@@ -84,11 +84,10 @@ namespace Miliboo
             app.UseAuthentication();
             app.UseAuthorization();
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
+            
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }
+            
 
             app.UseHttpsRedirection();
 
