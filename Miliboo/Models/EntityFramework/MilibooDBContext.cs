@@ -406,7 +406,7 @@ namespace Miliboo.Models.EntityFramework
             // -----------[Comment]----------- //
 
             modelBuilder.Entity<Comment>(entity => {
-                entity.HasCheckConstraint("CK_COMMENT_MARK", "cmt_mark >= AND cmt_mark <=4");
+                entity.HasCheckConstraint("CK_COMMENT_MARK", "cmt_mark >=0 AND cmt_mark <=4");
             });
 
             // -----------[Photo]----------- //
