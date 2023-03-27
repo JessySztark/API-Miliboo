@@ -20,12 +20,12 @@ namespace Miliboo.Controllers {
 
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Filter>>> GetFilter() {
+        public async Task<ActionResult<IEnumerable<Filter>>> GetFilters() {
             return await _repository.GetAllAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Filter>> GetFilter(int id) {
+        public async Task<ActionResult<Filter>> GetFilterById(int id) {
             var Filter = await _repository.GetByIdAsync(id);
 
             if (Filter == null) {
@@ -33,17 +33,6 @@ namespace Miliboo.Controllers {
             }
 
             return Filter;
-        }
-
-        [HttpGet("{filtername}")]
-        public async Task<ActionResult<Filter>> GetFilterByName(string filtername) {
-            var filter = await _repository.GetByStringAsync(filtername);
-
-            if (filter == null) {
-                return NotFound();
-            }
-
-            return filter;
         }
 
         [HttpPut("{id}")]
@@ -54,12 +43,12 @@ namespace Miliboo.Controllers {
 
             var objToUpdate = await _repository.GetByIdAsync(id);
 
-            if (objToUpdate.Value == null) {
+            if (objToUpdate == null) {
                 return NotFound();
             }
             else {
                 await _repository.UpdateAsync(objToUpdate.Value, objt);
-                return NoContent();
+                return Ok(objt);
             }
         }
 
@@ -76,11 +65,11 @@ namespace Miliboo.Controllers {
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFilter(int id) {
             var obj = await _repository.GetByIdAsync(id);
-            if (obj.Value == null) {
+            if (obj == null) {
                 return NotFound();
             }
             await _repository.DeleteAsync(obj.Value);
-            return NoContent();
+            return Ok(obj);
         }
     }
 }

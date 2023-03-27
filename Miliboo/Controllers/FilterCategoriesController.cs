@@ -19,24 +19,13 @@ namespace Miliboo.Controllers {
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<FilterCategory>>> GetFilterCategory() {
+        public async Task<ActionResult<IEnumerable<FilterCategory>>> GetFilterCategories() {
             return await _repository.GetAllAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<FilterCategory>> GetFilterCategory(int id) {
+        public async Task<ActionResult<FilterCategory>> GetFilterCategoryById(int id) {
             var filterCategory = await _repository.GetByIdAsync(id);
-
-            if (filterCategory == null) {
-                return NotFound();
-            }
-
-            return filterCategory;
-        }
-
-        [HttpGet("{filterCategoryname}")]
-        public async Task<ActionResult<FilterCategory>> GetFilterCategoryByName(string filterCategoryname) {
-            var filterCategory = await _repository.GetByStringAsync(filterCategoryname);
 
             if (filterCategory == null) {
                 return NotFound();
@@ -50,15 +39,13 @@ namespace Miliboo.Controllers {
             if (id != objt.FilterCategoryId) {
                 return BadRequest();
             }
-
             var objToUpdate = await _repository.GetByIdAsync(id);
-
-            if (objToUpdate.Value == null) {
+            if (objToUpdate == null) {
                 return NotFound();
             }
             else {
                 await _repository.UpdateAsync(objToUpdate.Value, objt);
-                return NoContent();
+                return Ok(objt);
             }
         }
 
@@ -68,18 +55,17 @@ namespace Miliboo.Controllers {
                 return BadRequest(ModelState);
             }
             await _repository.AddAsync(obj);
-
             return CreatedAtAction("GetFilterCategoryById", new { id = obj.FilterCategoryId }, obj);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFilterCategory(int id) {
             var obj = await _repository.GetByIdAsync(id);
-            if (obj.Value == null) {
+            if (obj == null) {
                 return NotFound();
             }
             await _repository.DeleteAsync(obj.Value);
-            return NoContent();
+            return Ok("obj");
         }
     }
 }
