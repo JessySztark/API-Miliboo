@@ -28,22 +28,9 @@ namespace Miliboo.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Concerned>> GetConcerned(int id)
+        public async Task<ActionResult<Concerned>> GetConcernedByID(int id)
         {
             var concerned = await _repository.GetByIdAsync(id);
-
-            if (concerned == null)
-            {
-                return NotFound();
-            }
-
-            return concerned;
-        }
-
-        [HttpGet("{str}")]
-        public async Task<ActionResult<Concerned>> GetConcernedFromPostalCode(string str)
-        {
-            var concerned = await _repository.GetByStringAsync(str);
 
             if (concerned == null)
             {
@@ -63,14 +50,14 @@ namespace Miliboo.Controllers
 
             var objToUpdate = await _repository.GetByIdAsync(id);
 
-            if (objToUpdate.Value == null)
+            if (objToUpdate == null)
             {
                 return NotFound();
             }
             else
             {
                 await _repository.UpdateAsync(objToUpdate.Value, objt);
-                return NoContent();
+                return Ok(objt);
             }
         }
 
@@ -84,19 +71,19 @@ namespace Miliboo.Controllers
 
             await _repository.AddAsync(obj);
 
-            return CreatedAtAction("GetConcernedById", new { id = obj.ConcernedId }, obj);
+            return CreatedAtAction("GetConcernedByID", new { id = obj.ConcernedId }, obj);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteConcerned(int id)
         {
             var obj = await _repository.GetByIdAsync(id);
-            if (obj.Value == null)
+            if (obj == null)
             {
                 return NotFound();
             }
             await _repository.DeleteAsync(obj.Value);
-            return NoContent();
+            return Ok(obj);
         }
     }
 }

@@ -98,44 +98,6 @@ namespace MilibooTests.Controller {
         }
 
         [TestMethod]
-        public async Task DeleteAccountTest_ReturnsNoContent_WithMoq() {
-            // Arrange
-            Account acc = new Account {
-                AccountID = 1,
-                FirstName = "Pierre",
-                LastName = "Papier",
-                PhoneNumber = "0607080910",
-                Mail = "pierre.papier@ciseaux.com",
-                Password = "FKFJGFNBVSDF",
-                Oath = false
-            };
-            _mockRepository.Setup(x => x.GetByIdAsync(acc.AccountID).Result).Returns(acc);
-            // Act
-            var actionResult = _controller.DeleteAccount(1).Result;
-            // Assert
-            Assert.IsInstanceOfType(actionResult, typeof(OkObjectResult), "Ok Result");
-        }
-
-        [TestMethod]
-        public async Task DeleteAccountTest_ReturnsNotFound_WithMoq() {
-            // Arrange
-            Account acc = new Account {
-                AccountID = 5000,
-                FirstName = "Pierre",
-                LastName = "Papier",
-                PhoneNumber = "0607080910",
-                Mail = "pierre.papier@ciseaux.com",
-                Password = "FKFJGFNBVSDF",
-                Oath = false
-            };
-            _mockRepository.Setup(x => x.GetByIdAsync(acc.AccountID).Result).Returns(acc);
-            // Act
-            var actionResult = _controller.DeleteAccount(1).Result;
-            // Assert
-            Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult), "Not Found");
-        }
-
-        [TestMethod]
         public async Task PutAccount_ReturnsNotFound_WithMoq() {
             // Arrange
             Account newAccount = new Account {
@@ -221,6 +183,44 @@ namespace MilibooTests.Controller {
             var actionResult = _controller.PutAccount(id, oldAccount).Result;
             // Assert
             Assert.IsInstanceOfType(actionResult, typeof(BadRequestResult), "Bad Request");
+        }
+
+        [TestMethod]
+        public async Task DeleteAccountTest_ReturnsOk_WithMoq() {
+            // Arrange
+            Account acc = new Account {
+                AccountID = 1,
+                FirstName = "Pierre",
+                LastName = "Papier",
+                PhoneNumber = "0607080910",
+                Mail = "pierre.papier@ciseaux.com",
+                Password = "FKFJGFNBVSDF",
+                Oath = false
+            };
+            _mockRepository.Setup(x => x.GetByIdAsync(acc.AccountID).Result).Returns(acc);
+            // Act
+            var actionResult = _controller.DeleteAccount(1).Result;
+            // Assert
+            Assert.IsInstanceOfType(actionResult, typeof(OkObjectResult), "Ok Result");
+        }
+
+        [TestMethod]
+        public async Task DeleteAccountTest_ReturnsNotFound_WithMoq() {
+            // Arrange
+            Account acc = new Account {
+                AccountID = 5000,
+                FirstName = "Pierre",
+                LastName = "Papier",
+                PhoneNumber = "0607080910",
+                Mail = "pierre.papier@ciseaux.com",
+                Password = "FKFJGFNBVSDF",
+                Oath = false
+            };
+            _mockRepository.Setup(x => x.GetByIdAsync(acc.AccountID).Result).Returns(acc);
+            // Act
+            var actionResult = _controller.DeleteAccount(1).Result;
+            // Assert
+            Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult), "Not Found");
         }
     }
 }

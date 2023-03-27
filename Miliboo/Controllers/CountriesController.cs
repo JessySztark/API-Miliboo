@@ -41,63 +41,46 @@ namespace MilibooAPI.Controllers
 
         // PUT: api/Countries/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        /*[HttpPut("{id}")]
-        public async Task<IActionResult> PutCountry(int id, Country country)
-        {
-            if (id != country.CountryID)
-            {
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutCountry(int id, Country objt) {
+            if (id != objt.CountryID) {
                 return BadRequest();
             }
 
-            _context.Entry(country).State = EntityState.Modified;
+            var objToUpdate = await dataRepository.GetByIdAsync(id);
 
-            try
-            {
-                await _context.SaveChangesAsync();
+            if (objToUpdate == null) {
+                return NotFound();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CountryExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+            else {
+                await dataRepository.UpdateAsync(objToUpdate.Value, objt);
+                return Ok(objt);
             }
-
-            return NoContent();
         }
 
-        // POST: api/Countries
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Country>> PostCountry(Country country)
-        {
-            _context.Countries.Add(country);
-            await _context.SaveChangesAsync();
+        public async Task<ActionResult<Country>> PostCountry(Country obj) {
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
 
-            return CreatedAtAction("GetCountry", new { id = country.CountryID }, country);
+            await dataRepository.AddAsync(obj);
+
+            return CreatedAtAction("GetCountryByID", new { id = obj.CountryID }, obj);
         }
 
         // DELETE: api/Countries/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCountry(int id)
-        {
-            var country = await _context.Countries.FindAsync(id);
-            if (country == null)
-            {
+        public async Task<IActionResult> DeleteCountry(int id) {
+            var obj = await dataRepository.GetByIdAsync(id);
+            if (obj == null) {
                 return NotFound();
             }
-
-            _context.Countries.Remove(country);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            await dataRepository.DeleteAsync(obj.Value);
+            return Ok(obj);
         }
 
-        private bool CountryExists(int id)
+        /*private bool CountryExists(int id)
         {
             return _context.Countries.Any(e => e.CountryID == id);
         }*/

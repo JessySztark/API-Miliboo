@@ -54,7 +54,7 @@ namespace Miliboo
             builder.Services.AddScoped<IDataRepository<Regroup>, RegroupManager>();
             builder.Services.AddScoped<IDataRepository<Country>, CountryManager>();
 
-            /*builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
              {
                  options.RequireHttpsMetadata = false;
@@ -70,7 +70,7 @@ namespace Miliboo
                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"])),
                      ClockSkew = TimeSpan.Zero
                  };
-             });*/
+             });
 
 
             builder.Services.AddAuthorization(config =>

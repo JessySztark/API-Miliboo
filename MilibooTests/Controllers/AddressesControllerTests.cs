@@ -100,45 +100,6 @@ namespace Miliboo.Controllers.Tests {
             Assert.AreEqual(add, (Address)result.Value, "Addresses not equals");
         }
 
-
-        [TestMethod]
-        public async Task DeleteAddressTest_ReturnsNoContent_WithMoq() {
-            // Arrange
-            Address add = new Address {
-                AddressID = 1,
-                CountryID = 5,
-                Wording = "14 Rue Bastille",
-                PostalCode = "74000",
-                City = "Annecy",
-                Longitude = (float)8.01,
-                Latitude = (float)44.45
-            };
-            _mockRepository.Setup(x => x.GetByIdAsync(add.AddressID).Result).Returns(add);
-            // Act
-            var actionResult = _controller.DeleteAddress(1).Result;
-            // Assert
-            Assert.IsInstanceOfType(actionResult, typeof(OkObjectResult), "Ok Result");
-        }
-
-        [TestMethod]
-        public async Task DeleteAddressTest_ReturnsNotFound_WithMoq() {
-            // Arrange
-            Address add = new Address {
-                AddressID = 5000,
-                CountryID = 5,
-                Wording = "14 Rue Bastille",
-                PostalCode = "74000",
-                City = "Annecy",
-                Longitude = (float)8.01,
-                Latitude = (float)44.45
-            };
-            _mockRepository.Setup(x => x.GetByIdAsync(add.AddressID).Result).Returns(add);
-            // Act
-            var actionResult = _controller.DeleteAddress(1).Result;
-            // Assert
-            Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult), "Not Found");
-        }
-
         [TestMethod]
         public async Task PutAddress_ReturnsNotFound_WithMoq() {
             // Arrange
@@ -224,6 +185,44 @@ namespace Miliboo.Controllers.Tests {
             var actionResult = _controller.PutAddress(id, oldAddress).Result;
             // Assert
             Assert.IsInstanceOfType(actionResult, typeof(BadRequestResult), "Bad Request");
+        }
+
+        [TestMethod]
+        public async Task DeleteAddressTest_ReturnsOkObject_WithMoq() {
+            // Arrange
+            Address add = new Address {
+                AddressID = 1,
+                CountryID = 5,
+                Wording = "14 Rue Bastille",
+                PostalCode = "74000",
+                City = "Annecy",
+                Longitude = (float)8.01,
+                Latitude = (float)44.45
+            };
+            _mockRepository.Setup(x => x.GetByIdAsync(add.AddressID).Result).Returns(add);
+            // Act
+            var actionResult = _controller.DeleteAddress(1).Result;
+            // Assert
+            Assert.IsInstanceOfType(actionResult, typeof(OkObjectResult), "Ok Result");
+        }
+
+        [TestMethod]
+        public async Task DeleteAddressTest_ReturnsNotFound_WithMoq() {
+            // Arrange
+            Address add = new Address {
+                AddressID = 5000,
+                CountryID = 5,
+                Wording = "14 Rue Bastille",
+                PostalCode = "74000",
+                City = "Annecy",
+                Longitude = (float)8.01,
+                Latitude = (float)44.45
+            };
+            _mockRepository.Setup(x => x.GetByIdAsync(add.AddressID).Result).Returns(add);
+            // Act
+            var actionResult = _controller.DeleteAddress(1).Result;
+            // Assert
+            Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult), "Not Found");
         }
     }
 }

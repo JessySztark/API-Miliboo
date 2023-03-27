@@ -70,48 +70,22 @@ namespace Miliboo.Controllers.Tests {
             Assert.IsInstanceOfType(actionResult.Result, typeof(NotFoundResult), "Not Found");
         }
 
-        /*[TestMethod]
-        public async Task DeleteColorTest_ReturnsNoContent_WithMoq() {
-            // Arrange
-            Color asf = new Color {
-                FilterCategoryId = 1,
-                ProductCategoryId = 1,
-            };
-            _mockRepository.Setup(x => x.GetByIdAsync(asf.FilterCategoryId).Result).Returns(asf);
-            // Act
-            var actionResult = _controller.DeleteColor(1).Result;
-            // Assert
-            Assert.IsInstanceOfType(actionResult, typeof(OkObjectResult), "Ok Result");
-        }
-
-        [TestMethod]
-        public async Task DeleteColorTest_ReturnsNotFound_WithMoq() {
-            // Arrange
-            Color asf = new Color {
-                FilterCategoryId = 5000,
-                ProductCategoryId = 1,
-            };
-            _mockRepository.Setup(x => x.GetByIdAsync(asf.FilterCategoryId).Result).Returns(asf);
-            // Act
-            var actionResult = _controller.DeleteColor(1).Result;
-            // Assert
-            Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult), "Not Found");
-        }
-
         [TestMethod]
         public async Task PutColor_ReturnsNotFound_WithMoq() {
             // Arrange
             Color newColor = new Color {
-                FilterCategoryId = 1,
-                ProductCategoryId = 1,
+                ColorId = 1,
+                ColorHexaCode = "#EAD315",
+                ColorName = "Jaune cumin"
             };
             Color oldColor = new Color {
-                FilterCategoryId = 5000,
-                ProductCategoryId = 1,
+                ColorId = 5000,
+                ColorHexaCode = "#EAD315",
+                ColorName = "Jaune cumin"
             };
-            _mockRepository.Setup(x => x.GetByIdAsync(newColor.FilterCategoryId).Result).Returns(newColor);
+            _mockRepository.Setup(x => x.GetByIdAsync(newColor.ColorId).Result).Returns(newColor);
             // Act
-            var actionResult = _controller.PutColor(oldColor.FilterCategoryId, oldColor).Result;
+            var actionResult = _controller.PutColor(oldColor.ColorId, oldColor).Result;
             // Assert
             Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult), "Not Found");
         }
@@ -120,16 +94,18 @@ namespace Miliboo.Controllers.Tests {
         public async Task PutColor_ReturnsOk_WithMoq() {
             // Arrange
             Color newColor = new Color {
-                FilterCategoryId = 1,
-                ProductCategoryId = 1,
+                ColorId = 1,
+                ColorHexaCode = "#EAD315",
+                ColorName = "Jaune cumin"
             };
             Color oldColor = new Color {
-                FilterCategoryId = 1,
-                ProductCategoryId = 1,
+                ColorId = 1,
+                ColorHexaCode = "#EAD315",
+                ColorName = "Jaune cumin"
             };
-            _mockRepository.Setup(x => x.GetByIdAsync(newColor.FilterCategoryId).Result).Returns(newColor);
+            _mockRepository.Setup(x => x.GetByIdAsync(newColor.ColorId).Result).Returns(newColor);
             // Act
-            var actionResult = _controller.PutColor(oldColor.FilterCategoryId, oldColor).Result;
+            var actionResult = _controller.PutColor(oldColor.ColorId, oldColor).Result;
             // Assert
             Assert.IsInstanceOfType(actionResult, typeof(OkObjectResult), "Ok Result");
         }
@@ -139,18 +115,50 @@ namespace Miliboo.Controllers.Tests {
             // Arrange
             int id = 5001;
             Color newColor = new Color {
-                FilterCategoryId = 1,
-                ProductCategoryId = 1,
+                ColorId = 1,
+                ColorHexaCode = "#EAD315",
+                ColorName = "Jaune cumin"
             };
             Color oldColor = new Color {
-                FilterCategoryId = 5000,
-                ProductCategoryId = 1,
+                ColorId = 5000,
+                ColorHexaCode = "#EAD315",
+                ColorName = "Jaune cumin"
             };
-            _mockRepository.Setup(x => x.GetByIdAsync(newColor.FilterCategoryId).Result).Returns(newColor);
+            _mockRepository.Setup(x => x.GetByIdAsync(newColor.ColorId).Result).Returns(newColor);
             // Act
             var actionResult = _controller.PutColor(id, oldColor).Result;
             // Assert
             Assert.IsInstanceOfType(actionResult, typeof(BadRequestResult), "Bad Request");
-        }*/
+        }
+
+        [TestMethod]
+        public async Task DeleteColorTest_ReturnsOk_WithMoq() {
+            // Arrange
+            Color clr = new Color {
+                ColorId = 1,
+                ColorHexaCode = "#EAD315",
+                ColorName = "Jaune cumin"
+            };
+            _mockRepository.Setup(x => x.GetByIdAsync(clr.ColorId).Result).Returns(clr);
+            // Act
+            var actionResult = _controller.DeleteColor(clr.ColorId).Result;
+            // Assert
+            Assert.IsInstanceOfType(actionResult, typeof(OkObjectResult), "Ok Result");
+        }
+
+        [TestMethod]
+        public async Task DeleteColorTest_ReturnsNotFound_WithMoq() {
+            // Arrange
+            Color clr = new Color {
+                ColorId = 5000,
+                ColorHexaCode = "#EAD315",
+                ColorName = "Jaune cumin"
+            };
+            _mockRepository.Setup(x => x.GetByIdAsync(clr.ColorId).Result).Returns(clr);
+            // Act
+            var actionResult = _controller.DeleteColor(1).Result;
+            // Assert
+            Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult), "Not Found");
+        }
     }
 }

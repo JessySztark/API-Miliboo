@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -43,34 +44,20 @@ namespace MilibooAPI.Controllers
         }
 
         // PUT: api/Comments/5
-       /* // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+       // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutComment(int id, Comment comment)
-        {
-            if (id != comment.CommentID)
-            {
+        public async Task<IActionResult> PutComment(int id, Comment comment) {
+            if (id != comment.CommentID) {
                 return BadRequest();
             }
-
-            _context.Entry(comment).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
+            var commentToUpdate = await dataRepository.GetByIdAsync(id);
+            if (commentToUpdate == null) {
+                return NotFound();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CommentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+            else {
+                await dataRepository.UpdateAsync(commentToUpdate.Value, comment);
+                return Ok(comment);
             }
-
-            return NoContent();
         }
 
         // POST: api/Comments
@@ -78,11 +65,12 @@ namespace MilibooAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Comment>> PostComment(Comment comment)
         {
-            _context.Comments.Add(comment);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetComment", new { id = comment.CommentID }, comment);
-        }*/
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
+            await dataRepository.AddAsync(comment);
+            return CreatedAtAction("GetById", new { id = comment.CommentID }, comment);
+        }
 
         // DELETE: api/Comments/5
         [HttpDelete("{id}")]
@@ -94,12 +82,7 @@ namespace MilibooAPI.Controllers
                 return NotFound();
             }
             await dataRepository.DeleteAsync(comment.Value);
-            return NoContent();
+            return Ok(comment);
         }
-
-        /*private bool CommentExists(int id)
-        {
-            return _context.Comments.Any(e => e.CommentID == id);
-        }*/
     }
 }

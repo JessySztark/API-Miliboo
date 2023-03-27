@@ -10,9 +10,13 @@ public partial class Color
     private string? colorHexaCode;
     private string? colorName;
 
+    public Color() { 
+        ColorsProduct = new HashSet<Product>();
+    }
+
 
     [Key]
-    [Column("cl_id")]
+    [Column("clr_id")]
 
     public int ColorId
     {
