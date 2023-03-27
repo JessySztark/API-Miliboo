@@ -29,7 +29,7 @@ namespace MilibooAPI.Controllers
 
         // GET: api/Comments/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<DeliveryMethod>> GetDeliveryMethodtById(int id)
+        public async Task<ActionResult<DeliveryMethod>> GetDeliveryMethodById(int id)
         {
             var country = await dataRepository.GetByIdAsync(id);
             if (country == null || country.Value == null)  //marche pas sinon 
@@ -39,67 +39,38 @@ namespace MilibooAPI.Controllers
             return country;
         }
 
-        // PUT: api/DeliveryMethods/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        /*[HttpPut("{id}")]
-        public async Task<IActionResult> PutDeliveryMethod(int id, DeliveryMethod deliveryMethod)
-        {
-            if (id != deliveryMethod.IdDeliveryMethod)
-            {
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutDeliveryMethod(int id, DeliveryMethod objt) {
+            if (id != objt.IdDeliveryMethod) {
                 return BadRequest();
             }
-
-            _context.Entry(deliveryMethod).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DeliveryMethodExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/DeliveryMethods
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<DeliveryMethod>> PostDeliveryMethod(DeliveryMethod deliveryMethod)
-        {
-            _context.DeliveryMethods.Add(deliveryMethod);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetDeliveryMethod", new { id = deliveryMethod.IdDeliveryMethod }, deliveryMethod);
-        }
-
-        // DELETE: api/DeliveryMethods/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDeliveryMethod(int id)
-        {
-            var deliveryMethod = await _context.DeliveryMethods.FindAsync(id);
-            if (deliveryMethod == null)
-            {
+            var objToUpdate = await dataRepository.GetByIdAsync(id);
+            if (objToUpdate == null) {
                 return NotFound();
             }
-
-            _context.DeliveryMethods.Remove(deliveryMethod);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            else {
+                await dataRepository.UpdateAsync(objToUpdate.Value, objt);
+                return Ok(objt);
+            }
         }
 
-        private bool DeliveryMethodExists(int id)
-        {
-            return _context.DeliveryMethods.Any(e => e.IdDeliveryMethod == id);
-        }*/
+        [HttpPost]
+        public async Task<ActionResult<DeliveryMethod>> PostDeliveryMethod(DeliveryMethod obj) {
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
+            await dataRepository.AddAsync(obj);
+            return CreatedAtAction("GetDeliveryMethodById", new { id = obj.IdDeliveryMethod }, obj);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteDeliveryMethod(int id) {
+            var obj = await dataRepository.GetByIdAsync(id);
+            if (obj == null) {
+                return NotFound();
+            }
+            await dataRepository.DeleteAsync(obj.Value);
+            return Ok(obj);
+        }
     }
 }

@@ -16,7 +16,7 @@ public partial class Color
 
 
     [Key]
-    [Column("clr_id")]
+    [Column("cl_id")]
 
     public int ColorId
     {

@@ -75,7 +75,7 @@ namespace MilibooAPI.Controllers
 
             await dataRepository.AddAsync(obj);
 
-            return CreatedAtAction("GetCountryByID", new { id = obj.CountryID }, obj);
+            return CreatedAtAction("GetCountryById", new { id = obj.CountryID }, obj);
         }
 
         // DELETE: api/Countries/5

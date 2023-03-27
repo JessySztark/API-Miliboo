@@ -79,7 +79,7 @@ namespace MilibooAPI.Controllers
                 return BadRequest(ModelState);
             }
             await dataRepository.AddAsync(account);
-            return CreatedAtAction("GetById", new { id = account.AccountID }, account);
+            return CreatedAtAction("GetAccountById", new { id = account.AccountID }, account);
         }
 
         // DELETE: api/Accounts/5

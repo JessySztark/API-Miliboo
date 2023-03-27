@@ -65,7 +65,7 @@ namespace MilibooAPI.Controllers
                 return BadRequest(ModelState);
             }
             await dataRepository.AddAsync(color);
-            return CreatedAtAction("GetById", new { id = color.ColorId }, color);
+            return CreatedAtAction("GetColorById", new { id = color.ColorId }, color);
         }
 
         // DELETE: api/Comments/5

@@ -71,7 +71,7 @@ namespace Miliboo.Controllers
 
             await _repository.AddAsync(obj);
 
-            return CreatedAtAction("GetConcernedByID", new { id = obj.ConcernedId }, obj);
+            return CreatedAtAction("GetConcernedById", new { id = obj.ConcernedId }, obj);
         }
 
         [HttpDelete("{id}")]

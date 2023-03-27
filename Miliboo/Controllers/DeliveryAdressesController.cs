@@ -18,31 +18,26 @@ namespace Miliboo.Controllers {
             _repository = dataRepo;
         }
 
-
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DeliveryAdress>>> GetDeliveryAdress() {
+        public async Task<ActionResult<IEnumerable<DeliveryAdress>>> GetDeliveryAdresses() {
             return await _repository.GetAllAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<DeliveryAdress>> GetDeliveryAdress(int id) {
+        public async Task<ActionResult<DeliveryAdress>> GetDeliveryAdressById(int id) {
             var DeliveryAdress = await _repository.GetByIdAsync(id);
-
             if (DeliveryAdress == null) {
                 return NotFound();
             }
-
             return DeliveryAdress;
         }
 
         [HttpGet("{favname}")]
         public async Task<ActionResult<DeliveryAdress>> GetDeliveryAddressFromFavName(string favname) {
             var address = await _repository.GetByStringAsync(favname);
-
             if (address == null) {
                 return NotFound();
             }
-
             return address;
         }
 
@@ -51,15 +46,13 @@ namespace Miliboo.Controllers {
             if (id != objt.IdDeliveryAdress) {
                 return BadRequest();
             }
-
             var objToUpdate = await _repository.GetByIdAsync(id);
-
-            if (objToUpdate.Value == null) {
+            if (objToUpdate == null) {
                 return NotFound();
             }
             else {
                 await _repository.UpdateAsync(objToUpdate.Value, objt);
-                return NoContent();
+                return Ok(objt);
             }
         }
 
@@ -69,18 +62,17 @@ namespace Miliboo.Controllers {
                 return BadRequest(ModelState);
             }
             await _repository.AddAsync(obj);
-
             return CreatedAtAction("GetDeliveryAdressById", new { id = obj.IdDeliveryAdress }, obj);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDeliveryAdress(int id) {
             var obj = await _repository.GetByIdAsync(id);
-            if (obj.Value == null) {
+            if (obj == null) {
                 return NotFound();
             }
             await _repository.DeleteAsync(obj.Value);
-            return NoContent();
+            return Ok(obj);
         }
     }
 }

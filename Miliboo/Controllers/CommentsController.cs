@@ -69,7 +69,7 @@ namespace MilibooAPI.Controllers
                 return BadRequest(ModelState);
             }
             await dataRepository.AddAsync(comment);
-            return CreatedAtAction("GetById", new { id = comment.CommentID }, comment);
+            return CreatedAtAction("GetCommentById", new { id = comment.CommentID }, comment);
         }
 
         // DELETE: api/Comments/5
