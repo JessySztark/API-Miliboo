@@ -39,6 +39,15 @@ namespace MilibooAPI.Controllers
             return country;
         }
 
+        [HttpGet("{wording}")]
+        public async Task<ActionResult<Country>> GetCountryByWording(String wording) {
+            var country = await dataRepository.GetByStringAsync(wording);
+            if (country == null) {
+                return NotFound();
+            }
+            return country;
+        }
+
         // PUT: api/Countries/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -79,10 +88,5 @@ namespace MilibooAPI.Controllers
             await dataRepository.DeleteAsync(obj.Value);
             return Ok(obj);
         }
-
-        /*private bool CountryExists(int id)
-        {
-            return _context.Countries.Any(e => e.CountryID == id);
-        }*/
     }
 }
