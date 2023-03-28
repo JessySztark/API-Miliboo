@@ -19,11 +19,11 @@ namespace Miliboo.Controllers {
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TechnicalAspect>>> GetTechnicalAspect() {
+        public async Task<ActionResult<IEnumerable<TechnicalAspect>>> GetTechnicalAspects() {
             return await _repository.GetAllAsync();
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<TechnicalAspect>> GetTechnicalAspect(int id) {
+        public async Task<ActionResult<TechnicalAspect>> GetTechnicalAspectById(int id) {
             var technicalAspect = await _repository.GetByIdAsync(id);
 
             if (technicalAspect == null) {
@@ -52,12 +52,12 @@ namespace Miliboo.Controllers {
 
             var objToUpdate = await _repository.GetByIdAsync(id);
 
-            if (objToUpdate.Value == null) {
+            if (objToUpdate == null) {
                 return NotFound();
             }
             else {
                 await _repository.UpdateAsync(objToUpdate.Value, objt);
-                return NoContent();
+                return Ok(objt);
             }
         }
 
@@ -74,11 +74,11 @@ namespace Miliboo.Controllers {
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTechnicalAspect(int id) {
             var obj = await _repository.GetByIdAsync(id);
-            if (obj.Value == null) {
+            if (obj == null) {
                 return NotFound();
             }
             await _repository.DeleteAsync(obj.Value);
-            return NoContent();
+            return Ok(obj);
         }
     }
 }

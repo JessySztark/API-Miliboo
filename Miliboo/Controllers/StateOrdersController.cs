@@ -42,67 +42,42 @@ namespace MilibooAPI.Controllers
             return product;
         }
 
-        // PUT: api/StateOrders/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        /*[HttpPut("{id}")]
-        public async Task<IActionResult> PutStateOrder(int id, StateOrder stateOrder)
-        {
-            if (id != stateOrder.StateOrderID)
-            {
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutStateOrder(int id, StateOrder objt) {
+            if (id != objt.StateOrderID) {
                 return BadRequest();
             }
 
-            _context.Entry(stateOrder).State = EntityState.Modified;
+            var objToUpdate = await dataRepository.GetByIdAsync(id);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!StateOrderExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/StateOrders
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<StateOrder>> PostStateOrder(StateOrder stateOrder)
-        {
-            _context.StateOrders.Add(stateOrder);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetStateOrder", new { id = stateOrder.StateOrderID }, stateOrder);
-        }
-
-        // DELETE: api/StateOrders/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStateOrder(int id)
-        {
-            var stateOrder = await _context.StateOrders.FindAsync(id);
-            if (stateOrder == null)
-            {
+            if (objToUpdate == null) {
                 return NotFound();
             }
-
-            _context.StateOrders.Remove(stateOrder);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            else {
+                await dataRepository.UpdateAsync(objToUpdate.Value, objt);
+                return Ok(objt);
+            }
         }
 
-        private bool StateOrderExists(int id)
-        {
-            return _context.StateOrders.Any(e => e.StateOrderID == id);
-        }*/
+        [HttpPost]
+        public async Task<ActionResult<StateOrder>> PostStateOrder(StateOrder obj) {
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
+
+            await dataRepository.AddAsync(obj);
+
+            return CreatedAtAction("GetStateOrderById", new { id = obj.StateOrderID }, obj);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteStateOrder(int id) {
+            var obj = await dataRepository.GetByIdAsync(id);
+            if (obj == null) {
+                return NotFound();
+            }
+            await dataRepository.DeleteAsync(obj.Value);
+            return Ok(obj);
+        }
     }
 }

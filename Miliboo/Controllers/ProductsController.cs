@@ -12,7 +12,7 @@ namespace MilibooAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public partial class ProductsController : ControllerBase
     {
         private readonly IDataRepository<Product> dataRepository;
         private readonly MilibooDBContext _context;
@@ -160,67 +160,42 @@ namespace MilibooAPI.Controllers
             return Ok(productWithColorsAndPhotos);
         }
 
-        // PUT: api/Products/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        /* [HttpPut("{id}")]
-         public async Task<IActionResult> PutProduct(int id, Product product)
-         {
-             if (id != product.ProductId)
-             {
-                 return BadRequest();
-             }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutProduct(int id, Product objt) {
+            if (id != objt.ProductId) {
+                return BadRequest();
+            }
 
-             _context.Entry(product).State = EntityState.Modified;
+            var objToUpdate = await dataRepository.GetByIdAsync(id);
 
-             try
-             {
-                 await _context.SaveChangesAsync();
-             }
-             catch (DbUpdateConcurrencyException)
-             {
-                 if (!ProductExists(id))
-                 {
-                     return NotFound();
-                 }
-                 else
-                 {
-                     throw;
-                 }
-             }
+            if (objToUpdate == null) {
+                return NotFound();
+            }
+            else {
+                await dataRepository.UpdateAsync(objToUpdate.Value, objt);
+                return Ok(objt);
+            }
+        }
 
-             return NoContent();
-         }
+        [HttpPost]
+        public async Task<ActionResult<Product>> PostProduct(Product obj) {
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
 
-         // POST: api/Products
-         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-         [HttpPost]
-         public async Task<ActionResult<Product>> PostProduct(Product product)
-         {
-             _context.Product.Add(product);
-             await _context.SaveChangesAsync();
+            await dataRepository.AddAsync(obj);
 
-             return CreatedAtAction("GetProduct", new { id = product.ProductId }, product);
-         }
+            return CreatedAtAction("GetProductById", new { id = obj.ProductId }, obj);
+        }
 
-         // DELETE: api/Products/5
-         [HttpDelete("{id}")]
-         public async Task<IActionResult> DeleteProduct(int id)
-         {
-             var product = await _context.Product.FindAsync(id);
-             if (product == null)
-             {
-                 return NotFound();
-             }
-
-             _context.Product.Remove(product);
-             await _context.SaveChangesAsync();
-
-             return NoContent();
-         }
-
-         private bool ProductExists(int id)
-         {
-             return _context.Product.Any(e => e.ProductId == id);
-         }*/
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(int id) {
+            var obj = await dataRepository.GetByIdAsync(id);
+            if (obj == null) {
+                return NotFound();
+            }
+            await dataRepository.DeleteAsync(obj.Value);
+            return Ok(obj);
+        }
     }
 }

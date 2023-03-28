@@ -43,67 +43,41 @@ namespace MilibooAPI.Controllers
             return photo;
         }
 
-        // PUT: api/Photos/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        /* [HttpPut("{id}")]
-         public async Task<IActionResult> PutPhoto(int id, Photo photo)
-         {
-             if (id != photo.PhotoID)
-             {
-                 return BadRequest();
-             }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutPhoto(int id, Photo objt) {
+            if (id != objt.PhotoID){
+                return BadRequest();
+            }
 
-             _context.Entry(photo).State = EntityState.Modified;
+            var objToUpdate = await dataRepository.GetByIdAsync(id);
 
-             try
-             {
-                 await _context.SaveChangesAsync();
-             }
-             catch (DbUpdateConcurrencyException)
-             {
-                 if (!PhotoExists(id))
-                 {
-                     return NotFound();
-                 }
-                 else
-                 {
-                     throw;
-                 }
-             }
+            if (objToUpdate == null) {
+                return NotFound();
+            }
+            else {
+                await dataRepository.UpdateAsync(objToUpdate.Value, objt);
+                return Ok(objt);
+            }
+        }
 
-             return NoContent();
-         }
+        [HttpPost]
+        public async Task<ActionResult<Photo>> PostPhoto(Photo obj) {
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
+            await dataRepository.AddAsync(obj);
 
-         // POST: api/Photos
-         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-         [HttpPost]
-         public async Task<ActionResult<Photo>> PostPhoto(Photo photo)
-         {
-             _context.Photos.Add(photo);
-             await _context.SaveChangesAsync();
+            return CreatedAtAction("GetPhotoById", new { id = obj.PhotoID }, obj);
+        }
 
-             return CreatedAtAction("GetPhoto", new { id = photo.PhotoID }, photo);
-         }
-
-         // DELETE: api/Photos/5
-         [HttpDelete("{id}")]
-         public async Task<IActionResult> DeletePhoto(int id)
-         {
-             var photo = await _context.Photos.FindAsync(id);
-             if (photo == null)
-             {
-                 return NotFound();
-             }
-
-             _context.Photos.Remove(photo);
-             await _context.SaveChangesAsync();
-
-             return NoContent();
-         }
-
-         private bool PhotoExists(int id)
-         {
-             return _context.Photos.Any(e => e.PhotoID == id);
-         }*/
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePhoto(int id) {
+            var obj = await dataRepository.GetByIdAsync(id);
+            if (obj == null) {
+                return NotFound();
+            }
+            await dataRepository.DeleteAsync(obj.Value);
+            return Ok(obj);
+        }
     }
 }

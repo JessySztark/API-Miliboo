@@ -19,12 +19,12 @@ namespace Miliboo.Controllers {
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductType>>> GetProductType() {
+        public async Task<ActionResult<IEnumerable<ProductType>>> GetProductTypes() {
             return await _repository.GetAllAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProductType>> GetProductType(int id) {
+        public async Task<ActionResult<ProductType>> GetProductTypeById(int id) {
             var productType = await _repository.GetByIdAsync(id);
 
             if (productType == null) {
@@ -53,12 +53,12 @@ namespace Miliboo.Controllers {
 
             var objToUpdate = await _repository.GetByIdAsync(id);
 
-            if (objToUpdate.Value == null) {
+            if (objToUpdate == null) {
                 return NotFound();
             }
             else {
                 await _repository.UpdateAsync(objToUpdate.Value, objt);
-                return NoContent();
+                return Ok(objt);
             }
         }
 
@@ -75,11 +75,11 @@ namespace Miliboo.Controllers {
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProductType(int id) {
             var obj = await _repository.GetByIdAsync(id);
-            if (obj.Value == null) {
+            if (obj == null) {
                 return NotFound();
             }
             await _repository.DeleteAsync(obj.Value);
-            return NoContent();
+            return Ok(obj);
         }
     }
 }

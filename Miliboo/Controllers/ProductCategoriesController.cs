@@ -22,13 +22,13 @@ namespace Miliboo.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductCategory>>> GetProductCategory()
+        public async Task<ActionResult<IEnumerable<ProductCategory>>> GetProductCategories()
         {
             return await _repository.GetAllAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProductCategory>> GetProductCategory(int id)
+        public async Task<ActionResult<ProductCategory>> GetProductCategoryById(int id)
         {
             var productCategory = await _repository.GetByIdAsync(id);
 
@@ -62,19 +62,19 @@ namespace Miliboo.Controllers
 
             var objToUpdate = await _repository.GetByIdAsync(id);
 
-            if (objToUpdate.Value == null)
+            if (objToUpdate == null)
             {
                 return NotFound();
             }
             else
             {
                 await _repository.UpdateAsync(objToUpdate.Value, objt);
-                return NoContent();
+                return Ok(objt);
             }
         }
 
         [HttpPost]
-        public async Task<ActionResult<Address>> PostOrder(ProductCategory obj)
+        public async Task<ActionResult<ProductCategory>> PostProductCategory(ProductCategory obj)
         {
             if (!ModelState.IsValid)
             {
@@ -87,15 +87,15 @@ namespace Miliboo.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCategoryProduct(int id)
+        public async Task<IActionResult> DeleteProductCategory(int id)
         {
             var obj = await _repository.GetByIdAsync(id);
-            if (obj.Value == null)
+            if (obj == null)
             {
                 return NotFound();
             }
             await _repository.DeleteAsync(obj.Value);
-            return NoContent();
+            return Ok(obj);
         }
     }
 }

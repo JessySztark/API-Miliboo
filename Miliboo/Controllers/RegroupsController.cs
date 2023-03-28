@@ -23,14 +23,14 @@ namespace MilibooAPI.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Regroup>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<Regroup>>> GetRegroups()
         {
             return await dataRepository.GetAllAsync();
         }
 
         // GET: api/Products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Regroup>> GetProductById(int id)
+        public async Task<ActionResult<Regroup>> GetRegroupById(int id)
         {
             var regroup = await dataRepository.GetByIdAsync(id);
 
@@ -44,65 +44,41 @@ namespace MilibooAPI.Controllers
 
         // PUT: api/Regroups/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        /*[HttpPut("{id}")]
-        public async Task<IActionResult> PutRegroup(int id, Regroup regroup)
-        {
-            if (id != regroup.RegroupId)
-            {
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutRegroup(int id, Regroup objt) {
+            if (id != objt.RegroupId) {
                 return BadRequest();
             }
 
-            _context.Entry(regroup).State = EntityState.Modified;
+            var objToUpdate = await dataRepository.GetByIdAsync(id);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RegroupExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Regroups
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Regroup>> PostRegroup(Regroup regroup)
-        {
-            _context.Regroups.Add(regroup);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetRegroup", new { id = regroup.RegroupId }, regroup);
-        }
-
-        // DELETE: api/Regroups/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRegroup(int id)
-        {
-            var regroup = await _context.Regroups.FindAsync(id);
-            if (regroup == null)
-            {
+            if (objToUpdate == null) {
                 return NotFound();
             }
-
-            _context.Regroups.Remove(regroup);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            else {
+                await dataRepository.UpdateAsync(objToUpdate.Value, objt);
+                return Ok(objt);
+            }
         }
 
-        private bool RegroupExists(int id)
-        {
-            return _context.Regroups.Any(e => e.RegroupId == id);
-        }*/
+        [HttpPost]
+        public async Task<ActionResult<Regroup>> PostRegroup(Regroup obj) {
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
+            await dataRepository.AddAsync(obj);
+
+            return CreatedAtAction("GetRegroupById", new { id = obj.RegroupId }, obj);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteRegroup(int id) {
+            var obj = await dataRepository.GetByIdAsync(id);
+            if (obj == null) {
+                return NotFound();
+            }
+            await dataRepository.DeleteAsync(obj.Value);
+            return Ok(obj);
+        }
     }
 }

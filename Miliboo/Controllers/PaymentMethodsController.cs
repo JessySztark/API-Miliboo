@@ -23,14 +23,14 @@ namespace MilibooAPI.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PaymentMethod>>> GetPhotos()
+        public async Task<ActionResult<IEnumerable<PaymentMethod>>> GetPaymentMethods()
         {
             return await dataRepository.GetAllAsync();
         }
 
         // GET: api/Products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PaymentMethod>> GetPhotoById(int id)
+        public async Task<ActionResult<PaymentMethod>> GetPaymentMethodById(int id)
         {
             var paymentMethod = await dataRepository.GetByIdAsync(id);
 
@@ -43,65 +43,41 @@ namespace MilibooAPI.Controllers
 
         // PUT: api/PaymentMethods/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        /*[HttpPut("{id}")]
-        public async Task<IActionResult> PutPaymentMethod(int id, PaymentMethod paymentMethod)
-        {
-            if (id != paymentMethod.Paymentmethodid)
-            {
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutPaymentMethod(int id, PaymentMethod objt) {
+            if (id != objt.Paymentmethodid) {
                 return BadRequest();
             }
 
-            _context.Entry(paymentMethod).State = EntityState.Modified;
+            var objToUpdate = await dataRepository.GetByIdAsync(id);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PaymentMethodExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/PaymentMethods
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<PaymentMethod>> PostPaymentMethod(PaymentMethod paymentMethod)
-        {
-            _context.PaymentMethods.Add(paymentMethod);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetPaymentMethod", new { id = paymentMethod.Paymentmethodid }, paymentMethod);
-        }
-
-        // DELETE: api/PaymentMethods/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePaymentMethod(int id)
-        {
-            var paymentMethod = await _context.PaymentMethods.FindAsync(id);
-            if (paymentMethod == null)
-            {
+            if (objToUpdate == null) {
                 return NotFound();
             }
-
-            _context.PaymentMethods.Remove(paymentMethod);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            else {
+                await dataRepository.UpdateAsync(objToUpdate.Value, objt);
+                return Ok(objt);
+            }
         }
 
-        private bool PaymentMethodExists(int id)
-        {
-            return _context.PaymentMethods.Any(e => e.Paymentmethodid == id);
-        }*/
+        [HttpPost]
+        public async Task<ActionResult<PaymentMethod>> PostPaymentMethod(PaymentMethod obj) {
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
+            await dataRepository.AddAsync(obj);
+
+            return CreatedAtAction("GetPaymentMethodById", new { id = obj.Paymentmethodid }, obj);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePaymentMethod(int id) {
+            var obj = await dataRepository.GetByIdAsync(id);
+            if (obj == null) {
+                return NotFound();
+            }
+            await dataRepository.DeleteAsync(obj.Value);
+            return Ok(obj);
+        }
     }
 }
