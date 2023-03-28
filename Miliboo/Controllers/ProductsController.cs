@@ -45,18 +45,39 @@ namespace MilibooAPI.Controllers
 
         [HttpGet("{name}")]
         [ActionName("GetProductByName")]
-        public async Task<ActionResult<Product>> GetUtilisateurByEmail(string name)
+        public async Task<object> GetUtilisateurByEmail(string name)
         {
-            //var utilisateur = await _context.Utilisateurs.FirstOrDefaultAsync(c => c.Mail == email);
-            var product = await dataRepository.GetByStringAsync(name);
+            var products = await _context.Product
+                .Where(p => p.ProductName.ToLower().Contains(name.ToLower()))
+                .Join(
+         _context.Colors,
+         p => p.ColorsNavigation.ColorId,
+         c => c.ColorId,
+         (p, c) => new {
+             p,
+             ColorName = c.ColorName,
+             HexaCode = c.ColorHexaCode
+         }).Join(
+            _context.Photos,
+            pc => pc.p.ProductId,
+            pp => pp.ProductPhoto.ProductId,
+            (pc, pp) => new {
+                pc.p,
+                Join = new
+                {
+                    colorName = pc.ColorName,
+                    link = pp.Link,
+                    hexacode = pc.HexaCode
+                }
+            })
+                .ToListAsync();
 
-
-            if (product == null || product.Value == null) //marche pas avec changement
+            if (products.Count == 0)
             {
                 return NotFound();
             }
-
-            return product;
+            
+            return products;
         }
 
         [HttpGet]
