@@ -25,7 +25,7 @@ namespace Miliboo.Controllers {
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Owning>> GetOwning(int id) {
+        public async Task<ActionResult<Owning>> GetOwningById(int id) {
             var Owning = await _repository.GetByIdAsync(id);
 
             if (Owning == null) {
@@ -43,12 +43,12 @@ namespace Miliboo.Controllers {
 
             var objToUpdate = await _repository.GetByIdAsync(id);
 
-            if (objToUpdate.Value == null) {
+            if (objToUpdate == null) {
                 return NotFound();
             }
             else {
                 await _repository.UpdateAsync(objToUpdate.Value, objt);
-                return NoContent();
+                return Ok(objt);
             }
         }
 
@@ -65,11 +65,11 @@ namespace Miliboo.Controllers {
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOwning(int id) {
             var obj = await _repository.GetByIdAsync(id);
-            if (obj.Value == null) {
+            if (obj == null) {
                 return NotFound();
             }
             await _repository.DeleteAsync(obj.Value);
-            return NoContent();
+            return Ok(obj);
         }
     }
 }

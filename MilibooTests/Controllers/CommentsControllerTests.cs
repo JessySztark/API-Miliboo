@@ -19,11 +19,12 @@ namespace MilibooTests.Controller {
         private CommentsController _controller;
         private MilibooDBContext context;
         private IDataRepository<Comment> dataRepository;
+        private readonly MilibooDBContext _context;
 
         [TestInitialize]
         public void Initialize() {
             _mockRepository = new Mock<IDataRepository<Comment>>();
-            _controller = new CommentsController(_mockRepository.Object);
+            _controller = new CommentsController(_mockRepository.Object, _context);
         }
 
         public CommentControllertest() {
@@ -66,6 +67,14 @@ namespace MilibooTests.Controller {
             var actionResult = _controller.GetCommentById(1).Result;
             // Assert
             Assert.IsInstanceOfType(actionResult.Result, typeof(NotFoundResult), "Not Found");
+        }
+
+        [TestMethod]
+        public async Task GetCommentByFK_ReturnsTypeObject_WithMoq() {
+            // Act
+            var actionResult = _controller.GetCommentByForeignKey(1);
+            // Assert
+            Assert.IsInstanceOfType(actionResult, typeof(object), "Object ok");
         }
 
         [TestMethod]

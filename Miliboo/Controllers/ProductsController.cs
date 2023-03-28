@@ -128,13 +128,27 @@ namespace MilibooAPI.Controllers
                 PhotoUrl = pp.Link,
                 Hexacode = pc.HexaCode
             })
+        .Join(
+            _context.ProductType,
+            p => p.Product.ProductTypesNavigation.ProductTypeId,
+            pt => pt.ProductTypeId,
+            (p, pt) => new {
+                Product = p.Product,
+                ColorName = p.ColorName,
+                PhotoUrl = p.PhotoUrl,
+                Hexacode = p.Hexacode,
+                TypeName = pt.ProductTypeName,
+                ProductTypeId = pt.ProductTypeId
+            })
         .Where(pc => pc.Product.ProductId == id)
         .Select(pc => new {
             pc.Product,
             Join = new {
                 colorName = pc.ColorName,
                 link = pc.PhotoUrl,
-                hexacode = pc.Hexacode
+                hexacode = pc.Hexacode,
+                typeName = pc.TypeName,
+                productTypeId = pc.ProductTypeId
             }
         })
         .FirstOrDefaultAsync();
