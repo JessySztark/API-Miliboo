@@ -74,7 +74,9 @@ namespace MilibooTests.Controller {
         public async Task PostConcerned_ModelValidated_CreationOK_WithMoq() {
             Concerned con = new Concerned {
                 ConcernedId = 1,
-                Quantity = 6
+                Quantity = 6,
+                ProductsNavigation = new Product { ProductId= 1 },
+                OrdersNavigation = new Order { OrderID = 1 }
             };
             // Act
             var actionResult = _controller.PostConcerned(con).Result;
@@ -92,11 +94,15 @@ namespace MilibooTests.Controller {
             // Arrange
             Concerned newConcerned = new Concerned {
                 ConcernedId = 1,
-                Quantity = 6
+                Quantity = 6,
+                ProductsNavigation = new Product { ProductId = 1 },
+                OrdersNavigation = new Order { OrderID = 1 }
             };
             Concerned oldConcerned = new Concerned {
                 ConcernedId = 5000,
-                Quantity = 6
+                Quantity = 6,
+                ProductsNavigation = new Product { ProductId = 1 },
+                OrdersNavigation = new Order { OrderID = 1 }
             };
 
             _mockRepository.Setup(x => x.GetByIdAsync(newConcerned.ConcernedId).Result).Returns(newConcerned);
@@ -111,11 +117,15 @@ namespace MilibooTests.Controller {
             // Arrange
             Concerned newConcerned = new Concerned {
                 ConcernedId = 1,
-                Quantity = 6
+                Quantity = 6,
+                ProductsNavigation = new Product { ProductId = 1 },
+                OrdersNavigation = new Order { OrderID = 1 }
             };
             Concerned oldConcerned = new Concerned {
                 ConcernedId = 1,
-                Quantity = 6
+                Quantity = 6,
+                ProductsNavigation = new Product { ProductId = 1 },
+                OrdersNavigation = new Order { OrderID = 1 }
             };
             _mockRepository.Setup(x => x.GetByIdAsync(newConcerned.ConcernedId).Result).Returns(newConcerned);
             // Act
@@ -130,11 +140,15 @@ namespace MilibooTests.Controller {
             int id = 5001;
             Concerned newConcerned = new Concerned {
                 ConcernedId = 1,
-                Quantity = 6
+                Quantity = 6,
+                ProductsNavigation = new Product { ProductId = 1 },
+                OrdersNavigation = new Order { OrderID = 1 }
             };
             Concerned oldConcerned = new Concerned {
                 ConcernedId = 1,
-                Quantity = 6
+                Quantity = 6,
+                ProductsNavigation = new Product { ProductId = 1 },
+                OrdersNavigation = new Order { OrderID = 1 }
             };
             _mockRepository.Setup(x => x.GetByIdAsync(newConcerned.ConcernedId).Result).Returns(newConcerned);
             // Act
@@ -148,7 +162,9 @@ namespace MilibooTests.Controller {
             // Arrange
             Concerned con = new Concerned {
                 ConcernedId = 1,
-                Quantity = 6
+                Quantity = 6,
+                ProductsNavigation = new Product { ProductId = 1 },
+                OrdersNavigation = new Order { OrderID = 1 }
             };
             _mockRepository.Setup(x => x.GetByIdAsync(con.ConcernedId).Result).Returns(con);
             // Act
@@ -162,7 +178,9 @@ namespace MilibooTests.Controller {
             // Arrange
             Concerned con = new Concerned {
                 ConcernedId = 5000,
-                Quantity = 6
+                Quantity = 6,
+                ProductsNavigation = new Product { ProductId = 1 },
+                OrdersNavigation = new Order { OrderID = 1 }
             };
             _mockRepository.Setup(x => x.GetByIdAsync(con.ConcernedId).Result).Returns(con);
             // Act

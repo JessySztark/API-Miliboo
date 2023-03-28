@@ -17,9 +17,11 @@ namespace MilibooAPI.Controllers
     public class CommentsController : ControllerBase
     {
         private readonly IDataRepository<Comment> dataRepository;
-        public CommentsController(IDataRepository<Comment> dataRepo)
+        private readonly MilibooDBContext _context;
+        public CommentsController(IDataRepository<Comment> dataRepo, MilibooDBContext context)
         {
             dataRepository = dataRepo;
+            _context = context;
         }
 
         // GET: api/Comments
@@ -43,8 +45,18 @@ namespace MilibooAPI.Controllers
             return comment;
         }
 
+        [HttpGet("{id}")]
+        public async Task<object> GetCommentByForeignKey(int id) {
+            var comment = await _context.Comments.Where(c => c.ProductTypeId == id).ToListAsync();
+
+            if (comment == null) {
+                return NotFound();
+            }
+            return comment;
+        }
+
         // PUT: api/Comments/5
-       // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutComment(int id, Comment comment) {
             if (id != comment.CommentID) {

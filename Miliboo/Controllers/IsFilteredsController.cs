@@ -42,67 +42,41 @@ namespace MilibooAPI.Controllers
             return isFiltered;
         }
 
-        // PUT: api/IsFiltereds/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-       /* [HttpPut("{id}")]
-        public async Task<IActionResult> PutIsFiltered(int id, IsFiltered isFiltered)
-        {
-            if (id != isFiltered.IsFilteredId)
-            {
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutIsFiltered(int id, IsFiltered objt) {
+            if (id != objt.IsFilteredId) {
                 return BadRequest();
             }
 
-            _context.Entry(isFiltered).State = EntityState.Modified;
+            var objToUpdate = await dataRepository.GetByIdAsync(id);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!IsFilteredExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/IsFiltereds
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<IsFiltered>> PostIsFiltered(IsFiltered isFiltered)
-        {
-            _context.IsFiltereds.Add(isFiltered);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetIsFiltered", new { id = isFiltered.IsFilteredId }, isFiltered);
-        }
-
-        // DELETE: api/IsFiltereds/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteIsFiltered(int id)
-        {
-            var isFiltered = await _context.IsFiltereds.FindAsync(id);
-            if (isFiltered == null)
-            {
+            if (objToUpdate == null) {
                 return NotFound();
             }
-
-            _context.IsFiltereds.Remove(isFiltered);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            else {
+                await dataRepository.UpdateAsync(objToUpdate.Value, objt);
+                return Ok(objt);
+            }
         }
 
-        private bool IsFilteredExists(int id)
-        {
-            return _context.IsFiltereds.Any(e => e.IsFilteredId == id);
-        }*/
+        [HttpPost]
+        public async Task<ActionResult<IsFiltered>> PostIsFiltered(IsFiltered obj) {
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
+            await dataRepository.AddAsync(obj);
+
+            return CreatedAtAction("GetIsFilteredById", new { id = obj.IsFilteredId }, obj);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteIsFiltered(int id) {
+            var obj = await dataRepository.GetByIdAsync(id);
+            if (obj == null) {
+                return NotFound();
+            }
+            await dataRepository.DeleteAsync(obj.Value);
+            return Ok(obj);
+        }
     }
 }
