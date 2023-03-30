@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+```using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Miliboo.Models;
 using Miliboo.Models.EntityFramework;
@@ -15,23 +16,20 @@ namespace Miliboo.Controllers
     public class LoginController : ControllerBase
     {
         private readonly IConfiguration _config;
-        private List<User> appUsers = new List<User>
-        {
-             new User { FullName = "Vincent COUTURIER", UserName = "vince", Password = "1234",UserRole = "Admin" },
-             new User { FullName = "Marc MACHIN", UserName = "marc", Password = "1234", UserRole ="User" }
-        };
-        public LoginController(IConfiguration config)
+        private readonly MilibooDBContext _dbContext;
+
+        public LoginController(IConfiguration config, MilibooDBContext dBContext)
         {
             _config = config;
+            _dbContext = dBContext;
         }
-
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Login([FromBody] User login)
+        public async Task<IActionResult> Login([FromBody] User login)
         {
             IActionResult response = Unauthorized();
-            User user = AuthenticateUser(login);
+            var user = await GetUser(login);
             if (user != null)
             {
                 var tokenString = GenerateJwtToken(user);
@@ -43,22 +41,21 @@ namespace Miliboo.Controllers
             }
             return response;
         }
-        private User AuthenticateUser(User user)
+
+        private async Task<Account> GetUser(User user)
         {
-            return appUsers.SingleOrDefault(x => x.UserName.ToUpper() == user.UserName.ToUpper() &&
-           x.Password == user.Password);
+            return await _dbContext.Account.FirstOrDefaultAsync(u => u.Mail == user.Mail && u.Password == user.Password);
         }
 
-        private string GenerateJwtToken(User userInfo)
+        private string GenerateJwtToken(Account userInfo)
         {
             var securityKey = new
            SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:SecretKey"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new[]
             {
-             new Claim(JwtRegisteredClaimNames.Sub, userInfo.UserName),
-             new Claim("fullName", userInfo.FullName.ToString()),
-             new Claim("role",userInfo.UserRole),
+             new Claim(JwtRegisteredClaimNames.Sub, userInfo.Mail),
+             //new Claim("role",userInfo.UserRole),
              new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
              };
             var token = new JwtSecurityToken(
@@ -73,4 +70,4 @@ namespace Miliboo.Controllers
     }
 }
         
-    
+```
