@@ -32,13 +32,13 @@ namespace Miliboo.Models.EntityFramework
         }
 
         [Column("act_password", TypeName = "varchar")]
-        [MinLength(7)]
-        [MaxLength(30)]
+        [MinLength(4)]
+        [MaxLength(300)]
         [Required]
         public String? Password
         {
             get { return act_password; }
-            set { act_password = value; }
+            set { act_password = BCrypt.Net.BCrypt.HashPassword(value); ; }
         }
 
         [Column("act_firstname", TypeName = "varchar")]

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "HPswJHz6jNR2iWZs10PMRaLRV2uXnPqHZre7RMqRfXVoEiszcSxVSxW/k+D7/IkksIA+EsZdhStdB5u2UDXARw==",
+  "dgSpecHash": "b3Wkc73gtjDI9BSXrZ4e8GUFFvNUj/bagMJDqeKTX8JFSLuc+cA6zxikh4SZbwRlVsURsQJ6/1U40u0FnRwjhA==",
   "success": true,
   "projectFilePath": "C:\\Users\\sztarkj\\Desktop\\github\\API-Miliboo\\MilibooTests\\MilibooTests.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\sztarkj\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\sztarkj\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\sztarkj\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\sztarkj\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.14\\microsoft.aspnetcore.authentication.jwtbearer.6.0.14.nupkg.sha512",

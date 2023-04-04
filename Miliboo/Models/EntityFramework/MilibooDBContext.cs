@@ -18,6 +18,125 @@ namespace Miliboo.Models.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            #region sequences
+            // ---------------------------------[SEQUENCES]--------------------------------- //
+            modelBuilder.HasSequence<int>("SEQ_Account").StartsAt(101).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_Address").StartsAt(251).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_Color").StartsAt(23).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_Comment").StartsAt(14).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_CompositeProduct").StartsAt(18).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_Country").StartsAt(215).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_CreditCard").StartsAt(39).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_DeliveryAdress").StartsAt(35).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_DeliveryMethod").StartsAt(4).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_Discount").StartsAt(6).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_Filter").StartsAt(50).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_FilterCategory").StartsAt(37).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_Grouping").StartsAt(4).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_Order").StartsAt(38).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_PaymentMethod").StartsAt(4).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_Photo").StartsAt(66).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_Product").StartsAt(51).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_ProductCategory").StartsAt(39).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_ProductType").StartsAt(18).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_StateOrder").StartsAt(9).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_TechnicalAspect").StartsAt(20).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_Concerned").StartsAt(39).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_IsFiltered").StartsAt(79).IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_Regroup").StartsAt(20).IncrementsBy(1);
+
+            modelBuilder.Entity<Account>(entity => {
+                entity.Property(a => a.AccountID).HasDefaultValueSql("nextval(SEQ_Account)");
+            });
+
+            modelBuilder.Entity<Address>(entity => {
+                entity.Property(a => a.AddressID).HasDefaultValueSql("nextval(SEQ_Address)");
+            });
+
+            modelBuilder.Entity<Color>(entity => {
+                entity.Property(a => a.ColorId).HasDefaultValueSql("nextval(SEQ_Color)");
+            });
+
+            modelBuilder.Entity<Comment>(entity => {
+                entity.Property(a => a.CommentID).HasDefaultValueSql("nextval(SEQ_Comment)");
+            });
+
+            modelBuilder.Entity<CompositeProduct>(entity => {
+                entity.Property(a => a.CompositeproductID).HasDefaultValueSql("nextval(SEQ_CompositeproductID)");
+            });
+
+            modelBuilder.Entity<CreditCard>(entity => {
+                entity.Property(a => a.CardID).HasDefaultValueSql("nextval(SEQ_CreditCard)");
+            });
+
+            modelBuilder.Entity<DeliveryAdress>(entity => {
+                entity.Property(a => a.IdDeliveryAdress).HasDefaultValueSql("nextval(SEQ_DeliveryAdress)");
+            });
+
+            modelBuilder.Entity<DeliveryMethod>(entity => {
+                entity.Property(a => a.IdDeliveryMethod).HasDefaultValueSql("nextval(SEQ_DeliveryMethod)");
+            });
+
+            modelBuilder.Entity<Discount>(entity => {
+                entity.Property(a => a.DiscountID).HasDefaultValueSql("nextval(SEQ_Discount)");
+            });
+
+            modelBuilder.Entity<Filter>(entity => {
+                entity.Property(a => a.FilterId).HasDefaultValueSql("nextval(SEQ_Filter)");
+            });
+
+            modelBuilder.Entity<FilterCategory>(entity => {
+                entity.Property(a => a.FilterCategoryId).HasDefaultValueSql("nextval(SEQ_FilterCategory)");
+            });
+
+            modelBuilder.Entity<Grouping>(entity => {
+                entity.Property(a => a.GroupingId).HasDefaultValueSql("nextval(SEQ_Grouping)");
+            });
+
+            modelBuilder.Entity<Order>(entity => {
+                entity.Property(a => a.OrderID).HasDefaultValueSql("nextval(SEQ_Order)");
+            });
+
+            modelBuilder.Entity<PaymentMethod>(entity => {
+                entity.Property(a => a.Paymentmethodid).HasDefaultValueSql("nextval(SEQ_PaymentMethod)");
+            });
+
+            modelBuilder.Entity<Photo>(entity => {
+                entity.Property(a => a.PhotoID).HasDefaultValueSql("nextval(SEQ_Photo)");
+            });
+
+            modelBuilder.Entity<Product>(entity => {
+                entity.Property(a => a.ProductId).HasDefaultValueSql("nextval(SEQ_Product)");
+            });
+
+            modelBuilder.Entity<ProductCategory>(entity => {
+                entity.Property(a => a.ProductCategoryId).HasDefaultValueSql("nextval(SEQ_ProductCategory)");
+            });
+
+            modelBuilder.Entity<ProductType>(entity => {
+                entity.Property(a => a.ProductTypeId).HasDefaultValueSql("nextval(SEQ_ProductType)");
+            });
+
+            modelBuilder.Entity<StateOrder>(entity => {
+                entity.Property(a => a.StateOrderID).HasDefaultValueSql("nextval(SEQ_StateOrder)");
+            });
+
+            modelBuilder.Entity<TechnicalAspect>(entity => {
+                entity.Property(a => a.TechnicalAspectId).HasDefaultValueSql("nextval(SEQ_TechnicalAspect)");
+            });
+
+            modelBuilder.Entity<Concerned>(entity => {
+                entity.Property(a => a.ConcernedId).HasDefaultValueSql("nextval(SEQ_Concerned)");
+            });
+
+            modelBuilder.Entity<IsFiltered>(entity => {
+                entity.Property(a => a.IsFilteredId).HasDefaultValueSql("nextval(SEQ_IsFiltered)");
+            });
+
+            modelBuilder.Entity<Regroup>(entity => {
+                entity.Property(a => a.RegroupId).HasDefaultValueSql("nextval(SEQ_Regroup)");
+            });
+            #endregion
             #region primary
             // ---------------------------------[PRIMARY KEY]--------------------------------- //
 
@@ -52,7 +171,7 @@ namespace Miliboo.Models.EntityFramework
                 entity.HasKey(e => e.DiscountID).HasName("pk_discount");
             });
 
-            // -----------[Payement Method]----------- //
+            // -----------[Payment Method]----------- //
 
             modelBuilder.Entity<PaymentMethod>(entity => {
                 entity.HasKey(e => e.Paymentmethodid).HasName("pk_paymentmethod");

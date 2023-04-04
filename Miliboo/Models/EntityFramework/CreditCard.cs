@@ -58,14 +58,14 @@ namespace Miliboo.Models.EntityFramework
         public String CardNumber
         {
             get { return cardNumber; }
-            set { cardNumber = value; }
+            set { cardNumber = BCrypt.Net.BCrypt.HashPassword(value); }
         }
 
         [Column("crc_cryptogram", TypeName = "varchar(3)")]
         public String? Cryptogram
         {
             get { return cryptogram; }
-            set { cryptogram = value; }
+            set { cryptogram = BCrypt.Net.BCrypt.HashPassword(value); }
         }
 
 
